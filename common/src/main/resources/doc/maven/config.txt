@@ -1,0 +1,18 @@
+###############################在eclipse中使用maven的配置 开始#########################################
+第一步：
+	设一个环境变量M2_HOME指向你的maven安装目录
+	
+第二步：
+	进入Window->Preference->Java->Installed JREs->Edit 
+	在Default VM arguments中设置 -Dmaven.multiModuleProjectDirectory=$M2_HOME
+	
+###############################在eclipse中使用maven的配置 开始#########################################
+
+###############################使用maven生成代码 开始#########################################
+第一步：
+	右键使用：run as maven build
+
+第二步：
+	填入Goals 参数：mybatis-generator:generate
+
+###############################使用maven生成代码 结束#########################################

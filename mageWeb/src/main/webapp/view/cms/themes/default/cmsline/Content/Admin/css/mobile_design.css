@@ -1,0 +1,116 @@
+.image_bg{background:url(../images/BoxBg.jpg)}
+.MainBg{width:100%;overflow:hidden;}
+.MainContent{width:1150px;overflow:hidden;margin:0 auto;margin-top:10px;}
+.ToolsBox{width:265px;float:left;}
+.Tools_EditBox{width:251px;border:1px solid #cccccc;background:#fff;border-radius:5px;box-shadow: 0 0 3px 1px #e6e6e6;margin-bottom:15px;}
+.Tools_EditTitle{width:100%;overflow:hidden;line-height:36px;border-bottom:1px solid #ccc;font-size:14px;color:#363636;background:url(../images/PhoneTitleBg.png);text-indent:25px;position:relative;border-radius:5px 5px 0px 0px}
+.Tools_FunctionTitle{text-indent:28px;}
+.Icon_Edit{width:15px;height:19px;background:url(../images/TitleIcon_01.png);position:absolute;top:9px;left:6px;}
+.Icon_Function{width:19px;height:19px;background:url(../images/TitleIcon_02.png);position:absolute;top:9px;left:6px;}
+.Icon_EditAdd{width:36px;height:36px;background:url(../images/Icon_EditAdd.png) no-repeat 10px 10px;position:absolute;top:0px;right:3px;cursor:pointer}
+.Tools_EditContent{width:100%;background:#fafafa;padding:20px 0;border-radius:0px 0px 5px 5px}
+.Tools_SelectBox{width:226px;height:40px;margin:0 auto;background:#e8e8e8;border-radius:5px;padding-top:7px;}
+.Tools_Select{width:162px;height:33px;overflow:visible;float:left;margin-left:10px;position:relative;}
+.Tools_SelectBig{width:206px;}
+.Tools_SelectBig .Tools_SelectName{width:160px;}
+.Tools_SelectIcon{width:19px;height:33px;position:absolute;top:0;right:10px;}
+.Tools_SelectName{width:120px;height:33px;line-height:33px;overflow:hidden;margin-left:10px;color:#7d7d7d;}
+.Tools_FunctionSelect{width:206px;height:33px;}
+.Tools_SelectEdit{width:33px;height:33px;background:url(../images/Icon_Edit.png);float:right;margin-right:10px;cursor:pointer;}
+.Tools_FunctionIconBox{width:208px;overflow:hidden;margin:0 auto;padding:10px 0;}
+.Tools_FunctionIcon{width:208px;overflow:hidden;margin:0 auto;}
+.Tools_FunctionIcon li{width:69px;height:83px;float:left;cursor:pointer;position:relative}
+.Tools_FunctionIcon li:hover{filter:alpha(opacity=80); /*IE滤镜，透明度50%*/-moz-opacity:0.8; /*Firefox私有，透明度50%*/ opacity:0.8;/*其他，透明度50%*/}
+.Tools_FunctionText{text-align:center;padding-top:58px;color:#a1a1a1;font-size:12px;}
+.Tools_FunctionPlugin{position:absolute; top:5px; left: 10px;}
+.FunctionIcon_01{width:33px;height:33px;}
+.ShowBox{width:735px;overflow:hidden;float:left;border-right:1px dotted #b1b1b1;border-left:1px dotted #b1b1b1;}
+.ShowBox_Bg{width:525px;height:787px;margin:0 auto;background-color:#000;border-radius:20px;padding-top:20px;box-shadow: 0 0 3px 1px #e6e6e6;}
+.ShowBox_IphoneTop{width:100px;height:13px;background:#5d5d5d;border:5px solid #222222;border-radius:10px;margin:0 auto;}
+.ShowBox_IphoneHeader{width:490px;height:30px;margin:0 auto;background:#282828;background-image:url(../images/Iphone_Header.jpg);margin-top:20px;background-repeat:no-repeat}
+.ShowBox_Content_box{width:487px;height:656px;margin:0 auto;background:#fff;box-shadow: inset 0 0 3px 1px #5c5c5c;overflow:hidden;padding-left:3px;padding-top:3px;}
+.ShowBox_Content{width:483px;height:652px;overflow:hidden;padding-left:2px;padding-top:2px;position:relative;background: #ebebeb;}
+.ScrollBox{width:85px;height:652px;margin:0 auto;overflow:hidden;position:relative;border:1px solid #ccc;}
+.ScrollContent{height:1200px;overflow:hidden;padding-left:2px;padding-top:2px;position:relative;}
+.ShowBox_IphoneFooter{width:480px;height:26px;margin:0 auto;background:url(../images/Iphone_Footer.jpg);margin-top:15px;}
+.ThumbnailBox{width:145px;overflow:hidden;float:left;position:relative;margin-top:55px;}
+.ThumbnailTitle{width:85px;overflow:hidden;margin:0 auto;line-height:36px;font-size:14px;color:#363636;text-align:center;background:url(../images/PhoneTitleBg.png);border:1px solid #c8c8c8;border-bottom:none;border-radius:5px 5px 0px 0px}
+.ThumbnailContent{width:75px;overflow:hidden;margin:0 auto;border:1px solid #c8c8c8;padding:5px;}
+.ThumbnailRoll{width:101px;height:113px;border:3px solid #ff373a;position:absolute;top:40px;left:19px;}
+
+#mobile_page_selectSelectBoxItContainer {width:130px;}
+
+.ScrollBox .mCSB_container{
+	width:81px;
+	padding:2px;
+	margin-right:30px;
+	overflow:hidden;
+}
+.ScrollBox .mCSB_container.mCS_no_scrollbar{
+	margin-right:0;
+}
+.ScrollBox .mCS_disabled>.mCustomScrollBox>.mCSB_container.mCS_no_scrollbar,
+.ScrollBox .mCS_destroyed>.mCustomScrollBox>.mCSB_container.mCS_no_scrollbar{
+	margin-right:30px;
+}
+.ScrollBox .mCustomScrollBox>.mCSB_scrollTools{
+	width:85px;
+	height:100%;
+	top:0;
+	right:0;
+}
+.ScrollBox .mCSB_scrollTools .mCSB_draggerContainer{
+	position:absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0; 
+	height:auto;
+}
+.ScrollBox .mCSB_scrollTools a+.mCSB_draggerContainer{
+	margin: 20px 0;
+	/*margin-top:2px;
+	margin-bottom:2px;*/
+}
+.ScrollBox .mCSB_scrollTools .mCSB_draggerRail{
+	width:81px;
+	overflow:hidden;
+	margin:0 auto;
+}
+.ScrollBox .mCSB_scrollTools .mCSB_dragger{
+	cursor:pointer;
+	width:100%;
+	height:30px;
+}
+.ScrollBox .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+	width:77px;
+	height:100%;
+	margin:0 auto;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+	text-align:center;
+}
+.ScrollBox .mCSB_scrollTools .mCSB_buttonUp,
+.ScrollBox .mCSB_scrollTools .mCSB_buttonDown{
+	display:block;
+	position:relative;
+	height:18px;
+	overflow:hidden;
+	margin:0 auto;
+	cursor:pointer;
+	background-color:#000;
+	margin-left:2px;
+	margin-right:2px;
+	margin-top:2px;
+	background-image:url(/Scripts/mCustomScrollbar/mCSB_buttons_up.png);
+	background-repeat:no-repeat;
+	background-position:28px 5px;
+}
+.ScrollBox .mCSB_scrollTools .mCSB_buttonDown{
+	top:100%;
+	margin-top:-40px;
+	margin-bottom:2px;
+	background-image:url(/Scripts/mCustomScrollbar/mCSB_buttons_down.png);
+	background-position:28px 1px;
+}

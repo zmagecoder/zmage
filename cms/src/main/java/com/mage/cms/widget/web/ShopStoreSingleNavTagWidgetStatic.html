@@ -1,0 +1,80 @@
+<!-- shopStoreNavVWidget 纵向导航插件--导航插件 -->
+<#assign storeNav = data.storeNav/>
+<div class="nav_v_style0_content">
+	<#if data.classLevel == 1 >
+		<ul>			
+			<#assign class1List = storeNav.storeNavClass1/>
+			<#if class1List??>
+				<#list class1List as class1>
+					<#if class1.StoreNavClass2??>
+						<#list class1.StoreNavClass2 as nav>
+							<#if (nav_index % 2) == 0>
+								<li><a class="nav_class2" class2_id="${nav.ID}" href="${nav.CatUrl}">${nav.Name}</a> </li>
+							</#if>
+						</#list>
+					</#if>
+				</#list>
+			</#if>
+		</ul>
+		<ul>
+			<#assign class1List = storeNav.storeNavClass1/>
+			<#if class1List??>
+				<#list class1List as class1>
+					<#if class1.StoreNavClass2??>
+						<#list class1.StoreNavClass2 as nav>
+						<#if (nav_index % 2) == 1>
+							<li><a class="nav_class2" class2_id="${nav.ID}" href="${nav.CatUrl}">${nav.Name}</a> </li>
+						</#if>
+						</#list>
+					</#if>
+				</#list>
+			</#if>
+		</ul>
+	<#else>
+		<#if data.classLevel == 2>
+			<ul>
+				<#assign class1List = storeNav.storeNavClass1/>
+				<#if class1List??>
+					<#list class1List as class1>
+						<#if class1.StoreNavClass2??>
+							<#list class1.StoreNavClass2 as class2>
+								<#if class2.StoreNavClass3??>
+									<#list class2.StoreNavClass3 as nav>
+										<#if (nav_index % 2) == 0>
+											<li>
+												<a class="nav_class3" class3_id="${nav.ID}" href="${nav.CatUrl}">${nav.Name}</a>
+											</li>
+										</#if>
+									</#list>
+								</#if>
+							</#list>
+						</#if>
+					</#list>
+				</#if>
+			</ul>
+			<ul>
+				<#assign class1List = storeNav.storeNavClass1/>
+				<#if class1List??>
+					<#list class1List as class1>
+						<#if class1.StoreNavClass2??>
+							<#list class1.StoreNavClass2 as class2>
+								<#if class2.StoreNavClass3??>
+									<#list class2.StoreNavClass3 as nav>
+										<#if (nav_index % 2) == 1>
+											<li>
+												<a class="nav_class3" class3_id="${nav.ID}" href="${nav.CatUrl}">${nav.Name}</a> 
+											</li>
+										</#if>
+									</#list>
+								</#if>
+							</#list>
+						</#if>
+					</#list>
+				</#if>
+			</ul>
+		<#else>
+			<ul></ul>
+			<ul></ul>
+		</#if>
+	</#if>
+</div>

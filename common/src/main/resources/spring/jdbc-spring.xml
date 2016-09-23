@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"
+       default-autowire="byName" default-lazy-init="false">
+
+    <!-- 属性文件读入 -->
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:config/jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+	
+	<!-- 平台数据源开始-->
+	<!-- oracle 数据源连接 -->
+	<!--
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> 
+	    <property name="jndiName" value="${jndiName}"/>
+	</bean> 
+	-->
+	
+	<!-- oracle 直连 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <!--  
+        <property name="driverClass" value="${oracle.driverClass}"/>
+        <property name="jdbcUrl" value="${oracle.jdbcUrl}"/>
+        <property name="user" value="${oracle.username}"/>
+        <property name="password" value="${oracle.password}"/>
+        -->
+        
+        <property name="driverClassName" value="${mysql.driverClass}" />
+		<property name="url" value="${mysql.jdbcUrl}" />
+		<property name="username" value="${mysql.username}" />
+		<property name="password" value="${mysql.password}" />
+        
+        <!-- 初始化连接大小 -->
+		<property name="initialSize" value="0"></property>
+		<!-- 连接池最大数量 -->
+		<property name="maxActive" value="20"></property>
+		<!-- 连接池最大空闲 -->
+		<property name="maxIdle" value="20"></property>
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="1"></property>
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait" value="60000"></property>
+    </bean>  
+	
+    <bean id="parameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <constructor-arg>
+            <ref bean="dataSource"/>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="jdbcTemplate" class="com.mage.platform.service.db.impl.LowerCaseJdbcTemplate">
+    	 <property name="dataSource">  
+            <ref bean="dataSource" />  
+        </property> 
+    </bean>
+    
+     <bean id="transactionManager" 
+     	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+    </bean>
+    
+    <bean id="oracleDBSupport" class="com.mage.platform.service.db.impl.OracleDBSupport">
+        <property name="jdbcTemplate">
+            <ref bean="jdbcTemplate"/>
+        </property>
+        <property name="parameterJdbcTemplate">
+            <ref bean="parameterJdbcTemplate"/>
+        </property>
+    </bean>
+    <!--平台数据源结束-->
+    
+    <!-- 支持 @Transactional 标记 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <tx:advice id="transactionManagerAdivice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*"
+                       isolation="READ_COMMITTED"
+                       propagation="REQUIRED"
+                       rollback-for="java.lang.RuntimeException"/>
+        </tx:attributes>
+    </tx:advice>
+    
+</beans>

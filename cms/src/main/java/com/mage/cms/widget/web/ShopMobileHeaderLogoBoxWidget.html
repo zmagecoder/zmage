@@ -1,0 +1,99 @@
+<div>
+	<script type="text/javascript">
+		toolbar.get_store_status(false, function () {
+			store_info = new Store(store_tmpl_data, Constant.STORE_DEVICE_MOBILE, 2, show_store_info);
+			store_info.show_store_info();
+	
+			store_nav = new StoreNav(store_nav_data, show_store_nav);
+			store_nav.show_store_nav();
+		});
+		
+		// 避免画面被代码清空
+		document.write = function(str) {
+			return false;
+		}
+		document.open = function(str1, str2) {
+			return false;
+		}
+		document.writeln = function (str) {
+			return false;
+		}
+	</script>
+</div>
+
+<script type="text/javascript">
+	var plugin_save_level = 2;
+</script>
+
+<!--按钮头部插件 -->
+<script id="plugin_header_tmpl" type="text/x-jquery-tmpl">
+	{{if data.Style == 0}}
+	<div class="plugin_header_style0_content">
+		<div class="search_box">
+            <div class="search_inner_box">
+				<div class="search_input"><input name="search_text" value="" /></div>
+				<div class="search_button"></div>
+			</div>
+		</div>
+	</div>
+	{{/if}}
+	{{if data.Style == 1}}
+	<div class="plugin_header_style1_content main_bg_color">
+		<div class="search_box">
+            <div class="search_inner_box">
+                <div class="search_input"><input name="search_text" value=""/></div>
+                <div class="search_button"></div>
+            </div>
+		</div>
+	</div>
+	{{/if}}
+	{{if data.Style == 2}}
+	<div class="plugin_header_style2_content main_bg_color">
+		<div class="search_box">
+			<div class="search_logo_box"><img src="${data.PhotoUrl}" /></div>
+			<div class="search_inner_box">
+        		<div class="search_input"><input name="search_text" value="" /></div>
+			</div>
+        </div>
+	</div>
+	{{/if}}
+	{{if data.Style == 3}}
+	<div class="plugin_header_style3_content">
+		<div class="search_logo_box"><img src="${data.PhotoUrl}" /></div>
+        <div class="search_box">
+            <div class="search_inner_box">
+                <div class="search_input"><input name="search_text" value=""/></div>
+                <div class="search_button"></div>
+            </div>
+        </div>
+	</div>
+	{{/if}}
+</script>
+<!-- 按钮插件 -->
+<script id="plugin_button_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_button_type${data.Type}_style${data.Style}_content_box">
+		<div class="plugin_button_type${data.Type}_style${data.Style}_content">
+			<ul>
+				{{each(i, button) data.ButtonData}}
+				<li class="plugin_button">
+					{{if (data.Type == 0) || (data.Type == 1)}}
+				 		<a href="javascript:void(0)">${button.Title}</a>
+					{{/if}}
+					{{if data.Type == 2}}
+				 		<a href="javascript:void(0)"><div class="icon plugin_button_icon_style${data.Style}_icon${button.Icon}"></div></a>
+					{{/if}}
+					{{if data.Type == 3}}
+				 		<a href="javascript:void(0)"><div class="icon plugin_button_icon_style${data.Style}_icon${button.Icon}"></div></a>
+						<a href="javascript:void(0)"><div class="text">${button.Title}</div></a>
+					{{/if}}
+				</li>
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+</script>
+<script id="mobile_pages_select_tmpl" type="text/x-jquery-tmpl">
+		{{each(i, page) Pages}}
+		<option value="${page.PageId}" open_url="${page.Page_url}" type="${page.Type}" page_id="${page.PageId}" index_id="${page.IndexId}" {{if CurrPageId == page.PageId}} selected {{/if}}> ${page.Name} </option>
+		{{/each}}
+</script>

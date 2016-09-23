@@ -1,0 +1,8 @@
+<div class="plugin_carousel_content" ShowNumber="${data.setting.showNumber}"  Interval="${data.setting.interval}"  Direction="${data.setting.direction}"  Gap="${data.setting.gap}"  ShowText="${data.setting.showText}">
+	<ul class="plugin_carousel_box">
+		<#list data.advertising as adv>
+			<#assign i="adv_index"/>
+			<li><a href="${adv.linkUrl}"><img class="adv_image" index="${i}" src="${adv.url}" title="${adv.title}" /><div class="adv_text" index="${i}">${adv.title}</div></a></li>
+		</#list>
+	</ul>
+</div>

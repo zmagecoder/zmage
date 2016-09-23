@@ -1,0 +1,275 @@
+﻿@charset "utf-8";
+
+.news {
+	background: url(../images/news03.png) repeat-x top center;
+	text-align: center;
+	height: 200px;
+	position: absolute;
+	top: 120px;
+	left: 0;
+	width: 100%;
+	z-index: 9;
+	height: 53px;
+	font-family: "Microsoft Yahei";
+}
+
+/******业务范围*****/
+.busi01 {
+	position: absolute;
+	width: 100%;
+	height: 55px;
+	left: 0;
+	bottom: 0;
+	text-align: center;
+	z-index: 9;
+}
+
+.busi03 {
+	float: left;
+}
+
+.busi03 dl {
+	padding-bottom: 2px;
+}
+
+.busi03 dl dt {
+	float: left;
+	width: 109px;
+	height: 110px;
+	text-align: center;
+}
+
+.busi03 dl dt img {
+	border-radius: 50%;
+	-webkit-transition: -webkit-transform 1s ease-out;
+	-moz-transition: -moz-transform 1s ease-out;
+	-o-transition: -o-transform 1s ease-out;
+	-ms-transition: -ms-transform 1s ease-out;
+}
+
+.busi03 dl:hover dt img {
+	border-radius: 50%;
+	color: #504537;
+	-webkit-transform: rotateZ(360deg);
+	-moz-transform: rotateZ(360deg);
+	-o-transform: rotateZ(360deg);
+	-ms-transform: rotateZ(360deg);
+	transform: rotateZ(360deg);
+}
+
+.busi03 dl dd {
+	font-size: 18px;
+	color: #363636;
+	color: #000;
+	float: left;
+	padding: 43px 0 0 15px;
+	width: 95px;
+}
+
+.section {
+	position: relative;
+	overflow: hidden;
+}
+
+.section .contract {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.section .contract img {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.busi_img_blank {
+	position: absolute;
+	bottom: -130px;
+	width: 1130px;
+	height: 346px;
+	left: 50%;
+	margin: 0 0 0 -565px;
+	background: url(../images/er03.jpg) no-repeat;
+	transition: all 1s;
+	opacity: 0;
+}
+
+.busi_img01 {
+	position: absolute;
+	bottom: 400px;
+	left: 50%;
+	width: 400px;
+	margin-left: -495px;
+	opacity: 0;
+	transition: all 1.2s;
+	z-index: 5;
+}
+
+.busi_img02 {
+	position: absolute;
+	bottom: 320px;
+	left: 50%;
+	width: 400px;
+	margin-left: 168px;
+	opacity: 0;
+	transition: all 1.2s;
+	z-index: 5;
+}
+
+.busi_img03 {
+	position: absolute;
+	bottom: 600px;
+	left: 50%;
+	width: 400px;
+	margin-left: -270px;
+	opacity: 0;
+	transition: all 1.5s;
+	z-index: 5;
+}
+
+.busi_img04 {
+	position: absolute;
+	bottom: 600px;
+	left: 50%;
+	width: 400px;
+	margin-left: 388px;
+	opacity: 0;
+	transition: all 1.5s;
+	z-index: 5;
+}
+
+.busi_img05 {
+	position: absolute;
+	left: 50%;
+	bottom: 350px;
+	width: 400px;
+	margin-left: -50px;
+	transition: all 1s;
+	z-index: 5;
+}
+
+.section h3 {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 0;
+	width: 1038px;
+	height: 500px;
+	margin-left: -519px;
+	margin-top: -250px;
+	text-indent: -9999px;
+	background-repeat: no-repeat;
+	opacity: 0;
+	-webkit-transform: scale(0.5, 0.5);
+	transform: scale(0.5, 0.5);
+	transition: all 1s;
+}
+
+.contract_img {
+	position: absolute;
+	left: 50%;
+	top: 200px;
+	width: 720px;
+	height: 442px;
+	margin-left: -360px;
+	z-index: 10;
+	background: url(../images/phone02.png) no-repeat left bottom;
+	transition: all 1s;
+}
+
+/* CSS3过度及动画 */
+.active strong, .active h3 {
+	opacity: 1;
+	-webkit-transform: scale(1, 1);
+	transform: scale(1, 1);
+	transition-delay: 0.7s;
+}
+
+.active .busi_img_blank {
+	bottom: 0;
+	opacity: 1;
+	transition-delay: 0.7s;
+}
+
+.active .busi_img01 {
+	bottom: 216px;
+	opacity: 1;
+	transition-delay: 1.2s;
+}
+
+.active .busi_img02 {
+	bottom: 135px;
+	opacity: 1;
+	transition-delay: 1.2s;
+}
+
+.active .busi_img03 {
+	bottom: 355px;
+	opacity: 1;
+	transition-delay: 1.2s;
+}
+
+.active .busi_img04 {
+	bottom: 260px;
+	opacity: 1;
+	transition-delay: 1.2s;
+}
+
+.active .busi_img05 {
+	bottom: 270px;
+	transition-delay: 0.7s;
+}
+
+.active .contract_img {
+	top: 230px;
+	transition-delay: 0.7s;
+}
+
+/* for lt ie 10*/
+.ltie10 strong, .ltie10 h3 {
+	opacity: 1;
+	transform: scale(1, 1);
+	transition-delay: 0.7s;
+}
+
+.ltie10 .busi_img_blank {
+	bottom: 0;
+	opacity: 1;
+	transition-delay: 0.7s;
+}
+
+.ltie10 .busi_img01 {
+	bottom: 216px;
+	margin-bottom: -278px;
+	transition-delay: 1.2s;
+}
+
+.ltie10 .busi_img02 {
+	bottom: 135px;
+	margin-bottom: -278px;
+	transition-delay: 1.2s;
+}
+
+.ltie10 .busi_img03 {
+	bottom: 355px;
+	margin-bottom: -278px;
+	transition-delay: 1.2s;
+}
+
+.ltie10 .busi_img04 {
+	bottom: 260px;
+	transition-delay: 1.2s;
+}
+
+.ltie10 .busi_img05 {
+	bottom: 270px;
+	transition-delay: 0.7s;
+}
+
+.ltie10 .contract_img {
+	top: 230px;
+	transition-delay: 0.7s;
+}

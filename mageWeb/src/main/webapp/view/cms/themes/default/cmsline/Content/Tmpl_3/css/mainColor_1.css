@@ -1,0 +1,313 @@
+/* 全分类导航 style3 */
+.nav_style4_Class12
+{
+	background: #2799be;
+	border-bottom: 1px solid #007fb7;
+	border-top: 1px solid #2db2d3;
+}
+
+.nav_style3_SubClass2 .checked
+{
+	background-color: #2799be;
+}
+
+.nav_style1_content .nav_style1_content_hover1
+{
+	border-top: 1px solid #0083ad;
+	border-left: 1px solid #0083ad;
+	border-bottom: 1px solid #0083ad;
+	border-right: 1px solid #0083ad;
+	background: #0083ad;
+	z-index: 15;
+	color: #fff;
+}
+
+/*全部分类导航头部标题*/
+.plugin_containers .Nav_TitleStyleBox, .Nav_TitleStyleBox
+{
+	border: 2px solid #0089ad;
+	border-top: none;
+	background: #f1f4ff;
+}
+
+	.Nav_TitleStyleBox .patt_bg_plugin_title
+	{
+		background: url(../images/bg_NavTitle_1.png);
+	}
+
+.nav_style1_color1, .nav_style1_color2
+{
+	background: #f1f4ff;
+}
+
+.nav_style1_content_li
+{
+	border-top: 1px solid #FFFFFF;
+	border-bottom: 1px solid #e0e4ef;
+}
+	/*.nav_style1_content_li:first-child {
+	border-top:1px solid #f1f4ff;
+}*/
+	.nav_style1_content_li:last-child
+	{
+		border-bottom: 1px solid #f1f4ff;
+	}
+
+/*搜索框*/
+.patt_bg_search
+{
+	background: #0088b2;
+}
+
+.patt_border_search
+{
+	border: 1px solid #a6d8e7;
+}
+
+.patt_font_search
+{
+	color: white;
+	font-size: 14px;
+}
+
+/*主导航*/
+.patt_bg_nav
+{
+	background: #0083ad;
+}
+
+/*全部商品分类背景*/
+.patt_bg_sort
+{
+	background-color: #2799be;
+}
+
+.patt_bg_header_checked
+{
+	background: #005069;
+}
+
+.header_style0 .header_navbox .header_nav .header_sortnav li:hover
+{
+	background: #00769c;
+}
+
+.header_style0 .header_navbox .header_nav .header_sortnav li:active
+{
+	background: #005069;
+}
+
+
+
+/*左边导航-鼠标经过li换边框颜色*/
+.nav_style1_contentBg
+{
+	width: 100%;
+	height: 100%;
+	background: #2799be;
+}
+
+.nav_style1_content .nav_style1_content_hover
+{
+	border-top: 1px solid #0083ad;
+	border-left: 1px solid #0083ad;
+	border-bottom: 1px solid #0083ad;
+	border-right: 1px solid #FFFFFF;
+	background: #fff;
+	z-index: 15;
+}
+
+.patt_border_leftnav
+{
+	border: 1px solid #0088b2;
+}
+
+
+/*主导航下边二级导航*/
+.patt_border_subnav
+{
+	border: 1px solid #0088b2;
+}
+/*二级导航-鼠标经过li换边框颜色*/
+.subnav_border
+{
+	border: 1px solid #0088b2;
+	border-bottom: 1px solid white;
+	background-color: white;
+	Z-index: 8;
+}
+
+/*确认购买*/
+
+.patt_bg_buy_type4
+{
+	background: #c51b00;
+	font-size: 16px;
+	color: #fff;
+}
+
+	.patt_bg_buy_type4:hover
+	{
+		background: #b31600;
+		color: #fff;
+	}
+
+	.patt_bg_buy_type4:active
+	{
+		background: #9a0e00;
+		color: #fff;
+	}
+
+/*加入购物车*/
+.patt_bg_join_cart
+{
+	background: #c51b00;
+	color: #fff;
+	font-size: 16px;
+}
+
+	.patt_bg_join_cart:hover
+	{
+		background: #b31600;
+		color: #fff;
+	}
+
+	.patt_bg_join_cart:active
+	{
+		background: #9a0e00;
+		color: #fff;
+	}
+
+/*立即购买*/
+.patt_bg_buy_now
+{
+	background: #b67136;
+	color: #fff;
+	font-size: 16px;
+}
+
+	.patt_bg_buy_now:hover
+	{
+		background: #aa612d;
+		color: #fff;
+	}
+
+	.patt_bg_buy_now:active
+	{
+		background: #91491f;
+		color: #fff;
+	}
+
+/*添加到购物车*/
+.patt_border_addcart
+{
+	border: 3px solid #0083ad;
+}
+
+.patt_bg_addcart
+{
+	background: #0083ad;
+}
+
+.patt_font_cart
+{
+	color: #fff;
+}
+
+
+
+/*个人会员中心-近三月-鼠标经过效果*/
+
+.order_search .order_search_title .order_search_time:hover
+{
+	background: #0083ad;
+	color: white;
+}
+
+.order_search .order_search_title .order_search_time1:hover
+{
+	background: #0083ad;
+	color: white;
+}
+
+	.order_search .order_search_title .order_search_time1:hover a
+	{
+		color: white;
+	}
+
+.order_search .order_search_title .order_search_time:hover a
+{
+	color: #fff;
+}
+
+
+/*在线客服-背景*/
+.patt_bg_online
+{
+	font-size: 15px;
+	background-color: #0083ad;
+}
+
+/*展开后-标题背景*/
+.patt_bg_title_online
+{
+	background-color: #0083ad;
+}
+
+
+.patt_border_online_popup
+{
+	border: solid 1px #0083ad;
+}
+
+
+/*插件-标题*/
+.patt_bg_plugin_title
+{
+	border-bottom-color: #0083ad;
+}
+
+.patt_border_plugin_title
+{
+	border-bottom-color: #0083ad;
+}
+
+.patt_border_plugin_title
+{
+	border: 1px solid #e6e6e6;
+	border-top-color: #0083ad;
+}
+
+.patt_border_plugin_untitle
+{
+	border: 1px solid #e6e6e6;
+	border-top-color: #0083ad;
+}
+
+/*插件-多标签橱窗*/
+.patt_border_showcase_type1_inner
+{
+	border-left: 1px solid #e6e6e6;
+	border-right: 1px solid #e6e6e6;
+	border-top: none;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+.patt_border_showcase_type1_title
+{
+	border-bottom: 1px solid #e6e6e6;
+	border-bottom-color: #0083ad;
+}
+
+	.patt_border_showcase_type1_title li
+	{
+		border-right: 1px solid #e6e6e6;
+		border-top-color: #0083ad;
+		border-top-width: 1px;
+		border-top-style: solid;
+	}
+
+		.patt_border_showcase_type1_title li:first-child
+		{
+			border-left: 1px solid #e6e6e6;
+		}

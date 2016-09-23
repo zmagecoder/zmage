@@ -1,0 +1,25 @@
+/*插件-标题*/
+.patt_border_plugin_title
+{
+    border-top-width:2px;
+    border-top-style:solid;
+}
+.patt_border_plugin_untitle
+{
+    border-top-width:2px;
+    border-top-style:solid;
+}
+
+/*插件-多标签橱窗*/
+.patt_border_showcase_type1_title li
+{
+    border-top-width:2px;
+    border-top-style:solid;
+}
+.patt_border_showcase_type1_title 
+{
+	border-bottom: 1px solid #e6e6e6;
+}
+.showcase_TitleBox {
+	height:37px;
+}

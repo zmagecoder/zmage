@@ -1,0 +1,59 @@
+<!-- shopTextNewsWidget 文字新闻编辑插件--其它插件 -->
+<#assign newsList = data.news/>
+<#switch data.style>
+	<#case 0>
+		<div class="plugin_news_main_content" Roll="${data.roll?string('true','false')}" Interval="${data.interval}" Direction="${data.direction}">
+			<div class="text_news_style0_content">
+				<ul class="text_news_list">
+					<#if newsList??>
+						<#list newsList as news>
+							<li>
+								<a class="news_title" news_id="${news.id}" index_id="${news.indexId!''}" href="${news.link_url}">${news.title}</a>
+								<div class="icon_h"></div> 
+							</li>
+						</#list>
+					</#if>
+				</ul>
+			</div>
+		</div>
+	 	<#break>
+	 <#case 1>
+		<div class="plugin_news_main_content" Roll="${data.roll?string('true','false')}" Interval="${data.interval}" Direction="${data.direction}">
+			<div class="text_news_style1_content">
+				<ul class="text_news_list">
+					<#if newsList??>
+						<#list newsList as news>
+							<#if (news_index % 2) == 0 > <li> </#if>
+								<div class="text_news_style1">
+									<a class="news_title" news_id="${news.id}" index_id="${news.indexid!''}" href="${news.link_url}">${news.title}</a>
+									<div class="icon_h"></div>
+								</div>
+							<#if (news_index % 2) == 1 || (i == (newsList?size - 1)) > </li> </#if>
+						</#list>
+					</#if>
+				</ul>
+			</div>
+		</div>
+	 	<#break>
+	 <#case 2>
+		 <div class="plugin_news_main_content" Roll="${data.roll?string('true','false')}" Interval="${data.interval}" Direction="${data.direction}">
+			<div class="text_news_style2_content">
+				<ul class="text_news_list">
+					<#if newsList??>
+						<#list newsList as news>
+							<li>
+								<a class="news_title" news_id="${news.id}" index_id="${news.indexid!''}" href="${news.link_url}">${news.title}</a>
+								<div class="icon_h"></div> 
+								<div class="text_news_style2_position">
+									2014-07-17
+								</div>
+							</li>
+						</#list>
+					</#if>
+				</ul>
+			</div>
+		</div>
+		<#break>
+	<#default>
+		类型错误
+</#switch>

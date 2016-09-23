@@ -1,0 +1,461 @@
+<!-- shopImageTypeWidget 图片展示插件--图片插件 -->
+<script id="image_type1_tmpl" type="text/x-jquery-tmpl">
+	{{if data.Advertising[0] != null}}
+		<a href="javascript:void(0)"><img class="image_type1" title="${data.Advertising[0].Title}" id="image0" src="${data.Advertising[0].Url}" /></a>
+	{{/if}}
+</script>
+
+
+<script id="image_type2_tmpl" type="text/x-jquery-tmpl">
+	{{if data.Style == 0}}						
+	<ul class="image_type2_nogap">
+		{{else}}
+	<ul class="image_type2_gap">
+		
+		{{/if}}
+		<li class="li1">{{if data.Advertising[0] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[0].Title}" id="image0" src="${data.Advertising[0].Url}" /></a>
+			{{/if}}
+		</li>
+		<li class="li2">{{if data.Advertising[1] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[1].Title}" id="image1" src="${data.Advertising[1].Url}" /></a>
+			{{/if}}
+		</li>
+		<li class="li3">{{if data.Advertising[2] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[2].Title}" id="image2" src="${data.Advertising[2].Url}" /></a>
+			{{/if}}
+		</li>
+	</ul>
+</script>
+
+<script id="image_type3_tmpl" type="text/x-jquery-tmpl">
+	{{if data.Style == 0}}						
+	<div class="image_type3_nogap">
+		{{else}}
+	<div class="image_type3_gap">
+		
+		{{/if}}
+		<div class="image_type3_bigimg li1">
+			{{if data.Advertising[0] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[0].Title}" id="image0" src="${data.Advertising[0].Url}" /></a>
+			{{/if}}
+		</div>
+		<ul class="image_type3_smallimg ">
+			<li class="li2">
+				{{if data.Advertising[1] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[1].Title}" id="image1" src="${data.Advertising[1].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li3">{{if data.Advertising[2] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[2].Title}" id="image2" src="${data.Advertising[2].Url}" /></a>
+				{{/if}}
+			</li>
+		</ul>
+	</div>
+</script>
+
+<script id="image_type4_tmpl" type="text/x-jquery-tmpl">
+	{{if data.Style == 0}}						
+	<div class="image_type4_nogap">
+		{{else}}
+	<div class="image_type4_gap">
+		
+		{{/if}}
+		<div class="image_type4_bigimg li1">
+			{{if data.Advertising[0] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[0].Title}" id="image0" src="${data.Advertising[0].Url}" /></a>
+			{{/if}}
+		</div>
+		<ul class="image_type4_smallimg">
+			<li class="li2">
+				{{if data.Advertising[1] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[1].Title}" id="image1" src="${data.Advertising[1].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li3">
+				{{if data.Advertising[2] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[2].Title}" id="image2" src="${data.Advertising[2].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li4">
+				{{if data.Advertising[3] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[3].Title}" id="image3" src="${data.Advertising[3].Url}" /></a>
+				{{/if}}
+			</li>
+		</ul>
+	</div>
+</script>
+
+
+<script id="image_type5_tmpl" type="text/x-jquery-tmpl">
+	{{if data.Style == 0}}						
+	<ul class="image_type5_nogap">
+		{{else}}
+	<ul class="image_type5_gap">
+		
+		{{/if}}
+		<li class="li1">
+			{{if data.Advertising[0] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[0].Title}" id="image0" src="${data.Advertising[0].Url}" /></a>
+			{{/if}}
+		</li>
+		<li class="li2">
+			{{if data.Advertising[1] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[1].Title}" id="image1" src="${data.Advertising[1].Url}" /></a>
+			{{/if}}
+		</li>
+		<li class="li3">
+			{{if data.Advertising[2] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[2].Title}" id="image2" src="${data.Advertising[2].Url}" /></a>
+			{{/if}}
+		</li>
+		<li class="li4">
+			{{if data.Advertising[3] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[3].Title}" id="image3" src="${data.Advertising[3].Url}" /></a>
+			{{/if}}
+		</li>
+		<li class="li5">
+			{{if data.Advertising[4] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[4].Title}" id="image4" src="${data.Advertising[4].Url}" /></a>
+			{{/if}}
+		</li>
+	</ul>
+</script>
+
+
+
+<script id="image_type6_tmpl" type="text/x-jquery-tmpl">
+	{{if data.Style == 0}}						
+	<div class="image_type6_nogap">
+		{{else}}
+	<div class="image_type6_gap">
+		
+		{{/if}}
+		<div class="image_type6_box_left">
+			<ul>
+				<li class="li1">
+					{{if data.Advertising[0] != null}}
+						<a href="javascript:void(0)"><img title="${data.Advertising[0].Title}" id="image0" src="${data.Advertising[0].Url}" /></a>
+					{{/if}}
+				</li>
+				<li class="li2">
+					{{if data.Advertising[1] != null}}
+						<a href="javascript:void(0)"><img title="${data.Advertising[1].Title}" id="image1" src="${data.Advertising[1].Url}" /></a>
+					{{/if}}
+				</li>
+			</ul>
+			<div class="li3">
+				{{if data.Advertising[2] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[2].Title}" id="image2" src="${data.Advertising[2].Url}" /></a>
+				{{/if}}
+			</div>
+		</div>
+		<div class="image_type6_box_center li4">
+			{{if data.Advertising[3] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[3].Title}" id="image3" src="${data.Advertising[3].Url}" /></a>
+			{{/if}}
+		</div>
+		<ul class="image_type6_box_right">
+			<li class="li5">
+				{{if data.Advertising[4] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[4].Title}" id="image4" src="${data.Advertising[4].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li6">
+				{{if data.Advertising[5] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[5].Title}" id="image5" src="${data.Advertising[5].Url}" /></a>
+				{{/if}}
+			</li>
+		</ul>
+	</div>
+</script>
+
+
+<script id="image_type7_tmpl" type="text/x-jquery-tmpl">
+	{{if data.Style == 0}}						
+	<div class="image_type7_nogap">
+		{{else}}
+	<div class="image_type7_gap">
+		
+		{{/if}}
+		<div class="image_type7_bigimg li1">
+			{{if data.Advertising[0] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[0].Title}" id="image0" src="${data.Advertising[0].Url}" /></a>
+			{{/if}}
+		</div>
+		<ul class="image_type7_smallimg">
+			<li class="li2">
+				{{if data.Advertising[1] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[1].Title}" id="image1" src="${data.Advertising[1].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li3">
+				{{if data.Advertising[2] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[2].Title}" id="image2" src="${data.Advertising[2].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li4">
+				{{if data.Advertising[3] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[3].Title}" id="image3" src="${data.Advertising[3].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li5">
+				{{if data.Advertising[4] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[4].Title}" id="image4" src="${data.Advertising[4].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li6">
+				{{if data.Advertising[5] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[5].Title}" id="image5" src="${data.Advertising[5].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li7">
+				{{if data.Advertising[6] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[6].Title}" id="image6" src="${data.Advertising[6].Url}" /></a>
+				{{/if}}
+			</li>
+		</ul>
+	</div>
+</script>
+
+
+<script id="image_type8_tmpl" type="text/x-jquery-tmpl">
+	{{if data.Style == 0}}						
+	<div class="image_type8_nogap">
+		{{else}}
+	<div class="image_type8_gap">
+		
+		{{/if}}
+		<ul>
+			<li class="li1">
+				{{if data.Advertising[0] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[0].Title}" id="image0" src="${data.Advertising[0].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li2">
+				{{if data.Advertising[1] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[1].Title}" id="image1" src="${data.Advertising[1].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li3">
+				{{if data.Advertising[2] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[2].Title}" id="image2" src="${data.Advertising[2].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li4">
+				{{if data.Advertising[3] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[3].Title}" id="image3" src="${data.Advertising[3].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li5">
+				{{if data.Advertising[4] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[4].Title}" id="image4" src="${data.Advertising[4].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li6">
+				{{if data.Advertising[5] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[5].Title}" id="image5" src="${data.Advertising[5].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li7">
+				{{if data.Advertising[6] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[6].Title}" id="image6" src="${data.Advertising[6].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li8">
+				{{if data.Advertising[7] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[7].Title}" id="image7" src="${data.Advertising[7].Url}" /></a>
+				{{/if}}
+			</li>
+		</ul>
+	</div>
+</script>
+
+
+<script id="image_type9_tmpl" type="text/x-jquery-tmpl">
+	{{if data.Style == 0}}						
+	<div class="image_type9_nogap">
+	{{else}}
+	<div class="image_type9_gap">				
+	{{/if}}
+		<ul>
+			<li class="li1">
+				{{if data.Advertising[0] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[0].Title}" id="image0" src="${data.Advertising[0].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li2">
+				{{if data.Advertising[1] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[1].Title}" id="image1" src="${data.Advertising[1].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li3">
+				{{if data.Advertising[2] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[2].Title}" id="image2" src="${data.Advertising[2].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li4">
+				{{if data.Advertising[3] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[3].Title}" id="image3" src="${data.Advertising[3].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li5">
+				{{if data.Advertising[4] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[4].Title}" id="image4" src="${data.Advertising[4].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li6">
+				{{if data.Advertising[5] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[5].Title}" id="image5" src="${data.Advertising[5].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li7">
+				{{if data.Advertising[6] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[6].Title}" id="image6" src="${data.Advertising[6].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li8">
+				{{if data.Advertising[7] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[7].Title}" id="image7" src="${data.Advertising[7].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li9">
+				{{if data.Advertising[8] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[8].Title}" id="image8" src="${data.Advertising[8].Url}" /></a>
+				{{/if}}
+			</li>
+		</ul>
+	</div>
+</script>
+
+<script id="image_type10_tmpl" type="text/x-jquery-tmpl">
+	{{if data.Style == 0}}						
+	<ul class="image_type10_nogap">
+	{{else}}
+	<ul class="image_type10_gap">				
+	{{/if}}
+		<li class="li1">
+			{{if data.Advertising[0] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[0].Title}" id="image0" src="${data.Advertising[0].Url}" /></a>
+			{{/if}}
+		</li>
+		<li class="li2">
+			{{if data.Advertising[1] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[1].Title}" id="image1" src="${data.Advertising[1].Url}" /></a>
+			{{/if}}
+		</li>
+	</ul>
+</script>
+
+
+<script id="image_type11_tmpl" type="text/x-jquery-tmpl">
+	{{if data.Style == 0}}						
+	<ul class="image_type11_nogap">
+	{{else}}
+	<ul class="image_type11_gap">				
+	{{/if}}
+		<li class="li1">
+			{{if data.Advertising[0] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[0].Title}" id="image0" src="${data.Advertising[0].Url}" /></a>
+			{{/if}}
+		</li>
+		<li class="li2">
+			{{if data.Advertising[1] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[1].Title}" id="image1" src="${data.Advertising[1].Url}" /></a>
+			{{/if}}
+		</li>
+		<li class="li3">
+			{{if data.Advertising[2] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[2].Title}" id="image2" src="${data.Advertising[2].Url}" /></a>
+			{{/if}}
+		</li>
+		<li class="li4">
+			{{if data.Advertising[3] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[3].Title}" id="image3" src="${data.Advertising[3].Url}" /></a>
+			{{/if}}
+		</li>
+	</ul>
+</script>
+
+
+<script id="image_type12_tmpl" type="text/x-jquery-tmpl">
+	{{if data.Style == 0}}						
+	<div class="image_type12_nogap">
+	{{else}}
+	<div class="image_type12_gap">				
+	{{/if}}
+		<div class="image_type12_bigimg li1">
+			{{if data.Advertising[0] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[0].Title}" id="image0" src="${data.Advertising[0].Url}" /></a>
+			{{/if}}
+		</div>
+		<ul class="image_type12_smallimg">
+			<li class="li2">
+				{{if data.Advertising[1] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[1].Title}" id="image1" src="${data.Advertising[1].Url}" /></a>
+				{{/if}}
+			</li>
+			<li class="li3">
+				{{if data.Advertising[2] != null}}
+					<a href="javascript:void(0)"><img title="${data.Advertising[2].Title}" id="image2" src="${data.Advertising[2].Url}" /></a>
+				{{/if}}
+			</li>
+		</ul>
+	</div>
+</script>
+
+
+<script id="image_type13_tmpl" type="text/x-jquery-tmpl">
+	{{if data.Style == 0}}						
+	<ul class="image_type13_nogap">
+	{{else}}
+	<ul class="image_type13_gap">				
+	{{/if}}
+		<li class="li2">
+			{{if data.Advertising[1] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[1].Title}" id="image1" src="${data.Advertising[1].Url}" /></a>
+			{{/if}}
+		</li>
+		<li class="li1">
+			{{if data.Advertising[0] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[0].Title}" id="image0" src="${data.Advertising[0].Url}" /></a>
+			{{/if}}
+		</li>
+		<li class="li3">
+			{{if data.Advertising[2] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[2].Title}" id="image2" src="${data.Advertising[2].Url}" /></a>
+			{{/if}}
+		</li>
+	</ul>
+</script>
+
+
+<script id="image_type14_tmpl" type="text/x-jquery-tmpl">
+	{{if data.Style == 0}}						
+	<ul class="image_type14_nogap">
+		{{else}}
+	<ul class="image_type14_gap">
+		
+		{{/if}}
+		<li class="li1">
+			{{if data.Advertising[0] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[0].Title}" id="image0" src="${data.Advertising[0].Url}" /></a>
+			{{/if}}
+		</li>
+		<li class="li2">
+			{{if data.Advertising[1] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[1].Title}" id="image1" src="${data.Advertising[1].Url}" /></a>
+			{{/if}}
+		</li>
+		<li class="li3">
+			{{if data.Advertising[2] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[2].Title}" id="image2" src="${data.Advertising[2].Url}" /></a>
+			{{/if}}
+		</li>
+		<li class="li4">
+			{{if data.Advertising[3] != null}}
+				<a href="javascript:void(0)"><img title="${data.Advertising[3].Title}" id="image3" src="${data.Advertising[3].Url}" /></a>
+			{{/if}}
+		</li>
+	</ul>
+</script>

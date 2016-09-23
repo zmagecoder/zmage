@@ -1,0 +1,49 @@
+<div class="showcase_main_content" goods_style="${data.goodsStyle}" Roll="${data.roll?string('true','false')}" Interval="${data.interval}" Direction="${data.direction}">
+	<ul class="showcase_type0_goods">
+		<#if data.labels??>
+			<#assign labels = data.labels/>
+			<#list labels as label>
+				<#if label_index == 0>
+					<#assign goodList = label.goods />
+					<#if goodList??>
+						<#list goodList as goods>
+							<li class="goods_list" label_id="${label.index}" goods_id="${goods.goodsId}">
+								<#if data.style = 0>
+									<div class="showcase_goods_style0 <#if data.goodsStyle = 1>showcase_goods_border</#if>">
+										<div class="showcase_goods_style0_img">
+											<a href="javascript:void(0)"><img title="${goods.name}" src="${goods.photo1}" /></a>
+											<div id="sales_icon"></div>
+										</div>
+										<div class="showcase_goods_style0_intro"><p class="nav_p_hover"><a href="javascript:void(0)">${goods.name} <em>${goods.searchKey}</em></a></p></div>
+										<p class="showcase_goods_style0_rmb"><strong>现价：&yen; <em id="sales_price">${goods.price}</em></strong></p>
+									</div>
+								<#elseif data.style = 1>
+									<div class="showcase_goods_style1 <#if data.goodsStyle = 1>showcase_goods_border</#if>">
+										<a href="javascript:void(0)"><img title="${goods.name} ${goods.searchKey}" src="${goods.photo1}" /></a>
+										<div id="sales_icon"></div>
+										<div class="popup_product_name" style="display: none">
+											<div class="popup_product_name_bg">
+												<div class="product_name"><p class="nav_product"><a href="javascript:void(0)">${goods.name} ${goods.searchKey}</a></p></div>
+												<p class="product_rmb">现价：&yen; <em id="sales_price">${goods.price}</em></p>
+											</div>
+										</div>
+									</div>
+								<#elseif data.style = 2>					
+									<div class="showcase_goods_style2">
+										<div class="showcase_goods_style2_img plugin_touch_cancel">
+											<a href="javascript:void(0)"><img title="${goods.name}" src="${goods.photo1}" /></a>
+										</div>
+										<div class="a_text">
+											<div class="a_text_dt"><p class="nav_p_hover"><a href="javascript:void(0)">${goods.name} <em>${goods.searchKey}</em></a></p></div>
+											<div class="a_text_dd">&yen; <em id="sales_price">${goods.price}</em></div>
+										</div>
+									</div>
+								</#if>
+							</li>
+						</#list>
+					</#if>
+				</#if>
+			</#list>
+		</#if>
+	</ul>
+</div>

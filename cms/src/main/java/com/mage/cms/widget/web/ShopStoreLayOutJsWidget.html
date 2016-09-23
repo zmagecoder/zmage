@@ -1,0 +1,112 @@
+<!-- 编辑模式 此页面按freemarker方式解析  add by wui,待明天试验看看 -->
+<#if is_preview>
+	<script type="text/javascript">
+		var istore_display = null;
+		var layout_data = null;
+		$(document).ready(function () {
+			// Page的ID设置
+			istore_option.page_id =  ${page_id!'100000'};
+			// 启动页面布局
+			toolbar.get_store_status(false, function () {
+				istore_display = new iStoreDisplay(false, layout_data ,istore_option, plugin_option, "#display_containers");
+				istore_display.get_store_display();
+			});
+		});
+	</script>
+<#else>
+	<#if bar_type =="static">
+		<script>
+			istore_option.page_id =${page_id!'100000'};
+			// 启动页面布局
+			var istore_static = null;
+			istore_static = new iStoreStatic(istore_option, plugin_option, "#display_containers");
+			istore_static.show_store_display();
+		</script>
+	<#else>
+		<script type="text/javascript">
+		var istore_layout = null;
+		//后台处理器渲染处理
+	 	istore_option = istore_option || {};
+		jQuery.extend(istore_option,{
+			selector:"#store_containers",
+			page_id:${page_id!'100000'},
+			move_margin:0,
+			size_margin:-10,
+			frame_config:0,
+			on_sized:function (a,b){$(".contentmainbox").height(b)},
+			on_updata_layout_start:function (){e.on_updata_layout_start()},
+			on_updata_layout_end:function (){e.on_updata_layout_end()}
+		})
+		//$(document).ready(function () {
+		// Page的ID设置
+		istore_option.page_id = ${page_id!'100000'}; //add by wui
+		// 启动页面布局
+		toolbar.get_store_status(false, function () {
+			istore_layout = new iStoreLayout(istore_option, plugin_option, permissions[permisson_map["PageDesign"]], permissions[permisson_map["PageContent"]]);
+			istore_layout.get_store_layout();
+		});
+	</script>
+	</#if>
+	
+</#if>
+
+<!-- add by wui 静态模式展示处理，否则按widget_shopFooterWidget方式路由 -->
+<#if !is_edit>
+<div id="footer">
+<div id="store_footer_box">
+	<!-- 参考 header.js代码，需要将 shopHeaderWidget.html store_header同步加上if判断处理TODO -->
+	<div class="footer-box" id="store_help_box" style="<#if store_template.showHeader>display:block;<#else>display:none;</#if>">
+		<ul class="footer"  style="<#if store_template.showHelp>display:block;<#else>display:none;</#if>">
+			<li class="footer_firstlist">
+				<dl class="footer_list_title">
+					<dt>会员中心</dt>
+					<dd class="help_name" index="0">${helpTitle[0].name}</dd>
+					<dd class="help_name" index="1">${helpTitle[1].name}</dd>
+				</dl>
+			</li>
+			<li class="footer_firstlist">
+				<dl class="footer_list_title">
+					<dt>购物流程</dt>
+					<dd class="help_name" index="2">${helpTitle[2].name}</dd>
+					<dd class="help_name" index="3">${helpTitle[3].name}</dd>
+				</dl>
+			</li>
+			<li class="footer_firstlist">
+				<dl class="footer_list_title">
+					<dt>配送方式</dt>
+					<dd class="help_name" index="4">${helpTitle[4].name}</dd>
+					<dd class="help_name" index="5">${helpTitle[5].name}</dd>
+				</dl>
+			</li>
+			<li class="footer_firstlist">
+				<dl class="footer_list_title">
+					<dt>支付方式</dt>
+					<dd class="help_name" index="6">${helpTitle[6].name}</dd>
+					<dd class="help_name" index="7">${helpTitle[7].name}</dd>
+				</dl>
+			</li>
+			<li class="footer_firstlist">
+				<dl class="footer_list_title">
+					<dt>售后服务</dt>
+					<dd class="help_name" index="8">${helpTitle[8].name}</dd>
+					<dd class="help_name" index="9">${helpTitle[9].name}</dd>
+				</dl>
+			</li>
+			<li class="footer_firstlist">
+				<dl class="footer_list_title">
+					<dt>礼品卡</dt>
+					<dd class="help_name" index="10">${helpTitle[10].name}</dd>
+					<dd class="help_name" index="11">${helpTitle[11].name}</dd>
+				</dl>
+			</li>
+			
+		</ul>
+	</div>
+	<div class="footer_copyright" id="store_footer">
+		<div id="footer_content"><div id="footer_real_content">${footer}</div><div class="footer_mask"></div></div>
+	</div>
+</div>
+</#if>
+</body>
+
+</html>

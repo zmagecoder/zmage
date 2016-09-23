@@ -1,0 +1,64 @@
+<#include 'sshop_header.html'/>
+
+<#if bar_type !="static">
+	<!-- shopImageClipingWidget图片裁剪-->
+	${widget_shopImageClipingWidget}
+</#if>
+
+<#if bar_type == "static">
+	<!--静态模式下的页面模板-->
+	${widget_shopStaticTmplWidget}
+</#if>
+
+<#if is_edit>
+	<!-- 编辑模式设置顶部导航工具箱可见 -->
+	${widget_shopToolbarWidget}
+</#if>
+<!-- shopMainWidget主题区域 -->
+${widget_shopMainWidget}
+
+<!-- shopDialogDefineWidget 包含istore.min.js文件弹出定义对话框插件 -->
+<#if bar_type !="static">
+	<!-- shopDialogDefineWidget 包含istore.min.js文件弹出定义对话框插件 -->
+	${widget_shopDialogDefineWidget}
+</#if>
+${widget_shopToolBarInitJsWidget}
+	<!-- shopFooterWidget底部定义插件 -->
+<#if is_edit>
+	${widget_shopFooterWidget}
+	<!-- shopHeaderLogoBoxWidget头部盒子 头部插件包含js -->
+	${widget_shopHeaderLogoBoxWidget}
+</#if>
+
+<!-- 自由编辑控件 -->
+${widget_shopStoreFreeWidget}
+<!-- 图片展示控件 -->
+${widget_shopImageTypeWidget}
+<!-- 轮播广告控件 -->
+${widget_shopAdvertisingWidget}
+<!-- 轮播图片控件 -->
+${widget_shopCarouselWidget}
+
+<!-- 单标签橱窗 -->
+${widget_shopSingleWindowWidget}
+<!-- 多标签橱窗 -->
+${widget_shopMultiWindowWidget}
+<!-- 侧栏橱窗 -->
+${widget_shopSideWindowWidget}
+<!-- 橱窗内容模板 -->
+${widget_shopShowcaseWidget}
+
+<!-- 文字新闻编辑控件 -->
+${widget_shopTextNewsWidget}
+<!-- 图片新闻编辑控件 -->
+${widget_shopImageNewsWidget}
+
+<!-- 全分类导航 -->
+${widget_shopStoreAllNavTagWidget}
+<!-- 纵向单分类导航 -->
+${widget_shopStoreSingleNavTagWidget}
+
+<!-- 动态插件 -->
+${widget_shopDynamicPluginWidget}
+
+<#include 'sshop_footer.html'/>

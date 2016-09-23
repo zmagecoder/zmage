@@ -1,0 +1,52 @@
+<script type="text/javascript">
+	var store_info = null;
+	var store_menu = null;
+	var store_nav = null;
+	
+	//页面模板数据
+	var store_tmpl_data = eval(${tmp_style});
+	
+	//手动设置首次进入页面的风格，（未找到原来的代码）
+	$("link[rel*=style][css_name=css_major]").attr(
+			"href",
+			getContentPath("Content/Tmpl_"
+					+ store_tmpl_data.TemplateId + "/css/mainColor_"
+					+ store_tmpl_data.MajorColor + ".css"));
+	$("link[rel*=style][css_name=css_minor]").attr(
+			"href",
+			getContentPath("Content/Tmpl_"
+					+ store_tmpl_data.TemplateId
+					+ "/css/deputyColor_"
+					+ store_tmpl_data.MinorColor + ".css"));
+	$("link[rel*=style][css_name=css_border]").attr(
+			"href",
+			getContentPath("Content/Tmpl_"
+					+ store_tmpl_data.TemplateId
+					+ "/css/borderColor_"
+					+ store_tmpl_data.BorderStyle + ".css"))
+
+	//导航菜单列表
+	var store_menu_page = eval('${page_list}');
+	
+	var store_nav_data = {};
+	store_nav_data.store_nav = eval('(' + '${store_nav}' + ')');
+	var CurrentIndexId = '${page_id}';
+</script>
+<script type="text/javascript">
+	<#if is_edit>
+		<#if is_preview>
+			toolbar = new Toolbar(".toolbar-box", 2);
+		<#else>
+			toolbar = new Toolbar(".toolbar-box", 1);
+		</#if>
+		
+		toolbar.show_toolbar();
+		// 第一次访问,显示模板选择
+		var tmpl = get_url_param("tmpl");
+		if ((tmpl != null) && (tmpl == "1")) {
+			toolbar.show_set_default_template();
+		}
+	<#else>
+		show_store_nav(store_nav_data.store_nav);
+	</#if>		
+</script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>筑梦科技有限公司</title>
+		<meta name="keywords" content="企业管理,网站建设" />
+		<meta name="description" content="企业管理软件研发" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- 通用样式文件 -->
+		<#include 'base/header.html'/>
+	</head>
+	<body>
+		<#include 'base/navbar.html'/>
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="javascript:void(0);">
+					<span class="menu-text"></span>
+				</a>
+				<#include 'base/sidebar.html'/>
+				<div class="main-content">
+					<#include 'base/breadcrumbs.html'/>
+					<div class="page-content">
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+				<#include 'base/theme.html'/>
+			</div><!-- /.main-container-inner -->
+			<!-- 返回顶部 -->
+			<a href="javascript:void(0);" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div>
+		<#include 'base/footer.html'/>
+	</body>
+</html>

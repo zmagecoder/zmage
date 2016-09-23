@@ -1,0 +1,237 @@
+<!-- 全分类导航-->
+<#assign storeNav = data.storeNav/>
+<#switch data.style>
+	<#case 0>
+		<div class="nav_style0_main_content">
+			<#assign class1List = storeNav.storeNavClass1/>
+			<#if class1List??>
+				<#list class1List as class1>
+				<div class="nav_style0_content">
+					<ul class="nav_style0_title">
+						<li class="class1" class1_id="${class1.ID}"><a href="${class1.CatUrl}">${class1.Name}</a></li>
+					</ul>
+					<div class="nav_style0_class">
+						<#assign class2List = class1.StoreNavClass2/>
+						<#if class2List??>
+							<#list class2List as class2>
+							<div class="nav_style0_a">
+								<table style="width:100%;overflow:hidden;">
+									<tr>
+										<td style="width:30%;overflow:hidden;background:#f2f2f2;">
+											<div class="class2 nav_FIRST" class2_id="${class2.ID}">
+												<a href="javascript:void(0)">${class2.Name}</a>
+											</div>
+										</td>
+										<td style="width:70%;overflow:hidden;background:#fff;"><div class="nav_TWO">
+											<#assign class3List = class2.StoreNavClass3/>
+											<#if class3List??>
+												<#list class3List as class3>
+												<em class="class3" class3_id="${class3.ID}">
+													<a href="${class3.CatUrl}">${class3.Name}</a>
+												</em>
+												</#list>
+											</#if>
+										</div></td>
+									</tr>
+								</table>
+							</div>
+							</#list>
+						</#if>
+						
+					</div>
+				</div>
+				</#list>
+			</#if>
+		</div>
+	 	<#break>
+	 <#case 1>
+		<div class="nav_style1_main_content">
+			<ul class="nav_style1_content nav_style1_color1">
+				<#assign class1List = storeNav.storeNavClass1/>
+				<#if class1List??>
+					<#list class1List as class1>
+						<li class="class1 nav_style1_content_li nav_style1_content_li_noborder" class1_id="${class1.ID}">
+							<p class="nav_p"><a href="${class1.CatUrl}">${class1.Name}</a></p>
+							<div class="nav_style1_button_arrow icon_nav_arrow"></div>
+						</li>
+					</#list>
+				</#if>
+			</ul>
+			<#assign class1List = storeNav.storeNavClass1/>
+			<#if class1List??>
+				<#list class1List as class1>
+				<div class="nav_style1_sub patt_border_leftnav" style="display: none;">
+					<#assign class2List = class1.StoreNavClass2/>
+					<#if class2List??>
+						<#list class2List as class2>
+						<dl class="nav_style1_sub_class2">
+							<dt class="class2" class2_id="${class2.ID}"><a href="${class2.CatUrl}">${class2.Name}</a></dt>
+							<dd>
+								<#assign class3List = class2.StoreNavClass3/>
+								<#if class3List??>
+									<#list class3List as class3>
+									<em class="class3" class3_id="${class3.ID}">
+										<a href="${class3.CatUrl}">${class3.Name}</a>
+									</em>
+									</#list>
+								</#if>
+							</dd>
+						</dl>
+						</#list>
+					</#if>
+				</div>
+				</#list>
+			</#if>
+		</div>
+	 	<#break>
+	 <#case 2>
+		 <div class="nav_style2_main_content">
+			<ul class="nav_style2_content">
+				<#assign class1List = storeNav.storeNavClass1/>
+				<#if class1List??>
+					<#list class1List as class1>
+					<li class="nav_style2_content_li_noborder">
+						<div class="nav_style2_class1 class1" class1_id="${class1.ID}"><p class="nav_p"><a href="${class1.CatUrl}">${class1.Name}</a></p></div>
+						<#assign class2List = class1.StoreNavClass2/>
+						<#if class2List??>
+							<#list class2List as class2>
+								<#assign class3List = class2.StoreNavClass3/>
+								<#if class3List??>
+									<#list class3List as class3>
+										<div class="nav_style2_class3 class3" class3_id="${class3.ID}">
+											<p class="nav_p_hover"><a href="${class3.CatUrl}">${class3.Name}</a></p>
+										</div>
+									</#list>
+								</#if>
+							</#list>
+						</#if>
+					</li>
+					</#list>
+				</#if>
+			</ul>
+		</div>
+		<#break>
+	 <#case 3>
+		 <div class="nav_style3_main_content">
+			<ul class="nav_style1_content nav_style1_color1">
+				<#assign class1List = storeNav.storeNavClass1/>
+				<#if class1List??>
+					<#list class1List as class1>
+						<li class="class1 nav_style1_content_li nav_style1_content_li_noborder" class1_id="${class1.ID}">
+							<div class="nav_style3_p"><a href="${class1.CatUrl}">${class1.Name}</a></div>
+							<div class="nav_style1_button_arrow icon_nav_arrow"></div>
+						</li>
+					</#list>
+				</#if>
+			</ul>
+			<#assign class1List = storeNav.storeNavClass1/>
+			<#if class1List??>
+				<#list class1List as class1>
+				<div class="nav_style1_sub patt_border_leftnav" style="display: none;padding:0px;width:420px;">
+					<table width="100%">
+						<tr width="100%" height="100%">
+							<td style="vertical-align:top;background:#f2f2f2;width:100px;">
+								<div class="nav_style3_SubClass2">
+									<#assign class2List = class1.StoreNavClass2/>
+									<#if class2List??>
+										<#list class2List as class2>
+											<#if class2_index == 0>
+												<div class="nav_style3_SubClass2_select class2 checked" class2_id="${class2.ID}">
+													<a class="nav_style3_class2_a" href="${class2.CatUrl}">${class2.Name}</a>
+													<div class="icon_arrow_NavClass2"></div>
+												</div>
+											<#else>
+												<div class="nav_style3_SubClass2_select class2" class2_id="${class2.ID}">
+													<a class="nav_style3_class2_a" href="${class2.CatUrl}">${class2.Name}</a>
+													<div class="icon_arrow_NavClass2" style="display:none"></div>
+												</div>
+											</#if>
+										</#list>
+									</#if>
+								</div>
+							</td>
+							<td style="vertical-align:top;background:#fff;">
+								<div class="nav_style3_SubClass3">
+									<#assign class2List = class1.StoreNavClass2/>
+									<#if class2List??>
+										<#list class2List as class2>
+										<dl class="nav_style1_sub_class2" {{if j != 0}} style="display:none" {{/if}}>
+											<dd>
+												<#assign class3List = class2.StoreNavClass3/>
+												<#if class3List??>
+													<#list class3List as class3>
+														<em class="class3" class3_id="${class3.ID}">
+															<a href="${class3.CatUrl}">${class3.Name}</a>
+														</em>
+													</#list>
+												</#if>
+											</dd>
+										</dl>
+										</#list>
+									</#if>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				</#list>
+			</#if>
+		</div>
+		<#break>
+	<#case 4>
+		<div class="nav_style4_main_content">
+		<div class="nav_style1_content nav_style4_Class12_box">
+			<div class="nav_style1_contentBg">
+			<#assign class1List = storeNav.storeNavClass1/>
+			<#if class1List??>
+				<#list class1List as class1>
+				<div class="nav_style4_Class12">
+					<div class="class1 nav_style1_content_li" class1_id="${class1.ID}" style="border-bottom:none">
+						<p><a href="${class1.CatUrl}">${class1.Name}</a></p>
+						<div class="nav_style1_button_arrow icon_nav_arrow1"></div>
+					</div>
+					<ul class="nav_style4_Class2">
+						<#assign class2List = class1.StoreNavClass2/>
+						<#if class2List??>
+							<#list class2List as class2>
+							<li class="class2" class2_id="${class2.ID}">
+								<a href="javascript:void(0)">${class2.Name}</a>
+							</li>
+							</#list>
+						</#if>
+					</ul>
+				</div>
+				</#list>
+			</#if>
+			</div>
+			<#assign class1List = storeNav.storeNavClass1/>
+			<#if class1List??>
+				<#list class1List as class1>
+				<div class="nav_style1_sub patt_border_leftnav" style="display: none;">
+				<#assign class2List = class1.StoreNavClass2/>
+				<#if class2List??>
+					<#list class2List as class2>
+					<dl class="nav_style1_sub_class2">
+						<dt class="class2" class2_id="${class2.ID}"><a href="${class2.CatUrl}">${class2.Name}</a></dt>
+						<dd>
+							<#assign class3List = class2.StoreNavClass3/>
+							<#if class3List??>
+								<#list class3List as class3>
+								<em class="class3" class3_id="${class3.ID}">
+									<a href="${class3.CatUrl}">${class3.Name}</a>
+								</em>
+								</#list>
+							</#if>
+						</dd>
+					</dl>
+					</#list>
+				</#if>
+				</div>
+				</#list>
+			</#if>
+			</div>
+		</div>
+		<#break>
+	<#default>
+		类型错误
+</#switch>

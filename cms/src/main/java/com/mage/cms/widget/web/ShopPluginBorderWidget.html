@@ -1,0 +1,65 @@
+<#if (plugin_type ==3)>
+	<div class="showcase_TitleBox">
+		<ul class="showcase_type1_title plugin_touch patt_border_showcase_type1_title">
+			<#assign labels = data.labels/>
+			<#list labels as label>
+				<li name="multi_window_top_li" class="plugin_touch_cancel label_list bg_a patt_bg_plugin_title <#if label_index = 0 >checked</#if>" label_id="${label_index}" id="label_header_${label_index}">
+					<a href="javascript:void(0)"><div>${label.name}</div></a>
+					<input class="sortable_cancel" style="display: none;line-height:34px;" type="text" value="${label.name}">
+				</li>
+			</#list>
+		</ul>
+	</div>
+	<div class="plugin_inner_border showcase_type1-inner-border plugin_touch patt_border_showcase_type1_inner">
+		<div class="showcase_type1-inner">
+			<div class="plugin_inner_content">${widget_content}</div>
+		</div>
+	</div>
+<#else>
+	<!-- shopPluginBorderWidget填写标题插件 -->
+	<#if (data.showTitle == 2) || (data.showTitle == 3)>
+		<div class="plugin_title_border plugin_touch patt_border_plugin_title">
+		  <div class="plugin_title_pic bg_a patt_bg_plugin_title">
+				<div class="plugin_title plugin_touch_cancel patt_font_plugin_title">${data.title}</div>
+				<input class="plugin_title_input plugin_touch_cancel" style="display: none;line-height:34px;" type="text" value="${data.title}">
+				<#if (plugin_type ==2)>
+					<ul class="plugin_title_searchkey">
+						<#if data.searchKeyDisplay??>
+							<#assign keys=data.searchKeyDisplay/>
+							<#list keys as key>
+								<li class="search_key plugin_touch_cancel" index="${key_index}">
+									<a class="patt_font_plugin_title_searchkey" href="javascript:void(0)">${key}</a>
+									<input style="display: none;line-height:34px;" type="text" value="${key}">
+								</li>
+							</#list>
+						</#if>
+						<li style="cursor:text;" class="add_key plugin_touch_cancel ui-state-disabled" title="单击此处添加搜索关键字"><input style="display:none" type="text" value="" ></li>
+					</ul>
+				</#if>
+			</div>
+			<div class="plugin_inner_border">
+				<div class="plugin_inner_content">${widget_content}</div>
+			</div>
+		</div>
+	<#else>
+		<#if data.showTitle == 1>
+			<div class="plugin_untitle_border plugin_touch patt_border_plugin_untitle">
+				<div class="plugin_inner_content">${widget_content}</div>
+			</div>
+		<#else>
+			<div class="plugin_untitle_noborder plugin_touch">
+				<div class="plugin_inner_content">${widget_content}</div>
+			</div>
+		</#if>
+   </#if>
+</#if>
+<script type="text/javascript">
+	$(function(){
+		$("li[name='multi_window_top_li']").unbind("mouseover").bind("mouseover",function(){
+			$(this).addClass("checked").siblings().removeClass("checked");
+			var label_id = $(this).attr("label_id");
+			var curUl = $(this).closest("div.showcase_TitleBox").next("div").find("ul[name='multi_label_" + label_id + "']");
+			curUl.show().siblings("ul").hide();
+		});
+	});
+</script>

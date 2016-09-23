@@ -1,0 +1,1457 @@
+
+
+<div id="plugin_preview_dialog"></div>
+<script id="plugin_preview_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_preview_content"></div>
+	<ul class="plugin_preview_button"><li><div class="set_button" id="button_close">确定</div></li></ul>
+</script>
+
+
+<script id="plugin_edit_dialog_store_page_tmpl" type="text/x-jquery-tmpl">
+	<select id="link_param_page">
+		{{each(i, page) Pages}}
+		<option value="${page.IndexId}">${page.Name}</option>
+		{{/each}}
+	</select>
+</script>
+
+
+<script id="plugin_edit_dialog_store_news_tmpl" type="text/x-jquery-tmpl">
+	<select id="link_param_news">
+		{{each(i, news) News}}
+		<option value="${news.IndexId}">${news.Title}</option>
+		{{/each}}
+	</select>
+</script>
+
+
+<script id="plugin_edit_dialog_store_sales_type_tmpl" type="text/x-jquery-tmpl">
+	<select id="link_param_sales_type">
+		{{each(i, sales_type) SalesType}}
+		<option value="${i}">${sales_type.Name}</option>
+		{{/each}}
+	</select>
+</script>
+
+
+<script id="plugin_edit_dialog_store_sales_tmpl" type="text/x-jquery-tmpl">
+	<select id="link_param_sales">
+		<option value="-1">请选择</option>
+		{{each(i, sales) Sales}}
+		<option value="${sales.Id}">${sales.Name} (${sales.Displayinfo})</option>
+		{{/each}}
+	</select>
+</script>
+
+
+<script id="plugin_edit_dialog_class1_tmpl" type="text/x-jquery-tmpl">
+	<option value="-1" class_id="-1">请选择</option>
+	{{each(i, class1) nav_class1}}
+	<option value="${i}" class_id="${class1.ID}">${class1.Name}</option>
+	{{/each}}
+</script>
+<script id="plugin_edit_dialog_class2_tmpl" type="text/x-jquery-tmpl">
+	<option value="-1" class_id="-1">全部</option>
+	{{each(i, class2) nav_class2}}
+	<option value="${i}" class_id="${class2.ID}">${class2.Name}</option>
+	{{/each}}
+</script>
+<script id="plugin_edit_dialog_class3_tmpl" type="text/x-jquery-tmpl">
+	<option value="-1" class_id="-1">全部</option>
+	{{each(i, class3) nav_class3}}
+	<option value="${i}" class_id="${class3.ID}">${class3.Name}</option>
+	{{/each}}
+</script>
+
+<script id="plugin_edit_dialog_tag_class_tmpl" type="text/x-jquery-tmpl">
+	<option value="-1">请选择</option>
+	{{each(i, tag) TagClass}}
+	<option value="${i}">${tag.Name}</option>
+	{{/each}}
+</script>
+
+<script id="plugin_edit_dialog_tag_item_tmpl" type="text/x-jquery-tmpl">
+	<option value="-1">请选择</option>
+	{{each(i, item) TagItem}}
+	<option value="${item.TagItemId}">${item.Name}</option>
+	{{/each}}
+</script>
+
+<script id="plugin_edit_dialog_link_param_tmpl" type="text/x-jquery-tmpl">
+	<div class="link_param" id="link_param_0" {{if LinkType != 0}} style="display:none;" {{/if}}> 
+		<div id="news_description"></div>
+	</div>
+	<div class="link_param" id="link_param_1" {{if LinkType != 1}} style="display:none;" {{/if}}>
+		<ul class="content_claim">
+			<li class="content_claim_title">新闻：</li>
+			<li id="link_param_news_show"></li>
+		</ul>
+		<br>
+	</div>
+	<div class="link_param" id="link_param_2" {{if LinkType != 2}} style="display:none;" {{/if}}>
+		<ul class="content_claim">
+			<li class="content_claim_title">http://</li>
+			<li><input id="link_param_extern_url" name="link_param_extern_url"  {{if LinkType == 2}} value="${CheckInput.IsUrl($.trim(LinkParam)) ? LinkParam.substr(7) : LinkParam}" {{/if}}></li>
+		</ul> 
+	</div>
+	<div class="link_param" id="link_param_3" {{if LinkType != 3}} style="display:none;" {{/if}}>
+		<ul class="content_claim">
+			<li class="content_claim_title">搜索词：</li>
+			<li><input id="link_param_search_key" name="link_param_search_key"  {{if LinkType == 3}} value="${LinkParam}" {{/if}}></li>
+		</ul>
+	</div>
+	<div class="link_param" id="link_param_4" {{if LinkType != 4}} style="display:none;" {{/if}}>
+		<ul class="content_claim">
+			<li class="content_claim_title">一级类：</li><li> <select id="class1_select"></select></li>
+		</ul>
+		<ul class="content_claim">
+			<li class="content_claim_title">二级类：</li><li><select id="class2_select"></select></li>
+		</ul>
+		<ul class="content_claim">
+			<li class="content_claim_title">三级类：</li><li><select id="class3_select"></select></li>
+		</ul>
+	</div>
+	<div class="link_param" id="link_param_5" {{if LinkType != 5}} style="display:none;" {{/if}}>
+		<ul class="content_claim">
+			<li class="content_claim_title">自定义页面：</li>
+			<li id="link_param_page_show"></li>
+		</ul>
+	</div>
+	<div class="link_param" id="link_param_6" {{if LinkType != 6}} style="display:none;" {{/if}}>
+		<ul class="content_claim">
+			<li class="content_claim_title">促销类型：</li><li> <div id="link_param_sales_type_show"></div></li>
+		</ul>
+		<ul class="content_claim">
+			<li class="content_claim_title">促销：</li><li> <div id="link_param_sales_show"></div></li>
+		</ul>
+	</div>
+	<div class="link_param" id="link_param_7" {{if LinkType != 7}} style="display:none;" {{/if}}>
+		<ul class="content_claim">
+			<li class="content_claim_title">具体商品：</li>
+			<li>待实现........</li>
+		</ul> 
+	</div>
+	<div class="link_param" id="link_param_8" {{if LinkType != 8}} style="display:none;" {{/if}}>
+		<ul class="content_claim">
+			<li class="content_claim_title">类别标签：</li>
+			<li><select id="tag_class"></select></li>
+		</ul>
+		<ul class="content_claim">
+			<li class="content_claim_title">标签项目：</li>
+			<li><select id="tag_item"></select></li>
+		</ul>
+	</div>
+</script>
+
+
+<div id="advertising_edit_dialog" style="display: none;"></div>
+<script id="advertising_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_set_content_top">
+		<div class="plugin_set_content_img-show"><img id="adv_image"/></div>
+		<div class="plugin_set_content_img-attr">
+			<div class="has_height">
+				{{if device == Constant.STORE_DEVICE_PC}}
+					<div class="plugin_set_content_img-attr_title">广告效果：</div>
+					<div class="plugin_set_content_img-attr_menu">
+						<input type="radio" id="advertising_style0" name="advertising_style" value="0" {{if data.Style == 0}} checked {{/if}}>	数字标注
+						<input type="radio" id="advertising_style1" name="advertising_style" value="1" {{if data.Style != 0}} checked {{/if}}>	箭头移动
+					</div>
+				{{else}}
+					<div class="plugin_set_content_img-attr_title"></div>
+					<div class="plugin_set_content_img-attr_menu"></div>
+				{{/if}}
+			</div>
+			<div class="has_height3">
+				<div class="plugin_set_content_img-attr_title">滚动方向：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<select class="link_type" id="direction_set">
+						<option value="${Constant.PLUGIN_CAROUSEL_DIR_LEFT}" {{if data.Direction == Constant.PLUGIN_CAROUSEL_DIR_LEFT}} selected {{/if}}> 从右至左 </option>
+						<option value="${Constant.PLUGIN_CAROUSEL_DIR_RIGHT}" {{if data.Direction == Constant.PLUGIN_CAROUSEL_DIR_RIGHT}} selected {{/if}}> 从左至右 </option>
+					</select>
+				</div>
+			</div>
+			<div class="has_height3">
+				<div class="plugin_set_content_img-attr_title">滚动间隔：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<select class="link_type" id="interval_set">
+						<option value="500" {{if data.Interval <= 500}} selected {{/if}}> 0.5秒 </option>
+						<option value="1000" {{if (data.Interval > 500) && (data.Interval <= 1000)}} selected {{/if}}> 1秒 </option>
+						<option value="2000" {{if (data.Interval > 1000) && (data.Interval <= 2000)}} selected {{/if}}> 2秒 </option>
+						<option value="3000" {{if (data.Interval > 2000) && (data.Interval <= 3000)}} selected {{/if}}> 3秒 </option>
+						<option value="4000" {{if (data.Interval > 3000) && (data.Interval <= 4000)}} selected {{/if}}> 4秒 </option>
+						<option value="5000" {{if data.Interval > 4000}} selected {{/if}}> 5秒 </option>
+					</select>
+				</div>
+			</div>
+			<div class="has_height"> &nbsp;</div>
+			<div class="advertising_photo_set">
+				<ul class="plugin_set_tab">
+					{{each(i, adv) data.Advertising}}
+						<li order="${i}"><a href="javascript:void(0)">${i + 1}</a></li>
+					{{/each}}
+				</ul>
+				<div class="advertising_add header_button_f"></div>
+				<div class="advertising_del icon_del"></div>
+				<ul class="plugin_set_tab_content">
+					{{each(i, adv) data.Advertising}}
+						<li class="content_data_set" index="${i}" style="display:none">
+							<div class="image_preview_box">
+								<div class="image_preview"><img class="image_preview_img" src="${adv.Url}"/></div>
+								<div class="image_edit button_image">[设置图片]</div>
+							</div>
+							<dl class="content">
+								<dd>
+									<ul class="content_claim">
+										<li class="content_claim_title">ALT标签：</li>
+										<li><input class="advertising_title_input" id="ad${i}_title" name="ad${i}_title" value="${adv.Title}"/></li>
+									</ul>
+								</dd>
+								<dd>
+									<ul class="content_claim">
+										<li class="content_claim_title">图片链接至：</li>
+										<li><select class="link_type" id="link_type">
+											<option value="0" {{if adv.LinkType == 0}} selected {{/if}}> 无链接 </option>
+											<option value="1" {{if adv.LinkType == 1}} selected {{/if}}> 新闻 </option>
+											<option value="3" {{if adv.LinkType == 3}} selected {{/if}}> 搜索词 </option>
+											<option value="4" {{if adv.LinkType == 4}} selected {{/if}}> 分类目录 </option>
+											<option value="5" {{if adv.LinkType == 5}} selected {{/if}}> 自定义页面 </option>
+											<option value="6" {{if adv.LinkType == 6}} selected {{/if}}> 促销页面 </option>
+											<option value="2" {{if adv.LinkType == 2}} selected {{/if}}> URL地址 </option>
+
+											<option value="8" {{if adv.LinkType == 8}} selected {{/if}}> 类别标签 </option>
+										</select>
+										</li>
+									</ul>
+									<div style="width:310px;border-bottom:1px dashed #e1e1e1"></div>
+									<div id="link_param"></div>
+								</dd>
+							</dl>
+						</li>
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+	</div>
+    <div class="popup_button_box">
+        <ul class="set_button_left">
+            <li><div class="set_button" id="button_preview">预览</div></li>	
+        </ul> 
+        <ul class="set_button_right">
+		    <li><div class="set_button" id="button_cancel">取消</div></li>
+		    <li><div class="set_button" id="button_save">保存</div></li>
+	    </ul>
+    </div>
+</script>
+
+
+
+<div id="image_edit_dialog" style="display: none;"></div>
+<script id="image_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_set_content_top">
+		<div class="plugin_set_content_img-show"><img id="adv_image"/></div>
+		<div class="plugin_set_content_img-attr">
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">栏目标题：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="title_show_set" value="1" {{if (data.ShowTitle == 2) || (data.ShowTitle == 3)}} checked {{/if}}/>有
+					<input class="menu_text" name="title_set" value="${data.Title}" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} disabled {{/if}} />
+					<input type="radio" name="title_show_set" value="0" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+			<div class="has_height2">
+				<div class="plugin_set_content_img-attr_title">边框：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<input type="radio" name="border_show_set" value="1" {{if (data.ShowTitle == 1) || (data.ShowTitle == 3)}} checked {{/if}} />有
+					<input type="radio" name="border_show_set" value="0" {{if (data.ShowTitle != 1) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+			<div class="has_height2">
+				<div class="plugin_set_content_img-attr_title">间距：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<input type="radio" name="gap_set" value="1" {{if data.Style == 1}} checked {{/if}} />有
+					<input type="radio" name="gap_set" value="0" {{if data.Style != 1}} checked {{/if}} />无
+				</div>
+			</div>
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">图片样式：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					{{if device == Constant.STORE_DEVICE_PC}}
+						<select class="menu-select" id="type_set" style="height:22px;">
+							<option class="menu-lingheight" value="1" {{if data.Type == 1}} selected {{/if}}>单张</option>
+							<option class="menu-lingheight" value="10" {{if data.Type == 10}} selected {{/if}}>横排两张</option>
+							<option class="menu-lingheight" value="3" {{if data.Type == 3}} selected {{/if}}>品字形</option>
+							<option class="menu-lingheight" value="12" {{if data.Type == 12}} selected {{/if}}>三图片A</option>
+							<option class="menu-lingheight" value="13" {{if data.Type == 13}} selected {{/if}}>三图片B</option>
+							<option class="menu-lingheight" value="2" {{if data.Type == 2}} selected {{/if}}>横排三张</option>
+							<option class="menu-lingheight" value="4" {{if data.Type == 4}} selected {{/if}}>四图片</option>
+							<option class="menu-lingheight" value="14" {{if data.Type == 14}} selected {{/if}}>田字格</option>
+							<option class="menu-lingheight" value="11" {{if data.Type == 11}} selected {{/if}}>横排四张</option>
+							<option class="menu-lingheight" value="5" {{if data.Type == 5}} selected {{/if}}>横排五张</option>
+							<option class="menu-lingheight" value="6" {{if data.Type == 6}} selected {{/if}}>六图片</option>
+							<option class="menu-lingheight" value="7" {{if data.Type == 7}} selected {{/if}}>七图片</option>
+							<option class="menu-lingheight" value="8" {{if data.Type == 8}} selected {{/if}}>八图片</option>
+							<option class="menu-lingheight" value="9" {{if data.Type == 9}} selected {{/if}}>九宫格</option>
+						</select>
+					{{else}}
+						<select class="menu-select" id="type_set" style="height:22px;">
+							<option class="menu-lingheight" value="1" {{if data.Type == 1}} selected {{/if}}>单张</option>
+							<option class="menu-lingheight" value="10" {{if data.Type == 10}} selected {{/if}}>横排两张</option>
+							<option class="menu-lingheight" value="3" {{if data.Type == 3}} selected {{/if}}>品字形</option>
+							<option class="menu-lingheight" value="12" {{if data.Type == 12}} selected {{/if}}>三图片A</option>
+							<option class="menu-lingheight" value="13" {{if data.Type == 13}} selected {{/if}}>三图片B</option>
+							<option class="menu-lingheight" value="2" {{if data.Type == 2}} selected {{/if}}>横排三张</option>
+							<option class="menu-lingheight" value="14" {{if data.Type == 14}} selected {{/if}}>田字格</option>
+						</select>
+					{{/if}}
+				</div>
+			</div>
+			<div class="image_photo_set">
+				<ul class="plugin_set_tab">
+					{{each(i, adv) data.Advertising}}
+						{{if i < photo_num}}
+						<li order="${i}"><a href="javascript:void(0)">${i + 1}</a></li>
+						{{/if}}
+					{{/each}}
+				</ul>
+				<ul class="plugin_set_tab_content">
+					{{each(i, adv) data.Advertising}}
+						<li class="content_data_set" index="${i}" style="display:none">
+							<div class="image_preview_box">
+								<div class="image_preview"><img class="image_preview_img" src="${adv.Url}"/></div>
+								<div class="image_edit button_image">[设置图片]</div>
+							</div>
+							<dl class="content">
+								<dd>
+									<ul class="content_claim">
+										<li class="content_claim_title">ALT标签：</li>
+										<li><input class="image_title_input" id="ad${i}_title" name="ad${i}_title" value="${adv.Title}"></li>
+									</ul>
+								</dd>
+								<dd>
+									<ul class="content_claim">
+										<li class="content_claim_title">图片链接至：</li>
+										<li><select class="link_type" id="link_type">
+											<option value="0" {{if adv.LinkType == 0}} selected {{/if}}> 无链接 </option>
+											<option value="1" {{if adv.LinkType == 1}} selected {{/if}}> 新闻 </option>
+											<option value="3" {{if adv.LinkType == 3}} selected {{/if}}> 搜索词 </option>
+											<option value="4" {{if adv.LinkType == 4}} selected {{/if}}> 分类目录 </option>
+											<option value="5" {{if adv.LinkType == 5}} selected {{/if}}> 自定义页面 </option>
+											<option value="6" {{if adv.LinkType == 6}} selected {{/if}}> 促销页面 </option>
+											<option value="2" {{if adv.LinkType == 2}} selected {{/if}}> URL地址 </option>
+
+											<option value="8" {{if adv.LinkType == 8}} selected {{/if}}> 类别标签 </option>
+											</select>
+										</li>
+									</ul> 
+									<div style="width:310px;border-bottom:1px dashed #e1e1e1"></div>
+									<div id="link_param"></div>
+								</dd>
+							</dl>
+						</li>
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+	</div>
+    <div class="popup_button_box">
+        <ul class="set_button_left">
+            <li><div class="set_button" id="button_preview">预览</div></li>	
+        </ul> 
+        <ul class="set_button_right">
+		    <li><div class="set_button"  id="button_cancel">取消</div></li>
+		    <li><div class="set_button"  id="button_save">保存</div></li>
+	    </ul>
+    </div>
+</script>
+
+
+
+<div id="carousel_edit_dialog" style="display: none;"></div>
+<script id="carousel_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_set_content_top">
+		<div class="plugin_set_content_img-show"><img id="adv_image"/></div>
+		<div class="plugin_set_content_img-attr">
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">栏目标题：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="title_show_set" value="1" {{if (data.ShowTitle == 2) || (data.ShowTitle == 3)}} checked {{/if}}/>有
+					<input class="menu_text" name="title_set" value="${data.Title}" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} disabled {{/if}} />
+					<input type="radio" name="title_show_set" value="0" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">边框：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<input type="radio" name="border_show_set" value="1" {{if (data.ShowTitle == 1) || (data.ShowTitle == 3)}} checked {{/if}} />有
+					<input type="radio" name="border_show_set" value="0" {{if (data.ShowTitle != 1) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+			<div class="has_height3">
+				<div class="plugin_set_content_img-attr_title">显示数：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<select class="link_type" id="show_number_set">
+						{{if device == Constant.STORE_DEVICE_PC}}
+							<option value="1" {{if data.Setting.ShowNumber == 1}} selected {{/if}}> 1 </option>
+							<option value="2" {{if data.Setting.ShowNumber == 2}} selected {{/if}}> 2 </option>
+							<option value="3" {{if data.Setting.ShowNumber == 3}} selected {{/if}}> 3 </option>
+							<option value="4" {{if data.Setting.ShowNumber == 4}} selected {{/if}}> 4 </option>
+							<option value="5" {{if data.Setting.ShowNumber == 5}} selected {{/if}}> 5 </option>
+							<option value="6" {{if data.Setting.ShowNumber == 6}} selected {{/if}}> 6 </option>
+							<option value="7" {{if data.Setting.ShowNumber == 7}} selected {{/if}}> 7 </option>
+							<option value="8" {{if data.Setting.ShowNumber == 8}} selected {{/if}}> 8 </option>
+							<option value="9" {{if data.Setting.ShowNumber == 9}} selected {{/if}}> 9 </option>
+						{{else}}
+							<option value="1" {{if data.Setting.ShowNumber == 1}} selected {{/if}}> 1 </option>
+							<option value="2" {{if data.Setting.ShowNumber == 2}} selected {{/if}}> 2 </option>
+							<option value="3" {{if data.Setting.ShowNumber == 3}} selected {{/if}}> 3 </option>
+							<option value="4" {{if data.Setting.ShowNumber == 4}} selected {{/if}}> 4 </option>
+						{{/if}}
+					</select>
+				</div>
+			</div>
+			<div class="has_height3">
+				<div class="plugin_set_content_img-attr_title">滚动方向：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<select class="link_type" id="direction_set">
+						<option value="${Constant.PLUGIN_CAROUSEL_DIR_LEFT}" {{if data.Setting.Direction == Constant.PLUGIN_CAROUSEL_DIR_LEFT}} selected {{/if}}> 从右至左 </option>
+						<option value="${Constant.PLUGIN_CAROUSEL_DIR_RIGHT}" {{if data.Setting.Direction == Constant.PLUGIN_CAROUSEL_DIR_RIGHT}} selected {{/if}}> 从左至右 </option>
+					</select>
+				</div>
+			</div>
+			<div class="has_height3">
+				<div class="plugin_set_content_img-attr_title">滚动间隔：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<select class="link_type" id="interval_set">
+						<option value="500" {{if data.Setting.Interval <= 500}} selected {{/if}}> 0.5秒 </option>
+						<option value="1000" {{if (data.Setting.Interval > 500) && (data.Setting.Interval <= 1000)}} selected {{/if}}> 1秒 </option>
+						<option value="2000" {{if (data.Setting.Interval > 1000) && (data.Setting.Interval <= 2000)}} selected {{/if}}> 2秒 </option>
+						<option value="3000" {{if (data.Setting.Interval > 2000) && (data.Setting.Interval <= 3000)}} selected {{/if}}> 3秒 </option>
+						<option value="4000" {{if (data.Setting.Interval > 3000) && (data.Setting.Interval <= 4000)}} selected {{/if}}> 4秒 </option>
+						<option value="5000" {{if data.Setting.Interval > 4000}} selected {{/if}}> 5秒 </option>
+					</select>
+				</div>
+			</div>
+			<div class="has_height3">
+				<div class="plugin_set_content_img-attr_title">间距：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<input type="radio" name="gap_set" value="${Constant.PLUGIN_CAROUSEL_GAP_TYPE1}" {{if data.Setting.Gap != Constant.PLUGIN_CAROUSEL_GAP_NONE}} checked {{/if}} />有
+					<input type="radio" name="gap_set" value="${Constant.PLUGIN_CAROUSEL_GAP_NONE}" {{if data.Setting.Gap == Constant.PLUGIN_CAROUSEL_GAP_NONE}} checked {{/if}} />无
+				</div>
+			</div>
+			<div class="has_height3">
+				<div class="plugin_set_content_img-attr_title">ALT标签：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<input type="radio" name="show_text_set" value="${Constant.PLUGIN_CAROUSEL_TEXT_NONE}" {{if data.Setting.ShowText == Constant.PLUGIN_CAROUSEL_TEXT_NONE}} checked {{/if}} />不显示
+					<input type="radio" name="show_text_set" value="${Constant.PLUGIN_CAROUSEL_TEXT_2LINE}" {{if data.Setting.ShowText != Constant.PLUGIN_CAROUSEL_TEXT_NONE}} checked {{/if}} />显示
+				</div>
+			</div>
+
+			<div class="has_height"> &nbsp;</div>
+			<div class="advertising_photo_set">
+				<ul class="plugin_set_tab">
+					{{each(i, adv) data.Advertising}}
+						<li order="${i}"><a href="javascript:void(0)">${i + 1}</a></li>
+					{{/each}}
+				</ul>
+				<div class="advertising_add header_button_f"></div>
+				<div class="advertising_del icon_del"></div>
+				<ul class="plugin_set_tab_content" style="height:230px">
+					{{each(i, adv) data.Advertising}}
+						<li class="content_data_set" style="height:229px;" index="${i}" style="display:none">
+							<div class="image_preview_box">
+								<div class="image_preview"><img class="image_preview_img" src="${adv.Url}"/></div>
+								<div class="image_edit button_image">[设置图片]</div>
+							</div>
+							<dl class="content">
+								<dd>
+									<ul class="content_claim">
+										<li class="content_claim_title">ALT标签：</li>
+										<li><input class="carousel_title_input" id="ad${i}_title" name="ad${i}_title" value="${adv.Title}"/></li>
+									</ul>
+								</dd>
+								<dd>
+									<ul class="content_claim">
+										<li class="content_claim_title">图片链接至：</li>
+										<li><select id="link_type">
+											<option value="0" {{if adv.LinkType == 0}} selected {{/if}}> 无链接 </option>
+											<option value="1" {{if adv.LinkType == 1}} selected {{/if}}> 新闻 </option>
+											<option value="3" {{if adv.LinkType == 3}} selected {{/if}}> 搜索词 </option>
+											<option value="4" {{if adv.LinkType == 4}} selected {{/if}}> 分类目录 </option>
+											<option value="5" {{if adv.LinkType == 5}} selected {{/if}}> 自定义页面 </option>
+											<option value="6" {{if adv.LinkType == 6}} selected {{/if}}> 促销页面 </option>
+											<option value="2" {{if adv.LinkType == 2}} selected {{/if}}> URL地址 </option>
+
+											<option value="8" {{if adv.LinkType == 8}} selected {{/if}}> 类别标签 </option>
+										</select>
+										</li>
+									</ul>
+									<div style="width:310px;border-bottom:1px dashed #e1e1e1"></div>
+									<div id="link_param"></div>
+								</dd>
+							</dl>
+						</li>
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+	</div>
+    <div class="popup_button_box">
+        <ul class="set_button_left">
+            <li><div class="set_button" id="button_preview">预览</div></li>	
+        </ul> 
+        <ul class="set_button_right">
+		    <li><div class="set_button" id="button_cancel">取消</div></li>
+		    <li><div class="set_button" id="button_save">保存</div></li>
+	    </ul>
+    </div>
+</script>
+
+
+
+
+<div id="news_group_edit_dialog" style="display: none;"></div>
+<script id="news_group_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_set_content_top">
+		<div class="plugin_set_content_img-show"></div>
+		<div class="plugin_set_content_img-attr">
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">栏目标题：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="title_show_set" value="1" {{if (data.ShowTitle == 2) || (data.ShowTitle == 3)}} checked {{/if}}/>有
+					<input class="menu_text" name="title_set" value="${data.Title}" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} disabled {{/if}} />
+					<input type="radio" name="title_show_set" value="0" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">边框：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="border_show_set" value="1" {{if (data.ShowTitle == 1) || (data.ShowTitle == 3)}} checked {{/if}} />有
+					<input type="radio" name="border_show_set" value="0" {{if (data.ShowTitle != 1) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+
+			<div class="has_height3">
+				<div class="plugin_set_content_img-attr_title">滚动：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<input type="checkbox" name="roll_set" {{if data.Roll == true}} checked {{/if}} /> 启用滚动
+				</div>
+			</div>
+			<div class="has_height3">
+				<div class="plugin_set_content_img-attr_title">滚动方向：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<select class="link_type" id="direction_set" {{if data.Roll != true}} disabled {{/if}}>
+						<option value="${Constant.PLUGIN_CAROUSEL_DIR_DOWN}" {{if data.Direction == Constant.PLUGIN_CAROUSEL_DIR_DOWN}} selected {{/if}}> 从上至下 </option>
+						<option value="${Constant.PLUGIN_CAROUSEL_DIR_UP}" {{if data.Direction == Constant.PLUGIN_CAROUSEL_DIR_UP}} selected {{/if}}> 从下至上 </option>
+					</select>
+				</div>
+			</div>
+			<div class="has_height3">
+				<div class="plugin_set_content_img-attr_title">滚动间隔：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<select class="link_type" id="interval_set" {{if data.Roll != true}} disabled {{/if}}>
+						<option value="500" {{if data.Interval <= 500}} selected {{/if}}> 0.5秒 </option>
+						<option value="1000" {{if (data.Interval > 500) && (data.Interval <= 1000)}} selected {{/if}}> 1秒 </option>
+						<option value="2000" {{if (data.Interval > 1000) && (data.Interval <= 2000)}} selected {{/if}}> 2秒 </option>
+						<option value="3000" {{if (data.Interval > 2000) && (data.Interval <= 3000)}} selected {{/if}}> 3秒 </option>
+						<option value="4000" {{if (data.Interval > 3000) && (data.Interval <= 4000)}} selected {{/if}}> 4秒 </option>
+						<option value="5000" {{if data.Interval > 4000}} selected {{/if}}> 5秒 </option>
+					</select>
+				</div>
+			</div>
+
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">风格：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					{{if plugin_type == Constant.PLUGIN_TYPE_NEWS_TEXT}}
+					<input type="radio" name="style_set" value="0" {{if data.Style == 0}} checked {{/if}} /> 单排新闻
+					<input type="radio" name="style_set" value="1" {{if data.Style == 1}} checked {{/if}} /> 双排新闻
+					<input type="radio" name="style_set" value="2" {{if data.Style == 2}} checked {{/if}} /> 单排新闻(日期)
+					{{else}}
+					<input type="radio" name="style_set" value="0" {{if data.Style == 0}} checked {{/if}} /> 单侧图
+					<input type="radio" name="style_set" value="1" {{if data.Style != 0}} checked {{/if}} /> 双侧图
+					{{/if}}
+				</div>
+			</div>
+
+			<div class="news_list_content_box">
+				<div class="news_add header_button_f"></div>
+				<ul class="news_list_content">
+					{{each(i, news) data.News}}
+					<li class="news_list_item" news_id ="${news.Id}" order="${i}">
+						<ul class="news_list">
+							{{if plugin_type != Constant.PLUGIN_TYPE_NEWS_TEXT}}
+							<li class="news_list_img"><img src="${news.Photo}" /></li>
+							{{/if}}
+							<li class="news_list_text">${news.Title}</li>
+						</ul>
+						<div class="del_news icon_del_drag" style="display:none"></div>
+					</li>
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+	</div>
+    <div class="popup_button_box">
+        <ul class="set_button_left">
+            <li><div class="set_button" id="button_preview">预览</div></li>	
+        </ul> 
+        <ul class="set_button_right">
+		    <li><div class="set_button"  id="button_cancel">取消</div></li>
+		    <li><div class="set_button"  id="button_save">保存</div></li>
+	    </ul>
+    </div>
+</script>
+
+
+<div id="news_edit_dialog" style="display: none;"></div>
+<script id="news_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="news_edit_content">
+        <dl class="content">
+            <dt>
+		        <ul class="news_image_preview" style="display:none">
+			        <li style="width:99px;height:99px;border:1px solid #ccc;"><img id="news_photo" {{if Photo != null}}src="${Photo}"{{else}}src="blank.png"{{/if}}/></li>
+                    <li><div class="image_edit" id="button_image">[上传图片]</div></li>
+		        </ul>
+            </dt>
+			<dd>
+				<ul class="content_claim">
+					<li class="content_claim_title">新闻标题：</li>
+					<li><input class="news_title_input" id="news_title" name="news_title" value="${Title}"/></li>
+					<li>(Meta_Title)</li>
+				</ul>
+			</dd>
+			<dd>
+				<ul class="content_claim">
+					<li class="content_claim_title">新闻描述：</li>
+					<li><textarea style="height:auto" id="news_abstract" name="news_abstract" rows="2">${Abstract}</textarea></li>
+					<li style="float:right;margin-right:110px;">(Meta_Description)</li>
+				</ul> 
+			</dd>
+            <dd>
+                <ul class="content_claim">
+                    <li class="content_claim_title">新闻链接至：</li>
+                    <li>
+						<select class="link_type" id="link_type">
+							<option value="0" {{if LinkType == 0}} selected {{/if}}> 新闻 </option>
+							<option value="3" {{if LinkType == 3}} selected {{/if}}> 搜索词 </option>
+							<option value="4" {{if LinkType == 4}} selected {{/if}}> 分类目录 </option>
+							<option value="5" {{if LinkType == 5}} selected {{/if}}> 自定义页面 </option>
+							<option value="6" {{if LinkType == 6}} selected {{/if}}> 促销页面 </option>
+							<option value="2" {{if LinkType == 2}} selected {{/if}}> URL地址 </option>
+							<option value="8" {{if LinkType == 8}} selected {{/if}}> 类别标签 </option>
+						</select>
+					</li>
+                </ul>
+            </dd>
+			<dd class="link_set">
+				<div id="link_param"></div>
+			</dd>
+		</dl>	
+	</div>
+	<ul class="set_button_right">
+		<li><div class="set_button" id="button_cancel">取消</div></li>
+		<li><div class="set_button" id="button_save">保存</div></li>
+	</ul>
+</script>
+
+
+<div id="showcase_edit_dialog" style="display: none;"></div>
+<script id="showcase_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="showcase_set_content">
+		<ul class="showcase_set_content_query">
+			<li {{if plugin_type == Constant.PLUGIN_TYPE_SHOWCASE2}} style="display:none;" {{/if}}>
+				<div class="plugin_set_content_img-attr_title">栏目标题：</div>
+				<div class="plugin_set_content_img-attr_menu" style="width:252px">
+					<input type="radio" name="title_show_set" value="1" {{if (data.ShowTitle == 2) || (data.ShowTitle == 3)}} checked {{/if}}/>有
+					<input class="menu_text" name="title_set" value="${data.Title}" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} disabled {{/if}} />
+					<input type="radio" name="title_show_set" value="0" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</li>
+			<li {{if plugin_type == Constant.PLUGIN_TYPE_SHOWCASE2}} style="display:none;" {{/if}}>
+				<div class="plugin_set_content_img-attr_title">边框：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<input type="radio" name="border_show_set" value="1" {{if (data.ShowTitle == 1) || (data.ShowTitle == 3)}} checked {{/if}} />有
+					<input type="radio" name="border_show_set" value="0" {{if (data.ShowTitle != 1) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</li>
+			{{if plugin_type == Constant.PLUGIN_TYPE_SHOWCASE2}}
+			<li>
+				<div class="plugin_set_content_img-attr_title">橱窗标签：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<select id="showcase_label_sel">
+						{{each(i, label) data.Labels}}
+						<option value="${i}" label_id="${i}" {{if curr_label == i}} selected {{/if}}>${label.Name}</option>
+						{{/each}}
+					</select>
+				</div>
+			</li>
+			{{/if}}
+			<li {{if plugin_type == Constant.PLUGIN_TYPE_SHOWCASE3}} style="display:none;" {{/if}}>
+				<div class="plugin_set_content_img-attr_title">商品样式：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<select id="goods_style_set">
+						<option value="0" {{if data.Style == 0}} selected {{/if}}>商品图+名称+价格</option>
+						<option value="1" {{if data.Style == 1}} selected {{/if}}>纯图片</option>
+						{{if plugin_type == Constant.PLUGIN_TYPE_SHOWCASE3}}
+						<option style="display:none;" value="2" {{if data.Style == 2}} selected {{/if}}>小规格</option>
+						{{/if}}
+					</select>
+				</div>
+				<div class="plugin_set_content_img-attr_title">商品框：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<input type="radio" name="goods_border_set" value="1" {{if data.GoodsStyle == 1}} checked {{/if}} />有
+					<input type="radio" name="goods_border_set" value="0" {{if data.GoodsStyle == 0}} checked {{/if}} />无
+				</div>
+			</li>
+		</ul>
+		<ul class="showcase_set_content_query" {{if plugin_type == Constant.PLUGIN_TYPE_SHOWCASE2}} style="display:none;" {{/if}}>
+			<li class="plugin_set_content_img-attr_title">滚动：</li>
+			<li><div class="plugin_set_content_img-attr_menu" style="width:100px"><input type="checkbox" name="roll_set" {{if data.Roll == true}} checked {{/if}} />启用滚动</div></li>
+			<li>
+				<div class="plugin_set_content_img-attr_title">滚动方向：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<select class="link_type" id="direction_set" {{if data.Roll != true}} disabled {{/if}}>
+						{{if plugin_type == Constant.PLUGIN_TYPE_SHOWCASE1}}
+							<option value="${Constant.PLUGIN_CAROUSEL_DIR_RIGHT}" {{if data.Direction == Constant.PLUGIN_CAROUSEL_DIR_RIGHT}} selected {{/if}}> 从左至右 </option>
+							<option value="${Constant.PLUGIN_CAROUSEL_DIR_LEFT}" {{if data.Direction == Constant.PLUGIN_CAROUSEL_DIR_LEFT}} selected {{/if}}> 从右至左 </option>
+						{{/if}}
+						{{if plugin_type == Constant.PLUGIN_TYPE_SHOWCASE2}}
+							<option value="${Constant.PLUGIN_CAROUSEL_DIR_DOWN}" {{if data.Direction == Constant.PLUGIN_CAROUSEL_DIR_DOWN}} selected {{/if}}> 从上至下 </option>
+						{{/if}}
+						{{if plugin_type == Constant.PLUGIN_TYPE_SHOWCASE3}}
+							<option value="${Constant.PLUGIN_CAROUSEL_DIR_DOWN}" {{if data.Direction == Constant.PLUGIN_CAROUSEL_DIR_DOWN}} selected {{/if}}> 从上至下 </option>
+							<option value="${Constant.PLUGIN_CAROUSEL_DIR_UP}" {{if data.Direction == Constant.PLUGIN_CAROUSEL_DIR_UP}} selected {{/if}}> 从下至上 </option>
+						{{/if}}
+					</select>
+				</div>
+			</li>
+			<li>
+				<div class="plugin_set_content_img-attr_title">滚动间隔：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<select class="link_type" id="interval_set" {{if data.Roll != true}} disabled {{/if}}>
+						<option value="500"  {{if data.Interval <= 500}} selected {{/if}}> 0.5秒 </option>
+						<option value="1000" {{if (data.Interval > 500) && (data.Interval <= 1000)}} selected {{/if}}> 1秒 </option>
+						<option value="2000" {{if (data.Interval > 1000) && (data.Interval <= 2000)}} selected {{/if}}> 2秒 </option>
+						<option value="3000" {{if (data.Interval > 2000) && (data.Interval <= 3000)}} selected {{/if}}> 3秒 </option>
+						<option value="4000" {{if (data.Interval > 3000) && (data.Interval <= 4000)}} selected {{/if}}> 4秒 </option>
+						<option value="5000" {{if data.Interval > 4000}} selected {{/if}}> 5秒 </option>
+					</select>
+				</div>
+			</li>
+		</ul>
+		<ul class="showcase_set_content_query">
+			<li class="plugin_set_content_img-attr_title">分类目录：</li>
+			<li><select id="class1_select"></select></li>
+			<li><select id="class2_select"></select></li>
+			<li><select id="class3_select"></select></li>
+			<li><input class="showcase_set_text" id="search_key" name="search_key" /></li>
+			<li><div class="input-style1" id="goods_search" style="height:18px;line-height:18px;margin-top:1px;">查询</div></li>
+		</ul>
+		<ul class="showcase_set_content_query">
+			<li class="plugin_set_content_img-attr_title">促销商品：</li>
+			<li id="rule_type_show"></li>
+			<li id="rule_id_show"></li>
+		</ul>
+		<div class="showcase_set_content_bg">
+			<div class="showcase_set_content_bg1">
+				<div class="showcase_set_left_box"><ul class="showcase_set_left showcase_goods_items" id="goods_search_result"></ul></div>
+				<div class="showcase_set_right_box"><ul class="showcase_set_right showcase_goods_items" id="label_goods_result"></ul></div>
+			</div>
+		</div>
+		<div class="popup_button_box">
+			<ul class="set_button_left">
+				<li><div class="set_button" id="button_preview">预览</div></li>	
+			</ul> 
+			<ul class="set_button_right">
+				<li><div class="set_button"  id="button_cancel">取消</div></li>
+				<li><div class="set_button"  id="button_save">保存</div></li>
+			</ul>
+		</div>
+	</div>
+</script>
+
+<script id="showcase_edit_dialog_goods_tmpl" type="text/x-jquery-tmpl">
+	<li class="showcase_goods_item" goods_id="${GoodsId}">
+		<ul class="showcase_set_goods">
+			<li class="showcase_set_goods_img"><img src="${Photo1}" /></li>
+			<li class="showcase_set_goods_text">${Name}</li>
+		</ul>
+		<div class="del_goods icon_del_drag" style="display:none"></div>
+	</li>
+</script>
+
+<script id="showcase_edit_dialog_class1_tmpl" type="text/x-jquery-tmpl">
+	<option value="-1">全部</option>
+	{{each(i, class1) nav_class1}}
+	<option value="${i}" class_id="${class1.ID}">${class1.Name}</option>
+	{{/each}}
+</script>
+<script id="showcase_edit_dialog_class2_tmpl" type="text/x-jquery-tmpl">
+	<option value="-1">全部</option>
+	{{each(i, class2) nav_class2}}
+	<option value="${i}" class_id="${class2.ID}">${class2.Name}</option>
+	{{/each}}
+</script>
+<script id="showcase_edit_dialog_class3_tmpl" type="text/x-jquery-tmpl">
+	<option value="-1">全部</option>
+	{{each(i, class3) nav_class3}}
+	<option value="${i}" class_id="${class3.ID}">${class3.Name}</option>
+	{{/each}}
+</script>
+
+
+<script id="showcase_dialog_store_sales_type_tmpl" type="text/x-jquery-tmpl">
+	<select id="rule_type_select">
+		<option value="-1">请选择</option>
+		{{each(i, sales_type) SalesType}}
+			<option value="${i}" rule_type="${sales_type.Type}">${sales_type.Name}</option>
+		{{/each}}
+	</select>
+</script>
+
+
+<script id="showcase_dialog_store_sales_tmpl" type="text/x-jquery-tmpl">
+	<select id="rule_id_select">
+		<option value="-1">全部</option>
+		{{each(i, sales) Sales}}
+			<option value="${sales.Id}">${sales.Name} (${sales.Displayinfo})</option>
+		{{/each}}
+	</select>
+</script>
+
+<div id="showcase_label_remove_error1_dialog"></div>
+<script id="showcase_label_remove_error1_dialog_tmpl" type="text/x-jquery-tmpl">
+	<br>
+	<ul class="confirm_dialog_content">
+        <li>无法删除该标签</li>
+        <li>橱窗中必须保留至少一个以上的标签!</li>
+	</ul>
+	<br>
+	<ul class="plugin_ok_cancel_button">
+		<li><div class="set_button" id="button_ok">确定</div></li>
+	</ul>
+</script>
+
+
+<div id="nav_all_edit_dialog" style="display: none;"></div>
+<script id="nav_all_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_set_content_top">
+		<div class="plugin_set_content_img-show"></div>
+		<div class="plugin_set_content_img-attr">
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">栏目标题：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="title_show_set" value="1" {{if (data.ShowTitle == 2) || (data.ShowTitle == 3)}} checked {{/if}}/>有
+					<input class="menu_text" name="title_set" value="${data.Title}" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} disabled {{/if}} />
+					<input type="radio" name="title_show_set" value="0" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">边框：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="border_show_set" value="1" {{if (data.ShowTitle == 1) || (data.ShowTitle == 3)}} checked {{/if}} />有
+					<input type="radio" name="border_show_set" value="0" {{if (data.ShowTitle != 1) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">风格：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="style_set" value="0" {{if data.Style == 0}} checked {{/if}} /> 平铺导航
+					<input type="radio" name="style_set" value="1" {{if data.Style == 1}} checked {{/if}} /> 层级导航1
+					<input type="radio" name="style_set" value="3" {{if data.Style == 3}} checked {{/if}} /> 层级导航2
+					<input type="radio" name="style_set" value="4" {{if data.Style == 4}} checked {{/if}} /> 层级导航3
+					<input type="radio" name="style_set" value="2" {{if data.Style == 2}} checked {{/if}} /> 展开导航
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="popup_button_box">
+		<ul class="set_button_left">
+			<li><div class="set_button" id="button_preview">预览</div></li>	
+		</ul> 
+		<ul class="set_button_right">
+			<li><div class="set_button" id="button_cancel">取消</div></li>
+			<li><div class="set_button" id="button_save">保存</div></li>
+		</ul>
+	</div>
+</script>
+
+<div id="nav_h_edit_dialog" style="display: none;"></div>
+<script id="nav_h_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_set_content_top">
+		<div class="plugin_set_content_img-show"></div>
+		<div class="plugin_set_content_img-attr">
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">栏目标题：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="title_show_set" value="1" {{if (data.ShowTitle == 2) || (data.ShowTitle == 3)}} checked {{/if}}/>有
+					<input class="menu_text" name="title_set" value="${data.Title}" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} disabled {{/if}} />
+					<input type="radio" name="title_show_set" value="0" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">边框：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="border_show_set" value="1" {{if (data.ShowTitle == 1) || (data.ShowTitle == 3)}} checked {{/if}} />有
+					<input type="radio" name="border_show_set" value="0" {{if (data.ShowTitle != 1) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">风格：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="style_set" value="0" {{if data.Style == 0}} checked {{/if}} /> 平铺菜单
+					<input type="radio" name="style_set" value="1" {{if data.Style != 0}} checked {{/if}} /> 层级菜单
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="plugin_set_bottom">注：客户浏览记录自动客户浏览记录自动客户浏览记录自动客户浏览记录自动客户浏览记录自动客户浏览记录自动客户浏览记录自动客！</div>
+	<div class="popup_button_box">
+		<ul class="set_button_left">
+			<li><div class="set_button" id="button_preview">预览</div></li>	
+		</ul> 
+		<ul class="set_button_right">
+			<li><div class="set_button"  id="button_preview">取消</div></li>
+			<li><div class="set_button"  id="button_save">保存</div></li>
+		</ul>
+	</div>
+</script>
+
+<div id="nav_v_edit_dialog" style="display: none;"></div>
+<script id="nav_v_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_set_content_top">
+		<div class="plugin_set_content_img-show"></div>
+		<div class="plugin_set_content_img-attr">
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">栏目标题：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="title_show_set" value="1" {{if (data.ShowTitle == 2) || (data.ShowTitle == 3)}} checked {{/if}}/>有
+					<input class="menu_text" name="title_set" value="${data.Title}" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} disabled {{/if}} />
+					<input type="radio" name="title_show_set" value="0" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">边框：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="border_show_set" value="1" {{if (data.ShowTitle == 1) || (data.ShowTitle == 3)}} checked {{/if}} />有
+					<input type="radio" name="border_show_set" value="0" {{if (data.ShowTitle != 1) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+			<div class="has_height">
+				<ul class="content_claim">
+					<li class="content_claim_title">一级类：</li>
+					<li><select id="class1_select"></select></li>
+				</ul>
+				<ul class="content_claim">
+					<li class="content_claim_title">二级类：</li>
+					<li><select id="class2_select"></select></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="popup_button_box">
+		<ul class="set_button_left">
+			<li><div class="set_button" id="button_preview">预览</div></li>	
+		</ul> 
+		<ul class="set_button_right">
+			<li><div class="set_button"  id="button_cancel">取消</div></li>
+			<li><div class="set_button"  id="button_save">保存</div></li>
+		</ul>
+	</div>
+</script>
+
+<div id="nav_tag_edit_dialog" style="display: none;"></div>
+<script id="nav_tag_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_set_content_top">
+		<div class="plugin_set_content_img-show"></div>
+		<div class="plugin_set_content_img-attr">
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">栏目标题：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="title_show_set" value="1" {{if (data.ShowTitle == 2) || (data.ShowTitle == 3)}} checked {{/if}} />有
+					<input class="menu_text" name="title_set" value="${data.Title}" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} disabled {{/if}} />
+					<input type="radio" name="title_show_set" value="0" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">边框：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="border_show_set" value="1" {{if (data.ShowTitle == 1) || (data.ShowTitle == 3)}} checked {{/if}} />有
+					<input type="radio" name="border_show_set" value="0" {{if (data.ShowTitle != 1) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+
+			<div class="has_height" style="margin-bottom:10px;">
+				<div class="plugin_set_content_img-attr_title">风格：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="style_set" value="0" {{if data.Style == 0}} checked {{/if}} />显示标签名
+					<input type="radio" name="style_set" value="1" {{if data.Style == 1}} checked {{/if}} />隐藏标签名
+
+				</div>
+			</div>
+			<div class="Classify_SetName_Box">
+				
+			</div>
+			<div class="Classify_Box">
+				<div class="Classify_LeftContent">
+					<div class="Classify_Title">所有标签</div>
+					<ul class="Classify_Select" id="tag_search_result">
+						{{each(i, tag) tag_class}}
+						<li class="tag_item" tag_class_id="${tag.TagClassId}">${tag.Name}</li>
+						{{/each}}
+					</ul>
+				</div>
+				<div class="Classify_RightContent">
+					<div class="Classify_Title">展示标签</div>
+					<ul class="Classify_Select Classify_Select1" id="tag_select_result"></ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="popup_button_box">
+		<ul class="set_button_left">
+			<li><div class="set_button" id="button_preview">预览</div></li>
+		</ul>
+		<ul class="set_button_right">
+			<li><div class="set_button" id="button_cancel">取消</div></li>
+			<li><div class="set_button" id="button_save">保存</div></li>
+		</ul>
+	</div>
+</script>
+
+
+<script id="nav_v_edit_dialog_class1_tmpl" type="text/x-jquery-tmpl">
+	<option value="-1" class_id="-1">请选择</option>
+	{{each(i, class1) nav_class1}}
+	<option value="${i}" class_id="${class1.ID}">${class1.Name}</option>
+	{{/each}}
+</script>
+<script id="nav_v_edit_dialog_class2_tmpl" type="text/x-jquery-tmpl">
+	<option value="-1" class_id="-1">全部</option>
+	{{each(i, class2) nav_class2}}
+	<option value="${i}" class_id="${class2.ID}">${class2.Name}</option>
+	{{/each}}
+</script>
+
+<script id="nav_tag_dialog_tag_tmpl" type="text/x-jquery-tmpl">
+	{{each(i, tag) TagClass}}
+	<li class="tag_item" tag_class_id="${tag.TagClassId}">${tag.Name}<div class="Classify_IconClose"></div></li>
+	{{/each}}
+</script>
+
+
+
+<div id="free_edit_dialog" style="display: none;"></div>
+<script id="free_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_set_content_top">
+		<div class="plugin_set_content_img-show"></div>
+		<div class="plugin_set_content_img-attr">
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">栏目标题：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="title_show_set" value="1" {{if (data.ShowTitle == 2) || (data.ShowTitle == 3)}} checked {{/if}}/>有
+					<input class="menu_text" name="title_set" value="${data.Title}" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} disabled {{/if}} />
+					<input type="radio" name="title_show_set" value="0" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">边框：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="border_show_set" value="1" {{if (data.ShowTitle == 1) || (data.ShowTitle == 3)}} checked {{/if}} />有
+					<input type="radio" name="border_show_set" value="0" {{if (data.ShowTitle != 1) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+
+			<div class="plugin_set_content">
+				<div id="free_content">{{html data.Content}}</div>
+			</div>
+		</div>
+	</div>
+    <div class="popup_button_box">
+        <ul class="set_button_left">
+            <li><div class="set_button" id="button_preview">预览</div></li>	
+        </ul> 
+        <ul class="set_button_right">
+		    <li><div class="set_button"  id="button_cancel">取消</div></li>
+		    <li><div class="set_button"  id="button_save">保存</div></li>
+	    </ul>
+    </div>
+</script>
+
+
+<div id="message_edit_dialog" style="display: none;"></div>
+<script id="message_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_set_content_top">
+		<div class="plugin_set_content_img-show"></div>
+		<div class="plugin_set_content_img-attr">
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">栏目标题：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="title_show_set" value="1" {{if (data.ShowTitle == 2) || (data.ShowTitle == 3)}} checked {{/if}}/>有
+					<input class="menu_text" name="title_set" value="${data.Title}" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} disabled {{/if}} />
+					<input type="radio" name="title_show_set" value="0" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">边框：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="border_show_set" value="1" {{if (data.ShowTitle == 1) || (data.ShowTitle == 3)}} checked {{/if}} />有
+					<input type="radio" name="border_show_set" value="0" {{if (data.ShowTitle != 1) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">显示内容：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="input_type_set" value="${Constant.PLUGIN_STORE_MESSAGE_INPUT_TYPE1}" {{if data.InputType == Constant.PLUGIN_STORE_MESSAGE_INPUT_TYPE1}} checked {{/if}} /> 所有项目
+					<input type="radio" name="input_type_set" value="${Constant.PLUGIN_STORE_MESSAGE_INPUT_TYPE2}" {{if data.InputType == Constant.PLUGIN_STORE_MESSAGE_INPUT_TYPE2}} checked {{/if}} /> 联系人 + 手机号码 + 留言
+					<input type="radio" name="input_type_set" value="${Constant.PLUGIN_STORE_MESSAGE_INPUT_TYPE3}" {{if data.InputType == Constant.PLUGIN_STORE_MESSAGE_INPUT_TYPE3}} checked {{/if}} /> 手机号码
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="popup_button_box">
+        <ul class="set_button_left">
+            <li><div class="set_button" id="button_preview">预览</div></li>	
+        </ul> 
+        <ul class="set_button_right">
+		    <li><div class="set_button"  id="button_cancel">取消</div></li>
+		    <li><div class="set_button"  id="button_save">保存</div></li>
+	    </ul>
+    </div>
+</script>
+
+
+
+
+<div id="header_edit_dialog" style="display: none;"></div>
+<script id="header_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_set_content_top header_edit_content">
+		<div class="plugin_set_content_img-show"></div>
+		<div class="plugin_set_content_img-attr">
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">栏目标题：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="title_show_set" value="1" {{if (data.ShowTitle == 2) || (data.ShowTitle == 3)}} checked {{/if}}/>有
+					<input class="menu_text" name="title_set" value="${data.Title}" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} disabled {{/if}} />
+					<input type="radio" name="title_show_set" value="0" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">边框：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="border_show_set" value="1" {{if (data.ShowTitle == 1) || (data.ShowTitle == 3)}} checked {{/if}} />有
+					<input type="radio" name="border_show_set" value="0" {{if (data.ShowTitle != 1) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">样式：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="style_set" value="0" {{if data.Style == 0}} checked {{/if}} /> 样式1
+					<input type="radio" name="style_set" value="1" {{if data.Style == 1}} checked {{/if}} /> 样式2
+					<input type="radio" name="style_set" value="2" {{if data.Style == 2}} checked {{/if}} /> 样式3
+					<input type="radio" name="style_set" value="3" {{if data.Style == 3}} checked {{/if}} /> 样式4
+				</div>
+			</div>
+
+			<div class="image_preview_box" {{if (data.Style == 0) || (data.Style == 1)}} style="display:none;" {{/if}}>
+				<div class="image_preview"><img class="image_preview_img" src="${data.PhotoUrl}"/></div>
+				<div class="image_edit button_image">[设置图片]</div>
+			</div>
+		</div>
+	</div>
+    <div class="popup_button_box">
+        <ul class="set_button_left">
+            <li><div class="set_button" id="button_preview">预览</div></li>	
+        </ul> 
+        <ul class="set_button_right">
+		    <li><div class="set_button"  id="button_cancel">取消</div></li>
+		    <li><div class="set_button"  id="button_save">保存</div></li>
+	    </ul>
+    </div>
+</script>
+
+
+<div id="button_edit_dialog" style="display: none;"></div>
+<script id="button_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_set_content_top">
+		<div class="plugin_set_content_img-show"><img id="adv_image"/></div>
+		<div class="plugin_set_content_img-attr">
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">栏目标题：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="title_show_set" value="1" {{if (data.ShowTitle == 2) || (data.ShowTitle == 3)}} checked {{/if}}/>有
+					<input class="menu_text" name="title_set" value="${data.Title}" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} disabled {{/if}} />
+					<input type="radio" name="title_show_set" value="0" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">边框：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<input type="radio" name="border_show_set" value="1" {{if (data.ShowTitle == 1) || (data.ShowTitle == 3)}} checked {{/if}} />有
+					<input type="radio" name="border_show_set" value="0" {{if (data.ShowTitle != 1) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+			<div class="has_height3">
+				<div class="plugin_set_content_img-attr_title">类型：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<select class="menu-select" id="type_set" style="height:22px;">
+						<option class="menu-lingheight" value="${Constant.PLUGIN_BUTTON_TYPE_TEXT}" {{if data.Type == Constant.PLUGIN_BUTTON_TYPE_TEXT}} selected {{/if}}>文字链接</option>
+						<option class="menu-lingheight" value="${Constant.PLUGIN_BUTTON_TYPE_BUTTON}" {{if data.Type == Constant.PLUGIN_BUTTON_TYPE_BUTTON}} selected {{/if}}>按钮链接</option>
+						<option class="menu-lingheight" value="${Constant.PLUGIN_BUTTON_TYPE_ICON}" {{if data.Type == Constant.PLUGIN_BUTTON_TYPE_ICON}} selected {{/if}}>图标链接</option>
+						<option class="menu-lingheight" value="${Constant.PLUGIN_BUTTON_TYPE_ICON_TEXT}" {{if data.Type == Constant.PLUGIN_BUTTON_TYPE_ICON_TEXT}} selected {{/if}}>图文链接</option>
+					</select>
+				</div>
+			</div>
+			<div class="has_height3">
+				<div class="plugin_set_content_img-attr_title">样式：</div>
+				<div class="plugin_set_content_img-attr_menu2">
+					<select class="menu-select" id="style_set" style="height:22px;">
+
+					</select>
+				</div>
+			</div>
+			<div class="button_photo_set">
+				<ul class="plugin_set_tab">
+					{{each(i, button) data.ButtonData}}
+						<li order="${i}"><a href="javascript:void(0)">${i + 1}</a></li>
+					{{/each}}
+				</ul>
+				<div class="button_add header_button_f"></div>
+				<div class="button_del icon_del"></div>
+				<ul class="plugin_set_tab_content">
+					{{each(i, button) data.ButtonData}}
+						<li class="content_data_set" index="${i}" style="display:none">
+							<dl class="content">
+								<dd>
+									<ul class="content_claim" style="float:left;">
+										<li class="content_claim_title">文字：</li>
+										<li><input class="button_title_input" value="${button.Title}"></li>
+									</ul>
+									<ul class="content_claim button_icon" style="float:left;">
+										<li class="content_claim_title">图标：</li>
+										<li>
+											<select class="menu-select button_icon_input" style="height:22px;">
+												<option class="menu-lingheight" value="0" {{if button.Icon == 0}} selected {{/if}}>图标1</option>
+												<option class="menu-lingheight" value="1" {{if button.Icon == 1}} selected {{/if}}>图标2</option>
+												<option class="menu-lingheight" value="2" {{if button.Icon == 2}} selected {{/if}}>图标3</option>
+												<option class="menu-lingheight" value="3" {{if button.Icon == 3}} selected {{/if}}>图标4</option>
+												<option class="menu-lingheight" value="4" {{if button.Icon == 4}} selected {{/if}}>图标5</option>
+												<option class="menu-lingheight" value="5" {{if button.Icon == 5}} selected {{/if}}>图标6</option>
+												<option class="menu-lingheight" value="6" {{if button.Icon == 6}} selected {{/if}}>图标7</option>
+												<option class="menu-lingheight" value="7" {{if button.Icon == 7}} selected {{/if}}>图标8</option>
+												<option class="menu-lingheight" value="8" {{if button.Icon == 8}} selected {{/if}}>图标9</option>
+												<option class="menu-lingheight" value="9" {{if button.Icon == 9}} selected {{/if}}>图标10</option>
+												<option class="menu-lingheight" value="10" {{if button.Icon == 10}} selected {{/if}}>图标11</option>
+												<option class="menu-lingheight" value="11" {{if button.Icon == 11}} selected {{/if}}>图标12</option>
+												<option class="menu-lingheight" value="12" {{if button.Icon == 12}} selected {{/if}}>图标13</option>
+												<option class="menu-lingheight" value="13" {{if button.Icon == 13}} selected {{/if}}>图标14</option>
+												<option class="menu-lingheight" value="14" {{if button.Icon == 14}} selected {{/if}}>图标15</option>
+												<option class="menu-lingheight" value="15" {{if button.Icon == 15}} selected {{/if}}>图标16</option>
+												<option class="menu-lingheight" value="16" {{if button.Icon == 16}} selected {{/if}}>图标17</option>
+												<option class="menu-lingheight" value="17" {{if button.Icon == 17}} selected {{/if}}>图标18</option>
+												<option class="menu-lingheight" value="18" {{if button.Icon == 18}} selected {{/if}}>图标19</option>
+												<option class="menu-lingheight" value="19" {{if button.Icon == 19}} selected {{/if}}>图标20</option>
+											</select>
+										</li>
+									</ul>
+								</dd>
+								<dd>
+									<ul class="content_claim">
+										<li class="content_claim_title">链接至：</li>
+										<li><select class="link_type" id="link_type">
+											<option value="0" {{if button.LinkType == 0}} selected {{/if}}> 无链接 </option>
+											<option value="1" {{if button.LinkType == 1}} selected {{/if}}> 新闻 </option>
+											<option value="3" {{if button.LinkType == 3}} selected {{/if}}> 搜索词 </option>
+											<option value="4" {{if button.LinkType == 4}} selected {{/if}}> 分类目录 </option>
+											<option value="5" {{if button.LinkType == 5}} selected {{/if}}> 自定义页面 </option>
+											<option value="6" {{if button.LinkType == 6}} selected {{/if}}> 促销页面 </option>
+											<option value="2" {{if button.LinkType == 2}} selected {{/if}}> URL地址 </option>
+
+											<option value="8" {{if button.LinkType == 8}} selected {{/if}}> 类别标签 </option>
+											</select>
+										</li>
+									</ul> 
+									<div style="width:310px;border-bottom:1px dashed #e1e1e1"></div>
+									<div id="link_param"></div>
+								</dd>
+							</dl>
+						</li>
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+	</div>
+    <div class="popup_button_box">
+        <ul class="set_button_left">
+            <li><div class="set_button" id="button_preview">预览</div></li>	
+        </ul> 
+        <ul class="set_button_right">
+		    <li><div class="set_button"  id="button_cancel">取消</div></li>
+		    <li><div class="set_button"  id="button_save">保存</div></li>
+	    </ul>
+    </div>
+</script>
+
+<script id="button_edit_type0_style_tmpl" type="text/x-jquery-tmpl">
+	<option class="menu-lingheight" value="0" {{if style == 0}} selected {{/if}}>两列</option>
+	<option class="menu-lingheight" value="1" {{if style == 1}} selected {{/if}}>三列</option>
+	<option class="menu-lingheight" value="2" {{if style == 2}} selected {{/if}}>四列</option>
+</script>
+
+<script id="button_edit_type1_style_tmpl" type="text/x-jquery-tmpl">
+	<option class="menu-lingheight" value="0" {{if style == 0}} selected {{/if}}>两按钮</option>
+	<option class="menu-lingheight" value="1" {{if style == 1}} selected {{/if}}>三按钮</option>
+	<option class="menu-lingheight" value="2" {{if style == 2}} selected {{/if}}>四按钮</option>
+</script>
+
+<script id="button_edit_type2_style_tmpl" type="text/x-jquery-tmpl">
+	<option class="menu-lingheight" value="0" {{if style == 0}} selected {{/if}}>风格1</option>
+	<option class="menu-lingheight" value="1" {{if style == 1}} selected {{/if}}>风格2</option>
+	<option class="menu-lingheight" value="2" {{if style == 2}} selected {{/if}}>风格3</option>
+
+</script>
+
+<script id="button_edit_type3_style_tmpl" type="text/x-jquery-tmpl">
+	<option class="menu-lingheight" value="0" {{if style == 0}} selected {{/if}}>风格1</option>
+	<option class="menu-lingheight" value="1" {{if style == 1}} selected {{/if}}>风格2</option>
+	<option class="menu-lingheight" value="2" {{if style == 2}} selected {{/if}}>风格3</option>
+
+</script>
+
+
+<div id="coupon_edit_dialog" style="display: none;"></div>
+<script id="coupon_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_set_content_top">
+		<div class="plugin_set_content_img-show"></div>
+		<div class="plugin_set_content_img-attr">
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">栏目标题：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="title_show_set" value="1" {{if (data.ShowTitle == 2) || (data.ShowTitle == 3)}} checked {{/if}}/>有
+					<input class="menu_text" name="title_set" value="${data.Title}" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} disabled {{/if}} />
+					<input type="radio" name="title_show_set" value="0" {{if (data.ShowTitle != 2) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+
+			<div class="has_height">
+				<div class="plugin_set_content_img-attr_title">边框：</div>
+				<div class="plugin_set_content_img-attr_menu">
+					<input type="radio" name="border_show_set" value="1" {{if (data.ShowTitle == 1) || (data.ShowTitle == 3)}} checked {{/if}} />有
+					<input type="radio" name="border_show_set" value="0" {{if (data.ShowTitle != 1) && (data.ShowTitle != 3)}} checked {{/if}} />无
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="popup_button_box">
+        <ul class="set_button_left">
+            <li><div class="set_button" id="button_preview">预览</div></li>	
+        </ul> 
+        <ul class="set_button_right">
+		    <li><div class="set_button"  id="button_cancel">取消</div></li>
+		    <li><div class="set_button"  id="button_save">保存</div></li>
+	    </ul>
+    </div>
+</script>
+
+<!-- shop商城头弹出 -->
+<div id="store_info_edit_dialog" style="display: none;"></div>
+<script id="store_info_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="editor-field"><h1>商店名称： <input class="input-text" name="store_name" id="store_name" value="${Name}" /></h1></div>
+	<ul class="editor-field">
+		<li class="editor-field_title">商店Logo<br />(点击图片修改)</li>
+		<li class="editor-field_content"><img id="logo" src="${Logo}"/></li>
+	</ul>
+	<ul class="editor-field">
+		<li class="editor-field_title">商店标题<br />(Meta_Title)</li>
+		<li class="editor-field_content"><textarea id="title" style="width:90%" rows="3">${Title}</textarea></li>
+	</ul>
+	<ul class="editor-field">
+		<li class="editor-field_title">商店关键字<br />(Meta_Keywords)</li>
+		<li class="editor-field_content"><textarea id="keyword" style="width:90%" rows="3">${Keyword}</textarea></li>
+	</ul>
+	<ul class="editor-field">
+		<li class="editor-field_title">商店描述<br />(Meta_Description)</li>
+		<li class="editor-field_content"><textarea id="description" style="width:90%" rows="3">${Description}</textarea></li>
+	</ul>
+	<ul class="set_button_right">
+		<li><div class="set_button" id="button_cancel">取消</div></li>
+		<li><div class="set_button" id="button_ok">保存</div></li>
+	</ul>
+</script>
+
+<!-- shop商城头客服信息 -->
+<div id="store_ad_info_edit_dialog" style="display: none;"></div>
+<script id="store_ad_info_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+    <div class="editor-field" style="line-height:30px;background:#ebebeb;">
+	    <input class="input_radio" name="ad_type" type="radio" value="${Constant.STORE_AD_TYPE_PHOTO}" {{if AdType == Constant.STORE_AD_TYPE_PHOTO}} checked {{/if}}/> 纯图片
+    </div>
+	<ul class="editor-field">		
+		<li class="editor-field_title">广告图片：<br />(点击图片修改)</li>
+		<li class="editor-field_content"><img id="ad_photo" src="${AdPhoto}"/></li>
+    </ul>
+	<ul class="editor-field">		
+        <li class="editor-field_title">ALT标签：</li>
+		<li class="editor-field_content"><input class="input-text" name="ad_photo_title" id="ad_photo_title" value="${AdPhotoTitle}" /></li>
+    </ul>
+	<ul class="editor-field">		
+        <li class="editor-field_title">http://</li>
+		<li class="editor-field_content"><input class="input-text" name="ad_photo_url" id="ad_photo_url" value="${AdPhotoUrl}" /></li>
+    </ul>
+	<div class="editor-field" style="line-height:30px;background:#ebebeb;"><input class="input_radio" name="ad_type" type="radio" value="${Constant.STORE_AD_TYPE_PHONE}" {{if AdType == Constant.STORE_AD_TYPE_PHONE}} checked {{/if}}/> 电话号码</div>
+	<ul class="editor-field">		
+        <li class="editor-field_title">电话号码：</li>
+		<li class="editor-field_content"><input class="input-text" name="ad_phone" id="ad_phone" value="${AdPhone}" /></li>
+	</ul>
+    <div class="editor-field" style="line-height:30px;background:#ebebeb;">
+	    <input class="input_radio" name="ad_type" type="radio" value="${Constant.STORE_AD_TYPE_OTHER}"  {{if AdType == Constant.STORE_AD_TYPE_OTHER}} checked {{/if}}/> 其它
+    </div>
+	<ul class="editor-field">		
+        <li class="editor-field_title">文字广告：</li>
+		<li class="editor-field_content"><input class="input-text" name="ad_text" value="${AdText}" /></li>
+	</ul>
+	<ul class="editor-field">		
+        <li class="editor-field_title">http://</li>
+		<li class="editor-field_content"><input class="input-text" name="ad_url" value="${AdUrl}" /></li>
+	</ul>
+    <div class="editor-field" style="line-height:30px;background:#ebebeb;">
+	    <input class="input_radio" name="ad_type" type="radio" value="${Constant.STORE_AD_TYPE_NONE}" {{if AdType == Constant.STORE_AD_TYPE_NONE}} checked {{/if}}/> 无
+    </div>
+	<ul class="set_button_right">
+		<li><div class="set_button" id="button_cancel">取消</div></li>
+		<li><div class="set_button" id="button_ok">保存</div></li>
+	</ul>
+</script>
+
+<!-- shop页尾box页面 -->
+<div id="store_help_edit_dialog" style="display: none;"></div>
+<script id="store_help_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<ul class="editor-field" style="border-bottom:1px dotted #ddd;padding-bottom:10px;">	
+		<li style="float:left;width:200px;">
+			<input class="input_radio" type="radio" name="store_help_sel" value="0" {{if content == null}} checked {{/if}} />默认帮助内容
+			<input class="input_radio" type="radio" name="store_help_sel" value="1" {{if content != null}} checked {{/if}} />自定义帮助内容
+		</li>
+	</ul>
+	<ul class="editor-field">
+        <li style="float:left;width:40px;line-height:20px;">标题:</li>
+		<li style="float:left;width:180px;"><input style="width:150px;height:20px;line-height:20px;" name="store_help_title" value="${help_title.Name}" /></li>
+    </ul>
+	<ul class="editor-field" id="store_help_content" {{if content == null}} style="display:none" {{/if}}>
+		<li><div id="editor"></div></li>
+	</ul>
+	<ul class="set_button_right">
+		<li><div class="set_button" id="button_cancel">取消</div></li>
+		<li><div class="set_button" id="button_ok">保存</div></li>
+	</ul>
+</script>

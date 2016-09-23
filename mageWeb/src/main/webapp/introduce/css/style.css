@@ -1,0 +1,284 @@
+﻿@charset "utf-8";
+
+/*共同设定*/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code,
+	form, fieldset, legend, input, textarea, p, blockquote, table, tr, th,
+	td {
+	margin: 0;
+	padding: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+fieldset, img {
+	border: 0;
+}
+
+address, caption, cite, code, dfn, em, th, var {
+	font-style: normal;
+	font-weight: normal;
+}
+
+ul, ul li, input, dl, dd {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+img, a img {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+caption, th {
+	text-align: left;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%;
+	font-weight: normal;
+}
+
+a {
+	text-decoration: none;
+	color: #6e6e6e;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #6e6e6e;
+}
+
+.clear {
+	clear: both;
+}
+
+/*基本设定*/
+body {
+	font-family: "微软雅黑";
+	font-size: 12px;
+	color: #5c5c5c;
+	min-width: 1004px;
+	width: auto !important;
+	width: 1004px;
+	_width: expression(document.documentElement.clientWidth < 1004 ? "1004px" : 
+		 "auto");
+	margin: 0 auto;
+}
+
+/*-----------------  ■ common -------------------*/
+.wrapper {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+}
+/*-----------------  ■ header -------------------*/
+
+/******第一屏的nav*****/
+.home_nav {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 9;
+	line-height: 97px;
+	height: 100px;
+	background: #fff;
+}
+
+.nav_img {
+	float: left;
+	padding-top: 19px;
+}
+
+.nav_list {
+	float: left;
+	pad /ding-left: 180px;
+	padding-left: 160px;
+	width: 720px;
+}
+
+.nav_list ul li {
+	float: left;
+	width: 72px;
+	padding: 0 12px;
+}
+
+.nav_list ul li a {
+	font-size: 16px;
+	color: #363636;
+	color: #000;
+	width: 72px;
+	font-weight: normal;
+	text-align: center;
+	display: block;
+	border-top: #fff solid 4px;
+	-moz-transition: border-top 0.5s, color 0.5s, font-weight 0.5s;
+	/* Firefox 4 */
+	-webkit-transition: border-top 0.5s, color 0.5s, font-weight 0.5s;
+	/* Safari 和 Chrome */
+	-o-transition: border-top 0.5s, color 0.5s, font-weight 0.5s;
+	/* Opera */
+	transition: border-top 0.5s, color 0.5s, font-weight 0.5s;
+}
+
+.nav_list ul li a:hover {
+	color: #195caa;
+	font-weight: bold;
+	border-top: #1e67bd solid 4px;
+}
+
+.nav_list ul li a.daohang04_on {
+	color: #195caa;
+	font-weight: bold;
+	border-top: #1e67bd solid 4px;
+}
+
+/******其它屏的nav*****/
+.float_nav {
+	display: none;
+	z-index: 999;
+	top: 0;
+	right: 0;
+	position: fixed;
+	width: 100%;
+	height: 63px;
+	background: #fff;
+	border-bottom: #e3e3e3 solid 1px;
+}
+
+.float_nav01 {
+	width: 1130px;
+	margin: 0 auto;
+}
+
+.float_nav02 {
+	float: left;
+	padding-top: 5px;
+}
+
+.float_nav03 {
+	height: 64px;
+	float: left;
+	width: 710px;
+	width: 720px;
+	line-height: 64px;
+	padd /ing-left: 280px;
+	padding-left: 220px;
+}
+
+.float_nav03 ul li {
+	float: left;
+	width: 72px;
+	text-align: center;
+	font-size: 14px;
+	padd /ing: 0 18px;
+	padding: 0 15px;
+}
+
+.float_nav03 ul li a {
+	display: block;
+	height: 64px;
+	color: #363636;
+	background: url(../images/navnav01.jpg) no-repeat bottom center;
+	-moz-transition: background 0.5s, color 0.5s; /* Firefox 4 */
+	-webkit-transition: background 0.5s, color 0.5s; /* Safari 和 Chrome */
+	-o-transition: background 0.5s, color 0.5s; /* Opera */
+	transition: background 0.5s, color 0.5s;
+}
+
+.float_nav03 ul li a:hover {
+	font-weight: bold;
+	color: #195caa;
+	border-bot /tom: #1e67bd solid 4px;
+	background: url(../images/navnav.jpg) no-repeat bottom center;
+}
+
+.float_nav03 ul li a.float_nav03_on {
+	font-weight: bold;
+	color: #195caa;
+	border-bo /ttom: #1e67bd solid 4px;
+}
+
+/*-------------------------------  ■ 内页区域---------------------------------*/
+.sub_line {
+	margin-top: 100px;
+	height: 2px;
+	background: url(../images/sub_line.jpg) no-repeat top center;
+}
+
+.sub_content {
+	padding-bottom: 70px;
+}
+
+.sub_content01 {
+	width: 1130px;
+	margin: 0 auto;
+}
+
+/*----------------------------- 当前位置---------------------------------------------------------------------------------*/
+.lx_wz {
+	font-size: 14px;
+	color: #9d9d9d;
+	color: #000;
+	line-height: 106px;
+	filter: alpha(opacity = 0);
+	-ms-filter: "alpha(opacity=0)";
+	-khtml-opacity: 0;
+	opacity: 0;
+	margin-top: -10px;
+}
+
+.lx_wz a {
+	color: #9d9d9d;
+	color: #000;
+	-moz-transition: color 0.5s;
+	-webkit-transition: color 0.5s;
+	-o-transition: color 0.5s;
+	transition: color 0.5s;
+}
+
+.lx_wz a:hover {
+	color: #3786e5;
+}
+
+.lx_wz span {
+	background: url(../images/jiantou.jpg) no-repeat center center;
+	padding: 10px 12px;
+}
+
+/******footer*****/
+.footer {
+	font-size: 12px;
+	color: #5f5f5f;
+	color: #000;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	background: #fff;
+	border-top: #dcdcdc solid 1px;
+}
+
+.footer a {
+	color: #5f5f5f;
+}
+
+.footer2 {
+	font-size: 12px;
+	color: #5f5f5f;
+	color: #000;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	background: #fff;
+}
+
+.footer2 a, .footer2 a:hover {
+	color: #6e6e6e;
+}

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<widgets>
+	<page id="sshop">
+        <widget id="shopImageClipingWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+        <widget id="shopStaticTmplWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+        <widget id="shopToolbarWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+        <widget id="shopMainWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+        <widget id="shopDialogDefineWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+        <widget id="shopToolBarInitJsWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+        <widget id="shopFooterWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+        <widget id="shopHeaderLogoBoxWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+        <widget id="shopStoreFreeWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+        <widget id="shopImageTypeWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+        <widget id="shopAdvertisingWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+        <widget id="shopCarouselWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+        <widget id="shopSingleWindowWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+        <widget id="shopMultiWindowWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+        <widget id="shopSideWindowWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+        <widget id="shopShowcaseWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+        <widget id="shopTextNewsWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+        <widget id="shopImageNewsWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+        <widget id="shopStoreAllNavTagWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+        <widget id="shopStoreSingleNavTagWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+        <widget id="shopDynamicPluginWidget">
+            <is_cache>no</is_cache>
+            <ischild>yes</ischild>
+            <freemarker>no</freemarker>
+        </widget>
+	</page>
+</widgets>

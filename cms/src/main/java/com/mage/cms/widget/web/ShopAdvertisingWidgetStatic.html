@@ -1,0 +1,24 @@
+<div class="plugin_advertising_content"  Interval="${data.interval}" Direction="${data.direction}">
+	<#if data.style == 0>
+		<div class="bannerbox">
+			<div class="banner_number_box"><div class="banner_number"></div></div>
+			<ul class="banner_img">
+				<#list data.advertising as adv>
+					<#assign i="adv_index"/>
+					<li><a href="${adv.linkUrl}"><img class="adv_image" index="${i}" src="${adv.url}" title="${adv.title}" /></a></li>
+				</#list>
+			</ul>
+		</div>
+	<#else>
+		<div class="slideshow">
+			<ul class="slides">
+				<#list data.advertising as adv>
+					<#assign i="adv_index"/>
+					<li><a href="${adv.linkUrl}"><img class="adv_image" index="${i}" src="${adv.url}" title="${adv.title}" /></a></li>
+				</#list>
+			</ul>
+		</div>
+		<div class="prev_arrow_box plugin_touch_cancel" style="display:none"><div class="prev_arrow"></div></div>
+		<div class="next_arrow_box plugin_touch_cancel" style="display:none"><div class="next_arrow"></div></div>
+	</#if>
+</div>

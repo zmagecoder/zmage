@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" 
+	"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
+<generatorConfiguration>
+	
+	<!-- 引入资源文件-->
+	<properties resource="config/jdbc.properties"></properties>
+	
+	<!-- 数据库驱动-->
+    <classPathEntry  location="${driver.path}"/>  
+    <context id="DB2Tables"  targetRuntime="MyBatis3">
+        <commentGenerator>
+        	<!-- 是否生成注释代时间戳 -->
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否  -->  
+            <property name="suppressAllComments" value="true"/>  
+        </commentGenerator>
+         
+        <!-- 数据库链接URL，用户名、密码  -->
+        <jdbcConnection driverClass="${mysql.driverClass}" 
+        	connectionURL="${mysql.jdbcUrl}" 
+        	userId="${mysql.username}" password="${mysql.password}">
+        </jdbcConnection>
+        
+        <!-- 类型转换 -->
+        <javaTypeResolver>
+        	<!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+            <property name="forceBigDecimals" value="false"/>  
+        </javaTypeResolver>
+        
+        <!-- 生成模型的包名和位置  -->
+        <javaModelGenerator targetPackage="com.mage.test.model" targetProject="${project.path}">  
+			<property name="enableSubPackages" value="true"/>  
+			<property name="trimStrings" value="true"/>  
+        </javaModelGenerator>
+        
+        <!-- 生成映射文件的包名和位置  -->
+        <sqlMapGenerator targetPackage="com.mage.test.mapping" targetProject="${project.path}">  
+			<property name="enableSubPackages" value="true"/>  
+        </sqlMapGenerator>
+        
+        <!-- 生成DAO的包名和位置  -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.mage.test.dao" targetProject="${project.path}">  
+        	<property name="enableSubPackages" value="true"/>  
+        </javaClientGenerator>
+        
+        <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名  -->
+        <table tableName="sy_user"
+        	domainObjectName="User" enableCountByExample="fasle" 
+        	enableUpdateByExample="fasle" enableDeleteByExample="fasle" 
+        	enableSelectByExample="fasle" selectByExampleQueryId="fasle">
+        	
+        	<!-- 忽略列，不生成bean 字段; 指定列的java数据类型  -->
+        	<!--  
+            <ignoreColumn column="FRED" />
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+            -->
+        	
+        </table>
+        
+    </context>  
+</generatorConfiguration>

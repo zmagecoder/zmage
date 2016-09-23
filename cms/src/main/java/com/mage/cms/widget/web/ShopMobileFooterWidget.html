@@ -1,0 +1,86 @@
+
+	<div id="footer">
+		<div id="store_info_edit_dialog" style="display: none;"></div>
+<script id="store_info_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="editor-field"><h1>商店名称： <input class="input-text" name="store_name" id="store_name" value="${Name}" /></h1></div>
+
+	<ul class="editor-field">
+		<li class="editor-field_title">商店标题<br />(Meta_Title)</li>
+		<li class="editor-field_content"><textarea id="title" style="width:90%" rows="3">${Title}</textarea></li>
+	</ul>
+	<ul class="editor-field">
+		<li class="editor-field_title">商店关键字<br />(Meta_Keywords)</li>
+		<li class="editor-field_content"><textarea id="keyword" style="width:90%" rows="3">${Keyword}</textarea></li>
+	</ul>
+	<ul class="editor-field">
+		<li class="editor-field_title">商店描述<br />(Meta_Description)</li>
+		<li class="editor-field_content"><textarea id="description" style="width:90%" rows="3">${Description}</textarea></li>
+	</ul>
+	<ul class="set_button_right">
+		<li><div class="set_button" id="button_cancel">取消</div></li>
+		<li><div class="set_button" id="button_ok">保存</div></li>
+	</ul>
+</script>
+
+<div id="store_ad_info_edit_dialog" style="display: none;"></div>
+<script id="store_ad_info_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+    <div class="editor-field" style="line-height:30px;background:#ebebeb;">
+	    <input class="input_radio" name="ad_type" type="radio" value="${Constant.STORE_AD_TYPE_PHOTO}" {{if AdType == Constant.STORE_AD_TYPE_PHOTO}} checked {{/if}}/> 纯图片
+    </div>
+	<ul class="editor-field">		
+		<li class="editor-field_title">广告图片：<br />(点击图片修改)</li>
+		<li class="editor-field_content"><img id="ad_photo" src="${AdPhoto}"/></li>
+    </ul>
+	<ul class="editor-field">		
+        <li class="editor-field_title">ALT标签：</li>
+		<li class="editor-field_content"><input class="input-text" name="ad_photo_title" id="ad_photo_title" value="${AdPhotoTitle}" /></li>
+    </ul>
+	<ul class="editor-field">		
+        <li class="editor-field_title">http://</li>
+		<li class="editor-field_content"><input class="input-text" name="ad_photo_url" id="ad_photo_url" value="${AdPhotoUrl}" /></li>
+    </ul>
+	<div class="editor-field" style="line-height:30px;background:#ebebeb;"><input class="input_radio" name="ad_type" type="radio" value="${Constant.STORE_AD_TYPE_PHONE}" {{if AdType == Constant.STORE_AD_TYPE_PHONE}} checked {{/if}}/> 电话号码</div>
+	<ul class="editor-field">		
+        <li class="editor-field_title">电话号码：</li>
+		<li class="editor-field_content"><input class="input-text" name="ad_phone" id="ad_phone" value="${AdPhone}" /></li>
+	</ul>
+    <div class="editor-field" style="line-height:30px;background:#ebebeb;">
+	    <input class="input_radio" name="ad_type" type="radio" value="${Constant.STORE_AD_TYPE_OTHER}"  {{if AdType == Constant.STORE_AD_TYPE_OTHER}} checked {{/if}}/> 其它
+    </div>
+	<ul class="editor-field">		
+        <li class="editor-field_title">文字广告：</li>
+		<li class="editor-field_content"><input class="input-text" name="ad_text" value="${AdText}" /></li>
+	</ul>
+	<ul class="editor-field">		
+        <li class="editor-field_title">http://</li>
+		<li class="editor-field_content"><input class="input-text" name="ad_url" value="${AdUrl}" /></li>
+	</ul>
+    <div class="editor-field" style="line-height:30px;background:#ebebeb;">
+	    <input class="input_radio" name="ad_type" type="radio" value="${Constant.STORE_AD_TYPE_NONE}" {{if AdType == Constant.STORE_AD_TYPE_NONE}} checked {{/if}}/> 无
+    </div>
+	<ul class="set_button_right">
+		<li><div class="set_button" id="button_cancel">取消</div></li>
+		<li><div class="set_button" id="button_ok">保存</div></li>
+	</ul>
+</script>
+
+<div id="store_help_edit_dialog" style="display: none;"></div>
+<script id="store_help_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<ul class="editor-field" style="border-bottom:1px dotted #ddd;padding-bottom:10px;">	
+		<li style="float:left;width:200px;">
+			<input class="input_radio" type="radio" name="store_help_sel" value="0" {{if content == null}} checked {{/if}} />默认帮助内容
+			<input class="input_radio" type="radio" name="store_help_sel" value="1" {{if content != null}} checked {{/if}} />自定义帮助内容
+		</li>
+	</ul>
+	<ul class="editor-field">
+        <li style="float:left;width:40px;line-height:20px;">标题:</li>
+		<li style="float:left;width:180px;"><input style="width:150px;height:20px;line-height:20px;" name="store_help_title" value="${help_title.Name}" /></li>
+    </ul>
+	<ul class="editor-field" id="store_help_content" {{if content == null}} style="display:none" {{/if}}>
+		<li><div id="editor"></div></li>
+	</ul>
+	<ul class="set_button_right">
+		<li><div class="set_button" id="button_cancel">取消</div></li>
+		<li><div class="set_button" id="button_ok">保存</div></li>
+	</ul>
+</script>

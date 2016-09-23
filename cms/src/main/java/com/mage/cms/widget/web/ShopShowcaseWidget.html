@@ -1,0 +1,74 @@
+<!-- 橱窗商品 -->
+<script id="showcase_goods_tmpl" type="text/x-jquery-tmpl">
+	{{each(i, goods) label.Goods}}
+	<li class="goods_list" label_id="${label.index}" goods_id="${goods.GoodsId}">
+		{{if Style == 0}}						
+		<div class="showcase_goods_style0 {{if GoodsStyle == 1}}showcase_goods_border{{/if}}">
+			<div class="showcase_goods_style0_img">
+				<a href="javascript:void(0)"><img title="${goods.Name}" src="${goods.Photo1}" /></a>
+				<div id="sales_icon"></div>
+				{{if show_mode == PluginConstant.SHOW_MODE_EDIT}}
+					<div class="showcase_goods_handle plugin_touch_cancel"></div>
+				{{/if}}
+			</div>
+			<div class="showcase_goods_style0_intro"><p class="nav_p_hover"><a href="javascript:void(0)">${goods.Name} <em>${goods.SearchKey}</em></a></p></div>
+			<p class="showcase_goods_style0_rmb"><strong>现价：&yen; <em id="sales_price">${(goods.Price / 100).toFixed(2)}</em></strong></p>
+		</div>
+		{{/if}}
+		{{if Style == 1}}						
+		<div class="showcase_goods_style1 {{if GoodsStyle == 1}}showcase_goods_border{{/if}}">
+			<a href="javascript:void(0)"><img title="${goods.Name} ${goods.SearchKey}" src="${goods.Photo1}" /></a>
+			<div id="sales_icon"></div>
+			{{if (show_mode == PluginConstant.SHOW_MODE_DISPLAY) || (show_mode == PluginConstant.SHOW_MODE_PREVIEW)}}
+				<div class="popup_product_name" style="display: none">
+					<div class="popup_product_name_bg">
+						<div class="product_name"><p class="nav_product"><a href="javascript:void(0)">${goods.Name} ${goods.SearchKey}</a></p></div>
+						<p class="product_rmb">现价：&yen; <em id="sales_price">${(goods.Price / 100).toFixed(2)}</em></p>
+					</div>
+				</div>
+			{{/if}}
+			{{if show_mode == PluginConstant.SHOW_MODE_EDIT}}
+				<div class="showcase_goods_handle plugin_touch_cancel"></div>
+			{{/if}}
+		</div>
+		{{/if}}
+		{{if Style == 2}}						
+		<div class="showcase_goods_style2">
+			<div class="showcase_goods_style2_img plugin_touch_cancel">
+				<a href="javascript:void(0)"><img title="${goods.Name}" src="${goods.Photo1}" /></a>
+				{{if show_mode == PluginConstant.SHOW_MODE_EDIT}}
+					<div class="showcase_goods_handle plugin_touch_cancel"></div>
+				{{/if}}
+			</div>
+			<div class="a_text">
+				<div class="a_text_dt"><p class="nav_p_hover"><a href="javascript:void(0)">${goods.Name} <em>${goods.SearchKey}</em></a></p></div>
+				<div class="a_text_dd">&yen; <em id="sales_price">${(goods.Price / 100).toFixed(2)}</em></div>
+			</div>
+		</div>
+		{{/if}}
+	</li>
+	{{/each}}
+</script>
+
+<script id="showcase_type1_border_tmpl" type="text/x-jquery-tmpl">
+<div class="showcase_TitleBox">
+	<ul class="showcase_type1_title plugin_touch patt_border_showcase_type1_title">
+		{{each(i, label) data.Labels}}
+			<li class="plugin_touch_cancel label_list bg_a patt_bg_plugin_title" label_id="${i}" id="label_header_${i}">
+				<a href="javascript:void(0)"><div>${label.Name}</div></a>
+				<input class="sortable_cancel" style="display: none;line-height:34px;" type="text" value="${label.Name}">
+			</li>
+		{{/each}}
+		{{if show_mode == PluginConstant.SHOW_MODE_EDIT}}
+			<li class="plugin_touch_cancel sortable_cancel add_label">
+				<input style="display: none;" type="text" value="">
+			</li>
+		{{/if}}
+	</ul>
+</div>
+	<div class="plugin_inner_border showcase_type1-inner-border plugin_touch patt_border_showcase_type1_inner">
+		<div class="showcase_type1-inner">
+			<div class="plugin_inner_content"></div>
+		</div>
+	</div>
+</script>

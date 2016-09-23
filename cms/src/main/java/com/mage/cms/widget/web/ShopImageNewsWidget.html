@@ -1,0 +1,51 @@
+<script id="graphic_news_style0_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_news_main_content">
+		<ul class="graphic_news_style0_list">
+		{{each(i, news) data.News}}
+			<li>
+				<div class="graphic_news_style0_img">
+					{{if news.Photo != null}}
+						<a href="javascript:void(0)"><img class="news_title" news_id="${news.Id}" index_id="${news.IndexId}" src="${news.Photo}" /></a>
+					{{/if}}
+				</div>
+				<div class="graphic_news_style0_news">
+					<span class="news_title" news_id="${news.Id}" index_id="${news.IndexId}"><a href="javascript:void(0)">${news.Title}</a></span>
+					<p class="news_title" news_id="${news.Id}" index_id="${news.IndexId}"><a href="javascript:void(0)">${news.Abstract}</a></p>
+				</div>
+			</li>
+		{{/each}}
+		</ul>
+	</div>
+</script>
+
+<script id="graphic_news_style1_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_news_main_content">
+		<ul class="graphic_news_style1_list">
+		{{each(i, news) data.News}}
+			<li>
+				{{if (i % 2) == 0}}
+					<div class="graphic_news_style1_img">
+						{{if news.Photo != null}}
+							<a href="javascript:void(0)"><img class="news_title" news_id="${news.Id}" index_id="${news.IndexId}" src="${news.Photo}" /></a>
+						{{/if}}
+					</div>
+					<div class="graphic_news_style1_news">
+						<span class="news_title" news_id="${news.Id}" index_id="${news.IndexId}"><a href="javascript:void(0)">${news.Title}</a></span>
+						<p class="news_title" news_id="${news.Id}" index_id="${news.IndexId}"><a href="javascript:void(0)">${news.Abstract}</a></p>
+					</div>
+				{{else}}
+					<div class="graphic_news_style1_news">
+						<span class="news_title" news_id="${news.Id}" index_id="${news.IndexId}"><a href="javascript:void(0)">${news.Title}</a></span>
+						<p class="news_title" news_id="${news.Id}" index_id="${news.IndexId}"><a href="javascript:void(0)">${news.Abstract}</a></p>
+					</div>
+					<div class="graphic_news_style1_img">
+						{{if news.Photo != null}}
+							<a href="javascript:void(0)"><img class="news_title" news_id="${news.Id}" index_id="${news.IndexId}" src="${news.Photo}" /></a>
+						{{/if}}
+					</div>
+				{{/if}}
+			</li>
+		{{/each}}
+		</ul>
+	</div>
+</script>

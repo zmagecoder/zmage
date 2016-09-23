@@ -1,0 +1,72 @@
+<#assign newsList = data.news />
+<#if data.style = 0>
+	<div class="plugin_news_main_content" Roll="${data.roll?string('true','false')}" Interval="${data.interval}" Direction="${data.direction}">
+		<ul class="graphic_news_style0_list">
+			<#if newsList??>
+				<#list newsList as news>
+					<li>
+						<div class="graphic_news_style0_img">
+							<#if news.photo??>
+								<a href="${news.link_url}">
+									<img class="news_title" news_id="${news.id}" index_id="${news.indexId!''}" src="${news.photo}" />
+								</a>
+							</#if>
+						</div>
+						<div class="graphic_news_style0_news">
+							<span class="news_title" news_id="${news.id}" index_id="${news.indexId!''}">
+								<a href="${news.link_url}">${news.title}</a>
+							</span>
+							<p class="news_title" news_id="${news.id}" index_id="${news.indexId!''}">
+								<a href="${news.link_url}">${news.abstract}</a>
+							</p>
+						</div>
+					</li>
+				</#list>
+			</#if>
+		</ul>
+	</div>
+<#elseif data.style = 1>
+	<div class="plugin_news_main_content" Roll="${data.roll?string('true','false')}" Interval="${data.interval}" Direction="${data.direction}">
+		<ul class="graphic_news_style1_list">
+		<#if newsList??>
+			<#list newsList as news>
+				<li>
+					<#if (news_index % 2) = 0>
+						<div class="graphic_news_style1_img">
+							<#if news.photo??>
+								<a href="${news.link_url}">
+									<img class="news_title" news_id="${news.id}" index_id="${news.indexId!''}" src="${news.photo}" />
+								</a>
+							</#if>
+						</div>
+						<div class="graphic_news_style1_news">
+							<span class="news_title" news_id="${news.id}" index_id="${news.indexId!''}">
+								<a href="${news.link_url}">${news.title}</a>
+							</span>
+							<p class="news_title" news_id="${news.id}" index_id="${news.indexId!''}">
+								<a href="${news.link_url}">${news.abstract}</a>
+							</p>
+						</div>
+					<#else>
+						<div class="graphic_news_style1_news">
+							<span class="news_title" news_id="${news.id}" index_id="${news.indexId!''}">
+								<a href="${news.link_url}">${news.title}</a>
+							</span>
+							<p class="news_title" news_id="${news.id}" index_id="${news.indexId!''}">
+								<a href="${news.link_url}">${news.abstract}</a>
+							</p>
+						</div>
+						<div class="graphic_news_style1_img">
+							<#if news.photo??>
+								<a href="${news.link_url}">
+									<img class="news_title" news_id="${news.id}" index_id="${news.indexId!''}" src="${news.photo}" />
+								</a>
+							</#if>
+						</div>
+					</#if>
+				</li>
+			</#list>
+		</#if>
+		</ul>
+	</div>
+</#if>

@@ -1,0 +1,16 @@
+<#if is_preview>
+	<!-- 预览模式 -->
+	<div id="display_containers"></div>
+<#else>
+	<#if bar_type =="static">
+		<div class="contentmainbox"><div id="display_containers"></div></div>
+	<#else>
+		<!-- 编辑模式 -->
+		<div class="contentmainbox"><div id="store_containers"></div></div>
+	</#if>
+</#if>
+</div>
+<script src="${context_path}/view/cms/themes/default/cmsline/Scripts/iStore/istore.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	var Config_Default_Image = '${context_path}/view/cms/themes/default/cmsline/Content/Admin/images/img.jpg';
+</script>

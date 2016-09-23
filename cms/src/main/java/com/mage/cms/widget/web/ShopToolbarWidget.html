@@ -1,0 +1,703 @@
+
+<div class="toolbar-box"></div>
+<script id="toolbar_back_tmpl" type="text/x-jquery-tmpl">
+	<div class="box_alpha"></div>
+	<div class="toolbar-bg">
+		<ul class="toolbar">
+			<li class="toolbar_landing-info">
+				<ul>
+					<li class="landing-info-call">您好, ${OperatorName}</li>
+					<li class="landing-info-close"><span><a href="javascript:void(0)" onclick="goto_link(getActionPath('LogOff', 'Admin'))">退出</a></span></li>
+					<li id="admin_password_change"><a href="javascript:void(0)">密码修改</a></li>
+				</ul>
+			</li>
+			<li class="toolbar_pagedesign">
+				<label id="admin_backstage_top">后台管理</label>
+				<div class="header_button_g"></div>
+				<ul class="toolbar_popup">
+					<li><a href="javascript:void(0)" id="admin_backstage">后台管理</a></li>
+					<li id="admin_design_li"><a href="javascript:void(0)" id="admin_design">编辑模式</a></li>
+					<li id="admin_preview_li"><a href="javascript:void(0)" id="admin_preview">预览模式</a></li>
+					<li><a href="javascript:void(0)" id="admin_mobile_design">手机商城</a></li>
+					<li><a href="javascript:void(0)" id="admin_static">PC商城</a></li>
+
+				</ul>
+			</li>
+			<li class="toolbar_send"></li>
+			<li class="toolbar_state">提醒中心<div class="header_button_g"></div><div class="toolbar_state_popup" id="top_store_newstatus"></div></li>
+			<li class="toolbar_shop">商城状态<div class="header_button_g"></div><div id="toolbar_shop_popup" class="toolbar_shop_popup"></div></li>
+			<li class="toolbar_upgrade"><a target="_blank" href="http://zhuyun.cn/Home/Buy">商城续费</a></li>
+			<li class="toolbar_upgrade"><a target="_blank" href="http://www.zhuyun.cn/Home/Video">帮助视频</a></li>
+			<li class="toolbar_upgrade"><a target="_blank" href="http://bbs.zhuyun.cn">筑云论坛</a></li>
+			<li class="toolbar_search">
+				<ul class="bg_k">
+					<li><input id="zhuyun_search_key" name="zhuyun_search_key"/></li>
+                    <li class="toolbar_magnifier"><div class="icon_magnifier" id="zhuyun_search"></div></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</script>
+
+<script id="toolbar_shop_popup_tmpl" type="text/x-jquery-tmpl">
+	<dl class="toolbar_shop_content">
+		<dt>商城版本：</dt>
+		<dd>{{if GoodsId == Constant.ZHUYUN_GOODS_ID_BETA}}测试版{{else}}${GoodsName}{{/if}}</dd>
+		<dt>商品数量：</dt>
+		<dd>${Goods_Used}个(最大：${Goods_Max}个)</dd>
+		<dt>今日订单量：</dt>
+		<dd>${DayOrder_Used}单(最大：${DayOrder_Max}单)</dd>
+		<dt>短信数量：</dt>
+		<dd>${MessageCount_Max}条</dd>
+		<dt>多用戶数量：</dt>
+		<dd>${MultiuserNumber_Max}户</dd>
+		<dt>相册空间：</dt>
+		<dd>${(AlbumSpace_Used / 1024 / 1024).toFixed(2)}M(最大：${(AlbumSpace_Max / 1024 / 1024).toFixed(2)}M)</dd>
+		<dt>自定义页面：</dt>
+		<dd>${PageCount_Used}个(最大：${PageCount_Max}个)</dd>
+		<dt>商城有效期：</dt>
+		<dd>${EndTime.toDateString("yyyy-MM-dd")}(剩余：${HaveTime}天)</dd>
+	</dl>
+</script>
+
+<script id="toolbar_shop_newstatus_tmpl" type="text/x-jquery-tmpl">
+	<dl class="toolbar_state_content">
+		<dt><a href="/Admin/GoodsManage_GoodsSearch?Search=true">总产品：</a></dt>
+		<dd><a href="/Admin/GoodsManage_GoodsSearch?Search=true">${AllGoodsNumber}</a></dd>
+		<dt><a href="/Admin/MarketManage_EditRuleGoods?Type=1">直降：</a></dt>
+		<dd><a href="/Admin/MarketManage_EditRuleGoods?Type=1">${ReduceGoodsNumber}</a></dd>
+		<dt><a href="/Admin/MarketManage_EditRuleGoods?Type=2">满减：</a></dt>
+		<dd><a href="/Admin/MarketManage_EditRuleGoods?Type=2">${FullReduceGoodsNumber}</a></dd>
+		<dt><a href="/Admin/MarketManage_EditRuleGoods?Type=3">团购：</a></dt>
+		<dd><a href="/Admin/MarketManage_EditRuleGoods?Type=3">${GroupBuyGoodsNumber}</a></dd>
+		<dt><a href="/Admin/MarketManage_EditRuleGoods?Type=4">组合购买：</a></dt>
+		<dd><a href="/Admin/MarketManage_EditRuleGoods?Type=4">${PackBuyGoodsNumber}</a></dd>
+		<dt><a href="/Admin/MarketManage_EditRuleGoods?Type=5">秒杀：</a></dt>
+		<dd><a href="/Admin/MarketManage_EditRuleGoods?Type=5">${SeckillingGoodsNumber}</a></dd>
+		<dt><a href="/Admin/OrderManage_OrderList?Status=100">等待发货：</a></dt>
+		<dd><a href="/Admin/OrderManage_OrderList?Status=100">${HavePayOrderNumber}</a></dd>
+		<dt><a href="/Admin/GoodsManage_NumberSearch?Number=0">缺货：</a></dt>
+		<dd><a href="/Admin/GoodsManage_NumberSearch?Number=0">${ShortageGoodsNumber}</a></dd>
+		<dt><a href="/Admin/OrderManage_ComplainList?Status=1">投诉单：</a></dt>
+		<dd><a href="/Admin/OrderManage_ComplainList?Status=1">${ComplainNumber}</a></dd>
+		<dt><a href="/Admin/OrderManage_EvaluateList?Score=1">差评：</a></dt>
+		<dd><a href="/Admin/OrderManage_EvaluateList?Score=1">${BadEvaluate}</a></dd>
+	</dl>
+</script>
+
+<script id="toolbar_front_design_tmpl" type="text/x-jquery-tmpl">
+	<div class="box_alpha"></div>
+	<div class="toolbar-bg">
+		<ul class="toolbar">
+			<li class="toolbar_landing-info">
+				<ul>
+					<li class="landing-info-call">您好, ${OperatorName}</li>
+					<li class="landing-info-close"><span><a href="javascript:void(0)" onclick="goto_link(getActionPath('LogOff', 'Admin'))">退出</a></span></li>
+					<li id="admin_password_change"><a href="javascript:void(0)">密码修改</a></li>
+				</ul>
+			</li>
+			<li class="toolbar_pagedesign">
+				<div id="admin_design_top">编辑模式</div>
+				<div class="header_button_g"></div>
+				<ul class="toolbar_popup">
+					<li><a href="javascript:void(0)" id="admin_backstage">后台管理</a></li>
+					<li><a href="javascript:void(0)" id="admin_design">编辑模式</a></li>
+					<li><a href="javascript:void(0)" id="admin_preview">预览模式</a></li>
+					<li><a href="javascript:void(0)" id="admin_mobile_design">手机商城</a></li>
+					<li><a href="javascript:void(0)" id="admin_static">PC商城</a></li>
+				</ul>
+			</li>
+			<li class="toolbar_pagestyle">
+				<div id="admin_style_top">风格</div>
+				<div class="header_button_g"></div>
+				<div class="toolbar_style_popup"><div id="toolbar_style_popup_show"></div></div>
+			</li>
+			<li class="toolbar_page-edit">自定义页面<div class="header_button_g"></div>
+				<div class="toolbar_edit_popup">
+					<div id="toolbar_pages_show" class="toolbar_edit_custom"></div>
+					<div id="toolbar_custom_page_show" class="toolbar_edit_custom"></div>
+				</div>
+			</li>
+			<li class="toolbar_save">
+				<ul>
+					<li class="toolbar_save-button" id="save_page"><span>保存</span></li>
+					<li class="toolbar_save-button" style="display: none;" id="recover_page"><span>恢复</span></li>
+					<li class="toolbar_save-button1" id="set_template"><span>选择模板</span></li>
+				</ul>
+			</li>
+			<li class="toolbar_plugin">
+				<ul>
+					<li class="toolbar_plugin_menu toolbar_plugin1">图片插件<div class="header_button_g"></div>
+						<div id="plugin_appendto_test" style="position: absolute; top: 45px; left: 0px;"></div>
+						<div class="toolbar_plugin_popup toolbar_plugin1_popup">
+							<ul>
+								<li class="toolbar_plugin_first"><div class="d_dl"><div class="d_dt"><div id="plugin_type0"></div></div><div class="d_dd">轮播广告</div></div></li>
+								<li class="toolbar_plugin_first"><div class="d_dl"><div class="d_dt"><div id="plugin_type1"></div></div><div class="d_dd">图片展示</div></div></li>
+								<li class="toolbar_plugin_first"><div class="d_dl"><div class="d_dt"><div id="plugin_type12"></div></div><div class="d_dd">图片滚播</div></div></li>
+							</ul>
+						</div>
+					</li>
+					<li class="toolbar_plugin_menu toolbar_plugin2">新闻插件<div class="header_button_g"></div>
+						<div class="toolbar_plugin_popup toolbar_plugin2_popup">
+							<ul>
+								<li class="toolbar_plugin_first"><div class="d_dl"><div class="d_dt"><div id="plugin_type8"></div></div><div class="d_dd">文字新闻</div></div></li>
+								<li class="toolbar_plugin_first"><div class="d_dl"><div class="d_dt"><div id="plugin_type9"></div></div><div class="d_dd">图文新闻</div></div></li>
+							</ul>
+						</div>
+					</li>
+					<li class="toolbar_plugin_menu toolbar_plugin3">橱窗插件<div class="header_button_g"></div>
+						<div class="toolbar_plugin_popup toolbar_plugin3_popup">
+							<ul>
+								<li class="toolbar_plugin_first"><div class="d_dl"><div class="d_dt"><div id="plugin_type2"></div></div><div class="d_dd">单标签橱窗</div></div></li>
+								<li class="toolbar_plugin_first"><div class="d_dl"><div class="d_dt"><div id="plugin_type3"></div></div><div class="d_dd">多标签橱窗</div></div></li>
+								<li class="toolbar_plugin_first"><div class="d_dl"><div class="d_dt"><div id="plugin_type4"></div></div><div class="d_dd">侧栏橱窗</div></div></li>
+							</ul>
+						</div>
+					</li>
+					<li class="toolbar_plugin_menu toolbar_plugin4">导航插件<div class="header_button_g"></div>
+						<div class="toolbar_plugin_popup toolbar_plugin4_popup">
+							<ul>
+								<li class="toolbar_plugin_first"><div class="d_dl"><div class="d_dt"><div id="plugin_type5"></div></div><div class="d_dd">全分类导航</div></div></li>
+								<li class="toolbar_plugin_first"><div class="d_dl"><div class="d_dt"><div id="plugin_type6"></div></div><div class="d_dd">纵向单分类</div></div></li>
+                                <li class="toolbar_plugin_first" style="display:none;"><div class="d_dl"><div class="d_dt"><div id="plugin_type13"></div></div><div class="d_dd">标签导航</div></div></li>
+							</ul>
+						</div>
+					</li>
+					<li class="toolbar_plugin_menu toolbar_plugin5">其它插件<div class="header_button_g"></div>
+						<div class="toolbar_plugin_popup toolbar_plugin5_popup">
+							<ul>
+								<li class="toolbar_plugin_first"><div class="d_dl"><div class="d_dt"><div id="plugin_type10"></div></div><div class="d_dd">自由编辑</div></div></li>
+								<li class="toolbar_plugin_first"><div class="d_dl"><div class="d_dt"><div id="plugin_type11"></div></div><div class="d_dd">动态插件</div></div></li>
+								<li class="toolbar_plugin_first" style="display:none;"><div class="d_dl"><div class="d_dt"><div id="plugin_type16"></div></div><div class="d_dd">优惠券查询</div></div></li>
+								<li class="toolbar_plugin_first"><div class="d_dl"><div class="d_dt"><div id="plugin_type20"></div></div><div class="d_dd">新增插件</div></div></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</script>
+
+
+<script id="toolbar_pages_show_tmpl" type="text/x-jquery-tmpl">
+	<dl>
+		<dt>主导航<br />区域</dt>
+		<dd>
+			{{if Pages.length > 0}}
+			<div style="float: left"><a href="javascript:void(0)" open_url="${Pages[0].Page_url}" is_home="true" class="page_link" page_id="${Pages[0].PageId}" index_id="${Pages[0].IndexId}">${Pages[0].Name}</a></div>
+			<ul class="toolbar_page">
+				{{each(i, page) Pages}}
+					{{if i == 0}}
+					{{else}}
+						<li><a href="javascript:void(0)" open_url="${page.Page_url}" class="page_link" page_id="${page.PageId}" index_id="${page.IndexId}">${page.Name}</a></li>
+					{{/if}}
+				{{/each}}
+			</ul>
+			{{/if}}
+			<div class="new_page header_button_f" style="display:none"></div>
+		</dd>
+	</dl>
+	<p class="toolbar_edit_border">注：首页主导航上面的分类文字链接的页面</p>
+</script>
+
+<script id="toolbar_custom_pages_show_tmpl" type="text/x-jquery-tmpl">
+	<dl>
+		<dt>自定义<br />内页</dt>
+		<dd>
+			<ul class="toolbar_page">
+				{{if Pages.length > 0}}
+				{{each(i, page) Pages}}
+				<li><a href="javascript:void(0)" open_url="${page.Page_url}" class="page_link" page_id="${page.PageId}" index_id="${page.IndexId}">${page.Name}</a></li>
+				{{/each}}
+			{{/if}}
+			</ul>
+			<div class="new_page header_button_f" style="display:none"></div>
+		</dd>
+	</dl>
+	<p>注：“图片”、“新闻”等模块所链接的页面 &nbsp;<a href="javascript:void(0)" id="custom_pages_edit">[更多自定义内页]</a></p>
+	<div class="input-style2 page_enter_edit" id="enter_edit" style="margin-bottom:10px;">进入编辑模式</div>
+</script>
+
+<div id="toolbar_custom_pages_edit_dialog" style="display: none">
+	<div style="width:100%;overflow:auto;border-bottom: 1px solid #ddd;" id="dialog_content"></div>
+	<ul class="set_button_left">
+		<li><div class="set_button" id="button_new_page" style="display:none">添加新页面</div></li>
+	</ul>
+	<ul class="set_button_right">
+		<li><div class="set_button" id="button_ok">关闭</div></li>
+	</ul>
+</div>
+<script id="toolbar_custom_pages_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+		<ul class="toolbar_page">
+			{{if Pages.length > 0}}
+				{{each(i, page) Pages}}
+				<li><a href="javascript:void(0)" class="page_link" page_id="${page.PageId}" index_id="${page.IndexId}">${page.Name}</a></li>
+				{{/each}}
+			{{/if}}
+		</ul>
+</script>
+
+<div id="password_change_dialog" style="display: none"></div>
+<script id="password_change_tmpl" type="text/x-jquery-tmpl">
+	<div style="width: 500px; margin: auto; padding-top: 20px;">
+		<table class="tablecenter tab table_style" width="100%" height="160" border="0" align="center" cellpadding="3" cellspacing="1">
+			<tr>
+				<td width="36%" height="30" align="right" bgcolor="#f2f2f2"><span class="STYLE3">我的用户名：</span></td>
+				<td width="64%" height="30" bgcolor="#FFFFFF" id="userseller_name">&nbsp;${OperatorName}</td>
+			</tr>
+			<tr>
+				<td height="30" align="right" bgcolor="#f2f2f2">当前密码：</td>
+				<td height="30" bgcolor="#FFFFFF">&nbsp;<input class="input-width" type="password" name="OldPassword" id="OldPassword" /></td>
+			</tr>
+			<tr>
+				<td height="30" align="right" bgcolor="#f2f2f2">新密码：</td>
+				<td height="30" bgcolor="#FFFFFF">&nbsp;<input class="input-width" type="password" name="NewPassword" id="NewPassword" /></td>
+			</tr>
+			<tr>
+				<td height="30" align="right" bgcolor="#f2f2f2">确认密码：</td>
+				<td height="30" bgcolor="#FFFFFF">&nbsp;<input class="input-width" type="password" name="ConfirmPassword" id="ConfirmPassword" /></td>
+			</tr>
+		</table>
+	</div>
+</script>
+
+
+<script id="toolbar_style_popup_show_tmpl" type="text/x-jquery-tmpl">
+	<dt>页头风格
+        <span class="style_show_hide">
+			<input type="radio" name="header_style" value="0" {{if HeaderStyle == 0}} checked="checked" {{/if}}/>永恒经典
+			<input type="radio" name="header_style" value="1" {{if HeaderStyle == 1}} checked="checked" {{/if}}/>彩色个性
+			<input type="radio" name="header_style" value="2" {{if HeaderStyle == 2}} checked="checked" {{/if}}/>简约纯朴
+		</span>
+	</dt>
+
+	<dd></dd>
+	<dt>主色调</dt>
+	<dd>
+		<div class="color_01"><input type="radio" name="major_color" value="0" {{if MajorColor == 0}} checked="checked" {{/if}}/><em class="color-0"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="1" {{if MajorColor == 1}} checked="checked" {{/if}}/><em class="color-1"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="2" {{if MajorColor == 2}} checked="checked" {{/if}}/><em class="color-2"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="3" {{if MajorColor == 3}} checked="checked" {{/if}}/><em class="color-3"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="4" {{if MajorColor == 4}} checked="checked" {{/if}}/><em class="color-4"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="5" {{if MajorColor == 5}} checked="checked" {{/if}}/><em class="color-5"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="6" {{if MajorColor == 6}} checked="checked" {{/if}}/><em class="color-6"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="7" {{if MajorColor == 7}} checked="checked" {{/if}}/><em class="color-7"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="8" {{if MajorColor == 8}} checked="checked" {{/if}}/><em class="color-8"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="9" {{if MajorColor == 9}} checked="checked" {{/if}}/><em class="color-9"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="10" {{if MajorColor == 10}} checked="checked" {{/if}}/><em class="color-10"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="11" {{if MajorColor == 11}} checked="checked" {{/if}}/><em class="color-11-a"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="12" {{if MajorColor == 12}} checked="checked" {{/if}}/><em class="color-12"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="13" {{if MajorColor == 13}} checked="checked" {{/if}}/><em class="color-13"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="14" {{if MajorColor == 14}} checked="checked" {{/if}}/><em class="color-14"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="15" {{if MajorColor == 15}} checked="checked" {{/if}}/><em class="color-15"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="16" {{if MajorColor == 16}} checked="checked" {{/if}}/><em class="color-16"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="17" {{if MajorColor == 17}} checked="checked" {{/if}}/><em class="color-17"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="18" {{if MajorColor == 18}} checked="checked" {{/if}}/><em class="color-18"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="19" {{if MajorColor == 19}} checked="checked" {{/if}}/><em class="color-19"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="20" {{if MajorColor == 20}} checked="checked" {{/if}}/><em class="color-20"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="21" {{if MajorColor == 21}} checked="checked" {{/if}}/><em class="color-21"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="22" {{if MajorColor == 22}} checked="checked" {{/if}}/><em class="color-22-a"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="23" {{if MajorColor == 23}} checked="checked" {{/if}}/><em class="color-23"></em></div>
+	</dd>
+	<dt>副色调</dt>
+	<dd>
+		<div class="color_02"><input type="radio" name="minor_color" value="0" {{if MinorColor == 0}} checked="checked" {{/if}}/><em class="color-00"></em></div>
+		<div class="color_02"><input type="radio" name="minor_color" value="1" {{if MinorColor == 1}} checked="checked" {{/if}}/><em class="color-11"></em></div>
+		<div class="color_02"><input type="radio" name="minor_color" value="2" {{if MinorColor == 2}} checked="checked" {{/if}}/><em class="color-22"></em></div>
+		<div class="color_02"><input type="radio" name="minor_color" value="3" {{if MinorColor == 3}} checked="checked" {{/if}}/><em class="color-33"></em></div>
+		<div class="color_02"><input type="radio" name="minor_color" value="4" {{if MinorColor == 4}} checked="checked" {{/if}}/><em class="color-44"></em></div>
+		<div class="color_02"><input type="radio" name="minor_color" value="5" {{if MinorColor == 5}} checked="checked" {{/if}}/><em class="color-55"></em></div>
+		<div class="color_02"><input type="radio" name="minor_color" value="6" {{if MinorColor == 6}} checked="checked" {{/if}}/><em class="color-66"></em></div>
+		<div class="color_02"><input type="radio" name="minor_color" value="7" {{if MinorColor == 7}} checked="checked" {{/if}}/><em class="color-77"></em></div>
+	</dd>
+	<dt>边框风格</dt>
+	<dd>
+		<div class="color_03"><input type="radio" name="border_style" value="0" {{if BorderStyle == 0}} checked="checked" {{/if}}/><em class="border-0"></em></div>
+		<div class="color_03"><input type="radio" name="border_style" value="1" {{if BorderStyle == 1}} checked="checked" {{/if}}/><em class="border-1"></em></div>
+		<div class="color_03"><input type="radio" name="border_style" value="2" {{if BorderStyle == 2}} checked="checked" {{/if}}/><em class="border-2"><em class="border_2_border"></em></em></div>
+	</dd>
+	<dt>横向导航
+        <span class="style_show_hide">
+		    <input type="radio" name="show_nav" value="true" {{if ShowNav}} checked="checked" {{/if}}/>显示
+		    <input type="radio" name="show_nav" value="false" {{if !ShowNav}} checked="checked" {{/if}}/>隐藏
+        </span>
+	</dt>
+	<dd></dd>
+	<dt>页头广告
+        <span class="style_show_hide">
+		    <input type="radio" name="show_header_ad" value="true" {{if ShowHeaderAd}} checked="checked" {{/if}}/>显示
+		    <input type="radio" name="show_header_ad" value="false" {{if !ShowHeaderAd}} checked="checked" {{/if}}/>隐藏
+        </span>
+	</dt>
+	<dd></dd>
+	<dt>帮助显示
+        <span class="style_show_hide">
+		    <input type="radio" name="show_help" value="true" {{if ShowZhuyun}} checked="checked" {{/if}}/>显示
+		    <input type="radio" name="show_help" value="false" {{if !ShowZhuyun}} checked="checked" {{/if}}/>隐藏
+        </span>
+	</dt>
+	<dd></dd>
+	<dt>商家操作
+        <span class="style_show_hide">
+		    <input type="radio" name="show_zhuyun" value="true" {{if ShowZhuyun}} checked="checked" {{/if}}/>显示
+		    <input type="radio" name="show_zhuyun" value="false" {{if !ShowZhuyun}} checked="checked" {{/if}}/>隐藏
+        </span>
+	</dt>
+	<dd></dd>
+	<dt>页头页尾
+        <span class="style_show_hide">
+		    <input type="radio" name="show_header" value="true" {{if ShowHeader}} checked="checked" {{/if}}/>显示
+		    <input type="radio" name="show_header" value="false" {{if !ShowHeader}} checked="checked" {{/if}}/>隐藏
+        </span>
+	</dt>
+	<dd></dd>
+</script>
+
+<script id="toolbar_front_preview_tmpl" type="text/x-jquery-tmpl">
+	<div class="box_alpha"></div>
+	<div class="toolbar-bg">
+		<ul class="toolbar">
+			<li class="toolbar_landing-info">
+				<ul>
+					<li class="landing-info-call">您好, ${OperatorName}</li>
+					<li class="landing-info-close"><span><a href="javascript:void(0)" onclick="goto_link(getActionPath('LogOff', 'Admin'))">退出</a></span></li>
+					<li id="admin_password_change"><a href="javascript:void(0)">密码修改</a></li>
+				</ul>
+			</li>
+			<li class="toolbar_pagedesign">
+				<div id="admin_design_top">预览模式</div>
+				<div class="header_button_g"></div>
+				<ul class="toolbar_popup">
+					<li><a href="javascript:void(0)" id="admin_backstage">后台管理</a></li>
+					<li><a href="javascript:void(0)" id="admin_design">编辑模式</a></li>
+					<li><a href="javascript:void(0)" id="admin_preview">预览模式</a></li>
+					<li><a href="javascript:void(0)" id="admin_mobile_design">手机商城</a></li>
+					<li><a href="javascript:void(0)" id="admin_static">PC商城</a></li>
+
+				</ul>
+			</li>
+			<li class="toolbar_page-edit">自定义页面<div class="header_button_g"></div>
+				<div class="toolbar_edit_popup">
+					<dl id="toolbar_pages_show" class="toolbar_edit_custom"></dl>
+					<dl id="toolbar_custom_page_show" class="toolbar_edit_custom"></dl>
+				</div>
+			</li>
+			<li id="build_static_li" class="toolbar_save">
+				<ul>
+					<li class="toolbar_save-button" id="build_static"><span>发布</span></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</script>
+
+<div id="store_page_edit_dialog" style="display: none;"></div>
+<script id="store_page_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	{{if store_page_type == Constant.STORE_PAGE_TYPE_MAIN}}
+	<ul class="editor-field">
+		<li class="editor-field_title">显示设置：</li>
+		<li class="editor-field_content">
+			<div style="height:25px;">
+				<input class="input-radio" type="radio" name="page_is_show" value="true" {{if IsShow}} checked {{/if}} /> <div class="input-radio">显示 &nbsp;&nbsp;</div>
+				<input class="input-radio" type="radio" name="page_is_show" value="false" {{if !IsShow}} checked {{/if}} /> <div class="input-radio">隐藏</div>
+			</div>
+		</li>
+	</ul>
+	{{/if}}
+	<ul class="editor-field" id="page_url_type" style="display:none;">
+		<li class="editor-field_title">页面类型：</li>
+		<li class="editor-field_content">
+			<div style="height:25px;">
+				<input class="input-radio" type="radio" name="url_type" value="0" checked /> <div class="input-radio">默认地址&nbsp;&nbsp;</div>
+				<input class="input-radio" type="radio" name="url_type" value="1" /> <div class="input-radio">自定义地址</div>
+			</div>
+		</li>
+	</ul>
+	<ul class="editor-field">
+		<li class="editor-field_title">设备类型：</li>
+		<li class="editor-field_content">
+			<div style="height:25px;">
+				<input class="input-radio" type="radio" name="page_device" value="0" {{if Device == 0}} checked {{/if}} /> <div class="input-radio">电脑版&nbsp;&nbsp;</div>
+				<input class="input-radio" type="radio" name="page_device" value="1" {{if Device == 1}} checked {{/if}} /> <div class="input-radio">手机版&nbsp;&nbsp;</div>
+				<input class="input-radio" type="radio" name="page_device" value="2" {{if Device == 2}} checked {{/if}} /> <div class="input-radio">Pad版</div>
+			</div>
+		</li>
+	</ul>
+	<ul class="editor-field">
+		<li class="editor-field_title">页面名称：</li> 
+        <li class="editor-field_content"><input class="input-text" name="page_name" id="page_name" value="${Name}" /></li>
+	</ul>
+	<ul class="editor-field" id="add_page_url">
+		<li class="editor-field_title">页面连接：</li> 
+        <li class="editor-field_content"><input class="input-text" name="page_url" id="page_url" value="${Page_url}" /></li>
+	</ul>
+	<ul class="editor-field">
+		<li class="editor-field_title">页面标题<br />(Meta_Title)</li>
+		<li class="editor-field_content"><textarea id="page_title" style="width:90%" rows="3">${Title}</textarea></li>
+	</ul>
+	<ul class="editor-field">
+		<li class="editor-field_title">页面关键字<br />(Meta_Keywords)</li>
+		<li class="editor-field_content"><textarea id="page_keyword" style="width:90%" rows="3">${Keyword}</textarea></li>
+	</ul>
+	<ul class="editor-field">
+		<li class="editor-field_title">页面描述<br />(Meta_Description)</li>
+		<li class="editor-field_content"><textarea id="page_description" style="width:90%" rows="3">${Description}</textarea></li>
+	</ul>
+	<ul class="set_button_left">
+		<li><div class="set_button" id="button_delete">删除</div></li>
+	</ul>
+	<ul class="set_button_right">
+		<li><div class="set_button" id="button_cancel">取消</div></li>
+		<li><div class="set_button" id="button_ok">保存</div></li>
+	</ul>
+</script>
+
+<div id="toolbar_template_dialog" style="display: none;overflow: auto;"></div>
+<script id="toolbar_template_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="Template_Box">
+		<div class="Template_Title">
+			<ul class="Template_Title_list">
+				{{if belong != null}}
+					{{each(i, list) belong}}
+					<li><a href="javascript:void(0)" belong_id="${list.Id}" {{if i == 0}} class="checked" {{/if}}>${list.Name}</a></li>
+					{{/each}}
+				{{/if}}
+			</ul>
+		</div>
+		<div class="Template_ImgBox"></div>
+		<div class="Template_ImgBox_shadow"></div>
+	</div>
+</script>
+
+<script id="toolbar_template_store_tmpl" type="text/x-jquery-tmpl">
+	<div class="Template_ImgBox_a">
+		<div class="Template_ImgBox_img"><img src="${PicUrl}" large="${PicLUrl}"></div>
+		<div class="Template_ImgBox_state">
+			<p class="Template_ImgBox_state_title"><a target="_blank" href="${Url}">${Name}</a></p>
+			<div class="Template_ImgBox_state_describe">{{html Description}}</div>
+			<div class="Template_ImgBox_state_submit" tmpl_id="${Id}">应用此模板</div>
+		</div>
+	</div>
+</script>
+
+<script id="toolbar_front_mobile_tmpl" type="text/x-jquery-tmpl">
+	<div class="box_alpha"></div>
+	<div class="toolbar-bg">
+		<ul class="toolbar">
+			<li class="toolbar_landing-info">
+				<ul>
+					<li class="landing-info-call">您好, ${OperatorName}</li>
+					<li class="landing-info-close"><span><a href="javascript:void(0)" onclick="goto_link(getActionPath('LogOff', 'Admin'))">退出</a></span></li>
+					<li id="admin_password_change"><a href="javascript:void(0)">密码修改</a></li>
+				</ul>
+			</li>
+			<li class="toolbar_pagedesign">
+				<div id="admin_design_top">手机商城</div>
+				<div class="header_button_g"></div>
+				<ul class="toolbar_popup">
+					<li><a href="javascript:void(0)" id="admin_backstage">后台管理</a></li>
+					<li><a href="javascript:void(0)" id="admin_design">编辑模式</a></li>
+					<li><a href="javascript:void(0)" id="admin_preview">预览模式</a></li>
+					<li><a href="javascript:void(0)" id="admin_mobile_design">手机商城</a></li>
+					<li><a href="javascript:void(0)" id="admin_static">PC商城</a></li>
+
+				</ul>
+			</li>
+			<li class="toolbar_pagestyle">
+				<div id="admin_style_top">风格</div>
+				<div class="header_button_g"></div>
+				<div class="toolbar_style_popup"><div id="toolbar_style_popup_show"></div></div>
+			</li>
+			<li class="toolbar_save toolbar_mobile_save">
+				<ul>
+					<li class="toolbar_save-button" id="save_page"><span>保存</span></li>
+					<li class="toolbar_save-button" style="display: none;" id="recover_page"><span>恢复</span></li>
+					<li class="toolbar_save-button toolbar_l_save-button" id="preview_page"><span>二维码预览</span></li>
+					<li class="toolbar_save-button" id="build_static"><span>发布</span></li>
+					<li class="toolbar_save-button2" id="store_qrcode"><span>商城二维码</span></li>
+
+				</ul>
+			</li>
+		</ul>
+	</div>
+</script>
+
+
+<script id="toolbar_style_popup_show_mobile_tmpl" type="text/x-jquery-tmpl">
+	<dt>主风格
+        <span class="style_show_hide">
+			<input type="radio" name="main_style" value="0" {{if MainStyle == 0}} checked="checked" {{/if}}/>扁平化
+			<input type="radio" name="main_style" value="1" {{if MainStyle == 1}} checked="checked" {{/if}}/>立体化
+		</span>
+	</dt>
+	<dd></dd>
+	<dt>主色调</dt>
+	<dd>
+		<div class="color_01"><input type="radio" name="major_color" value="0" {{if MajorColor == 0}} checked="checked" {{/if}}/><em class="color-0"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="1" {{if MajorColor == 1}} checked="checked" {{/if}}/><em class="color-1"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="2" {{if MajorColor == 2}} checked="checked" {{/if}}/><em class="color-2"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="3" {{if MajorColor == 3}} checked="checked" {{/if}}/><em class="color-3"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="4" {{if MajorColor == 4}} checked="checked" {{/if}}/><em class="color-4"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="5" {{if MajorColor == 5}} checked="checked" {{/if}}/><em class="color-5"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="6" {{if MajorColor == 6}} checked="checked" {{/if}}/><em class="color-6"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="7" {{if MajorColor == 7}} checked="checked" {{/if}}/><em class="color-7"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="8" {{if MajorColor == 8}} checked="checked" {{/if}}/><em class="color-8"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="9" {{if MajorColor == 9}} checked="checked" {{/if}}/><em class="color-9"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="10" {{if MajorColor == 10}} checked="checked" {{/if}}/><em class="color-10"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="11" {{if MajorColor == 11}} checked="checked" {{/if}}/><em class="color-11-a"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="12" {{if MajorColor == 12}} checked="checked" {{/if}}/><em class="color-12"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="13" {{if MajorColor == 13}} checked="checked" {{/if}}/><em class="color-13"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="14" {{if MajorColor == 14}} checked="checked" {{/if}}/><em class="color-14"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="15" {{if MajorColor == 15}} checked="checked" {{/if}}/><em class="color-15"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="16" {{if MajorColor == 16}} checked="checked" {{/if}}/><em class="color-16"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="17" {{if MajorColor == 17}} checked="checked" {{/if}}/><em class="color-17"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="18" {{if MajorColor == 18}} checked="checked" {{/if}}/><em class="color-18"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="19" {{if MajorColor == 19}} checked="checked" {{/if}}/><em class="color-19"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="20" {{if MajorColor == 20}} checked="checked" {{/if}}/><em class="color-20"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="21" {{if MajorColor == 21}} checked="checked" {{/if}}/><em class="color-21"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="22" {{if MajorColor == 22}} checked="checked" {{/if}}/><em class="color-22-a"></em></div>
+		<div class="color_01"><input type="radio" name="major_color" value="23" {{if MajorColor == 23}} checked="checked" {{/if}}/><em class="color-23"></em></div>
+	</dd>
+	<dt>副色调</dt>
+	<dd>
+		<div class="color_02"><input type="radio" name="minor_color" value="0" {{if MinorColor == 0}} checked="checked" {{/if}}/><em class="color-00"></em></div>
+		<div class="color_02"><input type="radio" name="minor_color" value="1" {{if MinorColor == 1}} checked="checked" {{/if}}/><em class="color-11"></em></div>
+		<div class="color_02"><input type="radio" name="minor_color" value="2" {{if MinorColor == 2}} checked="checked" {{/if}}/><em class="color-22"></em></div>
+		<div class="color_02"><input type="radio" name="minor_color" value="3" {{if MinorColor == 3}} checked="checked" {{/if}}/><em class="color-33"></em></div>
+		<div class="color_02"><input type="radio" name="minor_color" value="4" {{if MinorColor == 4}} checked="checked" {{/if}}/><em class="color-44"></em></div>
+		<div class="color_02"><input type="radio" name="minor_color" value="5" {{if MinorColor == 5}} checked="checked" {{/if}}/><em class="color-55"></em></div>
+		<div class="color_02"><input type="radio" name="minor_color" value="6" {{if MinorColor == 6}} checked="checked" {{/if}}/><em class="color-66"></em></div>
+		<div class="color_02"><input type="radio" name="minor_color" value="7" {{if MinorColor == 7}} checked="checked" {{/if}}/><em class="color-77"></em></div>
+	</dd>
+	<dt>边框风格</dt>
+	<dd>
+		<div class="color_03"><input type="radio" name="border_style" value="0" {{if BorderStyle == 0}} checked="checked" {{/if}}/><em class="border-0"></em></div>
+		<div class="color_03"><input type="radio" name="border_style" value="1" {{if BorderStyle == 1}} checked="checked" {{/if}}/><em class="border-1"></em></div>
+		<div class="color_03"><input type="radio" name="border_style" value="2" {{if BorderStyle == 2}} checked="checked" {{/if}}/><em class="border_2_border" style="margin-top:0px;border:1px solid #e6e6e6;border-bottom:2px solid #c30000"></em></div>
+		<div class="color_03"><input type="radio" name="border_style" value="3" {{if BorderStyle == 3}} checked="checked" {{/if}}/><em class="border-3"></em></div>
+	</dd>
+</script>
+
+<div id="toolbar_qrcode_preview_dialog" style="display: none"></div>
+<script id="toolbar_qrcode_preview_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div style="text-align:center;padding-top:10px;font-size:16px;font-weight:bold">手机或Pad扫一扫预览</div>
+	<div class="qrcode_preview" style="height:300px;width:300px;padding:10px 20px;"></div>
+	<ul style="margin: 0 auto; padding:10px 0;width:300px;color:#808080">
+		<li>提示：</li>
+		<li style="padding-left:12px;">1、必须先保存，才可以预览最新的页面；</li>
+		<li style="padding-left:12px;">2、预览的二维码，与实际发布后的二维码不同，请根据实际情况使用。</li>
+	</ul>
+</script>
+
+<div id="toolbar_qrcode_dialog" style="display: none"></div>
+<script id="toolbar_qrcode_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="qrcode_preview" style="height:200px;width:200px;padding:10px 20px;"></div>
+</script>
+
+<script id="toolbar_front_weixin_tmpl" type="text/x-jquery-tmpl">
+	<div class="box_alpha"></div>
+	<div class="toolbar-bg">
+		<ul class="toolbar">
+			<li class="toolbar_landing-info">
+				<ul>
+					<li class="landing-info-call">您好, ${OperatorName}</li>
+					<li class="landing-info-close"><span><a href="javascript:void(0)" onclick="goto_link(getActionPath('LogOff', 'Admin'))">退出</a></span></li>
+					<li id="admin_password_change"><a href="javascript:void(0)">密码修改</a></li>
+				</ul>
+			</li>
+			<li class="toolbar_pagedesign">
+				<div id="admin_design_top">微信商城</div>
+				<div class="header_button_g"></div>
+				<ul class="toolbar_popup">
+					<li><a href="javascript:void(0)" id="admin_backstage">后台管理</a></li>
+					<li><a href="javascript:void(0)" id="admin_design">编辑模式</a></li>
+					<li><a href="javascript:void(0)" id="admin_preview">预览模式</a></li>
+					<li><a href="javascript:void(0)" id="admin_mobile_design">手机商城</a></li>
+					<li><a href="javascript:void(0)" id="admin_weixin_design">微信商城</a></li>
+                    <li><a href="javascript:void(0)" id="admin_static">PC商城</a></li>
+				</ul>
+			</li>
+			<li class="toolbar_save toolbar_weixin_save">
+				<ul>
+					<li class="toolbar_save-button toolbar_l1_save-button" id="weixin_interface"><span>接口配置信息</span></li>
+					<li class="toolbar_save-button toolbar_l1_save-button" id="weixin_app"><span>开发者凭据</span></li>
+
+				</ul>
+			</li>
+		</ul>
+	</div>
+</script>
+
+
+<div id="weixini_interface_edit_dialog" style="display: none;"></div>
+<script id="weixini_interface_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<ul class="editor-field">
+		<li class="editor-field_title">接口配置URL:</li> 
+        <li class="editor-field_content"><input class="input-text" name="if_url" id="if_url" value="${WeixinIfUrl}" disabled /></li>
+	</ul>
+	<ul class="editor-field">
+		<li class="editor-field_title">接口配置Token:</li>
+		<li class="editor-field_content">
+			<input class="input-text" name="if_token" id="if_token" value="${WeixinIfToken}" disabled />
+			<a href="javascript:void(0)" id="if_change_token" style="color: #0084c9;">重置</a>
+		</li>
+	</ul>
+</script>
+
+
+<div id="weixini_app_edit_dialog" style="display: none;"></div>
+<script id="weixini_app_edit_dialog_tmpl" type="text/x-jquery-tmpl">
+	<ul class="editor-field">
+		<li class="editor-field_title">appID:</li>
+		<li class="editor-field_content"><input class="input-text" name="if_app_id" id="if_app_id" value="${WeixinAppId}" /></li>
+	</ul>
+	<ul class="editor-field">
+		<li class="editor-field_title">appsecret:</li>
+		<li class="editor-field_content"><input class="input-text" name="if_app_secret" id="if_app_secret" value="${WeixinAppSecret}" /></li>
+	</ul>
+	<ul class="set_button_right">
+		<li><div class="set_button" id="button_cancel">取消</div></li>
+		<li><div class="set_button" id="button_ok">保存</div></li>
+	</ul>
+</script>
+
+
+<script type="text/javascript">
+	var permissions = null;
+</script>
+<div class="toolbar-box"></div>
+<script id="sub_toolbar_back_tmpl" type="text/x-jquery-tmpl">
+	<div class="box_alpha"></div>
+	<div class="toolbar-bg">
+		<ul class="toolbar">
+			<li class="toolbar_landing-info">
+				<ul>
+					<li class="landing-info-call">您好, ${OperatorName}</li>
+					<li class="landing-info-close"><span><a href="javascript:void(0)" onclick="goto_link(getActionPath('LogOff', 'AdminSub'))">退出</a></span></li>
+					<li id="admin_password_change"><a href="javascript:void(0)">密码修改</a></li>
+				</ul>
+			</li>
+			<li class="toolbar_pagedesign">
+				<label id="admin_backstage_top">后台管理</label>
+				<div class="header_button_g"></div>
+				<ul class="toolbar_popup">
+					<li><a href="javascript:void(0)" id="admin_backstage">后台管理</a></li>
+
+
+				</ul>
+			</li>
+			<li class="toolbar_send"></li>
+			<li class="toolbar_state">提醒中心<div class="header_button_g"></div><div class="toolbar_state_popup" id="top_store_newstatus"></div></li>
+			<li class="toolbar_upgrade"><a target="_blank" href="http://www.zhuyun.cn/Home/Video">帮助视频</a></li>
+			<li class="toolbar_upgrade"><a target="_blank" href="http://bbs.zhuyun.cn">筑云论坛</a></li>
+			<li class="toolbar_search">
+				<ul class="bg_k">
+					<li><input id="zhuyun_search_key" name="zhuyun_search_key"/></li>
+                    <li class="toolbar_magnifier"><div class="icon_magnifier" id="zhuyun_search"></div></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</script>
+

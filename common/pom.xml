@@ -1,0 +1,316 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  	<modelVersion>4.0.0</modelVersion>
+  	<groupId>com.mage.common</groupId>
+  	<artifactId>common</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  	<packaging>jar</packaging>
+  	<description>基础框架</description>
+  	
+  	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+		<spring.version>4.0.2.RELEASE</spring.version>
+		<mybatis.version>3.2.6</mybatis.version>
+		<slf4j.version>1.7.7</slf4j.version>
+		<log4j.version>1.2.17</log4j.version>
+	</properties>
+	
+  	<build>
+  	    <plugins>
+  	        <!-- mybatis 代码生成插件 -->
+  	        <plugin> 
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.2</version>
+				<configuration>
+					<verbose>true</verbose>
+					<overwrite>true</overwrite>
+				</configuration>  
+			</plugin>
+  	    </plugins>
+		<resources>
+			<resource>
+                <directory>src/main/java</directory>
+                <filtering>true</filtering>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>  
+	              	<include>config/jdbc.properties</include>
+	              	<include>log4j.properties</include>
+	              	<include>spring/jdbc-spring.xml</include>
+	              	<include>spring/common-spring.xml</include>
+	              	<include>spring-mvc.xml</include>
+	              	<include>spring-mybatis.xml</include>
+	          	</includes>
+            </resource>
+		</resources>
+    </build>
+    
+  	<dependencies>
+  	    <!-- oracle 数据源 开始 -->
+		<dependency>
+		  	<groupId>com.mage.oracle</groupId>
+		  	<artifactId>ojdbc14</artifactId>
+		  	<version>10.2.0.4.0</version>
+		</dependency>
+		<!-- oracle 数据源 结束 -->
+		
+		<!-- junit 单元测试 开始 -->
+		<dependency>
+		  	<groupId>junit</groupId>
+		  	<artifactId>junit</artifactId>
+		  	<version>4.11</version>
+		</dependency>
+		<!-- junit 单元测试 结束 -->
+		
+		<!-- 邮箱客户端  -->
+		<dependency>
+		  	<groupId>com.sun.mail</groupId>
+		  	<artifactId>javax.mail</artifactId>
+		  	<version>1.5.5</version>
+		</dependency>
+		
+		<!-- javaee -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+		</dependency>
+        <dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+		</dependency>
+		
+		<!-- spring 核心包 开始  -->
+		<dependency>  
+			<groupId>org.springframework</groupId>  
+            <artifactId>spring-core</artifactId>  
+            <version>${spring.version}</version>  
+        </dependency>  
+  
+        <dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-web</artifactId>  
+            <version>${spring.version}</version>  
+        </dependency>  
+        <dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-oxm</artifactId>  
+            <version>${spring.version}</version>  
+        </dependency>  
+        <dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-tx</artifactId>  
+            <version>${spring.version}</version>  
+        </dependency>  
+  
+        <dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-jdbc</artifactId>  
+            <version>${spring.version}</version>  
+        </dependency>  
+  
+        <dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-webmvc</artifactId>  
+            <version>${spring.version}</version>  
+        </dependency>  
+        <dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-aop</artifactId>  
+            <version>${spring.version}</version>  
+        </dependency>  
+  
+        <dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-context-support</artifactId>  
+            <version>${spring.version}</version>  
+        </dependency>  
+  
+        <dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-test</artifactId>  
+            <version>${spring.version}</version>  
+        </dependency>		
+		<!-- spring 核心包 结束  -->
+		
+		<!-- mybatis核心包  开始-->
+        <dependency>  
+            <groupId>org.mybatis</groupId>  
+            <artifactId>mybatis</artifactId>  
+            <version>${mybatis.version}</version>  
+        </dependency>
+        <!-- mybatis核心包 结束 -->
+        
+        <!-- mybatis/spring 整合包 开始 -->
+        <dependency>  
+            <groupId>org.mybatis</groupId>  
+            <artifactId>mybatis-spring</artifactId>  
+            <version>1.2.2</version>  
+        </dependency>
+        <!-- mybatis/spring 整合包 开始 -->
+        
+        <!-- Mysql驱动包 开始 -->
+        <dependency>  
+            <groupId>mysql</groupId>  
+            <artifactId>mysql-connector-java</artifactId>  
+            <version>5.1.30</version>  
+        </dependency>
+        <!-- Mysql驱动包 结束 -->
+        
+        <!-- oracle驱动包 开始 -->
+		<dependency>
+		  	<groupId>com.mage.oracle</groupId>
+		  	<artifactId>ojdbc14</artifactId>
+		  	<version>10.2.0.4.0</version>
+		</dependency>
+		<!-- oracle驱动包 结束 -->
+		
+		<!-- dbcp连接池  开始-->  
+        <dependency>
+            <groupId>commons-dbcp</groupId>  
+            <artifactId>commons-dbcp</artifactId>  
+            <version>1.2.2</version>  
+        </dependency>
+        <!-- dbcp连接池  结束-->
+        
+        <!-- log管理 start -->  
+        <dependency>  
+            <groupId>log4j</groupId>  
+            <artifactId>log4j</artifactId>  
+            <version>${log4j.version}</version>  
+        </dependency>  
+          
+        <!-- 格式化对象，方便输出日志 -->  
+        <dependency>  
+            <groupId>com.alibaba</groupId>  
+            <artifactId>fastjson</artifactId>  
+            <version>1.2.9</version>  
+        </dependency>  
+  
+        <dependency>  
+            <groupId>org.slf4j</groupId>  
+            <artifactId>slf4j-api</artifactId>  
+            <version>${slf4j.version}</version>  
+        </dependency>  
+  
+        <dependency>  
+            <groupId>org.slf4j</groupId>  
+            <artifactId>slf4j-log4j12</artifactId>  
+            <version>${slf4j.version}</version>  
+        </dependency>  
+        <!-- log管理 结束 -->
+        
+        <!-- JSON工具包 开始 -->
+        <dependency>  
+            <groupId>org.codehaus.jackson</groupId>  
+            <artifactId>jackson-mapper-asl</artifactId>  
+            <version>1.9.13</version>  
+        </dependency>
+        <!-- JSON工具包 开始 -->
+         
+        <!-- 上传组件包 开始 -->
+        <dependency>  
+            <groupId>commons-fileupload</groupId>  
+            <artifactId>commons-fileupload</artifactId>  
+            <version>1.3.1</version>  
+        </dependency>  
+        <dependency>  
+            <groupId>commons-io</groupId>  
+            <artifactId>commons-io</artifactId>  
+            <version>2.4</version>  
+        </dependency>  
+        <dependency>  
+            <groupId>commons-codec</groupId>  
+            <artifactId>commons-codec</artifactId>  
+            <version>1.9</version>  
+        </dependency>
+        <!-- 上传组件包 结束 -->
+        
+        <!-- mybatis代码生成 开始 -->
+        <dependency>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-core</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+        <!-- mybatis代码生成 结束 -->
+        
+        <!-- freemarker 开始 -->
+        <dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.16</version>
+		</dependency>
+		<!-- freemarker 结束 -->
+		
+		<!-- ehcache 开始 -->
+		<dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>2.9.1</version>
+        </dependency>
+        <!-- ehcache 结束 -->
+        
+        <!-- saaj-impl 开始 -->
+        <dependency>
+		    <groupId>com.sun.xml.messaging.saaj</groupId>
+		    <artifactId>saaj-impl</artifactId>
+		    <version>1.3.25</version>
+		</dependency>
+		<!-- saaj-impl 结束 -->
+		
+		<!-- ant 开始 -->
+		<dependency>
+			<groupId>org.apache.ant</groupId>
+			<artifactId>ant</artifactId>
+			<version>1.8.1</version>
+		</dependency>
+		<!-- ant 结束 -->
+		
+		<!-- 分布式文件系统 开始 -->
+		<dependency>
+		  	<groupId>com.mage.fastdfs</groupId>
+		  	<artifactId>fastdfs</artifactId>
+		  	<version>1.19</version>
+		</dependency> 
+		<!-- 分布式文件系统 结束 -->
+		
+		<!-- 图片剪裁 开始 -->
+		<dependency>
+		    <groupId>jmagick</groupId>
+		    <artifactId>jmagick</artifactId>
+		    <version>6.2.4</version>
+		</dependency>
+		<!-- 图片剪裁 结束 -->
+		
+		<!-- BeanUtils 开始 -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+		    <artifactId>commons-beanutils</artifactId>
+		    <version>1.9.2</version>
+		</dependency>
+		<!-- BeanUtils 结束 -->
+		
+  		<dependency>
+			<groupId>com.mage.base</groupId>
+		  	<artifactId>base</artifactId>
+		  	<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+
+  	<distributionManagement>
+		<snapshotRepository>
+			<id>zmage-snapshots</id>
+			<name>mage develop snapshots repository</name>
+			<url>http://localhost:8081/nexus/content/repositories/develop-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	
+</project>

@@ -1,0 +1,10 @@
+<!-- shopCarouselWidget 图片滚播插件--图片插件 -->
+<script id="carousel_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_carousel_content">
+		<ul class="plugin_carousel_box">
+			{{each(i, adv) data.Advertising}}
+				<li><a href="javascript:void(0)"><img class="adv_image" index="${i}" src="${adv.Url}" title="${adv.Title}" /><div class="adv_text" index="${i}">${adv.Title}</div></a></li>
+			{{/each}}
+		</ul>
+	</div>
+</script>

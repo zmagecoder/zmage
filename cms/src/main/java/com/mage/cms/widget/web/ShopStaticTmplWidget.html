@@ -1,0 +1,60 @@
+<!-- 顶部导航模板 -->
+<script id="store_head_nav_static_tmpl" type="text/x-jquery-tmpl">
+	<div class="header_subnavbox">
+		<div class="header_subnav_border">
+			<ul class="header_subnav">
+				{{each(i, class1) StoreNavClass1}}
+				<li class="subnav_li"><a href="javascript:void(0);">${class1.Name}</a><div class="header_button_a"></div></li>
+				{{/each}}
+			</ul>
+			<div class="header_subclass">
+				{{each(i, class1) StoreNavClass1}}
+				<div class="header_subclass_nav" style="display: none;">
+					<div class="header_subclass_nav_content">
+						<div class="header_subclass_nav_goods patt_border_subnav">
+							{{each(j, class2) class1.StoreNavClass2}}
+							<dl class="header_subclass_nav_a">
+								<dt><a class2_id="${class2.ID}" class="class2" href="${class2.CatUrl}">${class2.Name}</a></dt>
+								<dd>
+									{{each(k, class3) class2.StoreNavClass3}}
+										<em><a class3_id="${class3.ID}" class="class3" href="${class3.CatUrl}">${class3.Name}</a></em>
+									{{/each}}
+								</dd>
+							</dl>
+							{{/each}}
+						</div>
+					</div>
+				</div>
+				{{/each}}
+			</div>
+		</div>
+	</div>
+</script>
+
+<!-- 浮动导航模板 -->
+<script id="store_float_nav_static_tmpl" type="text/x-jquery-tmpl">
+	<div class="nav_style1_main_content">
+		<ul class="nav_style1_content nav_style1_color1" style="cursor: default;">
+			{{each(i, class1) StoreNavClass1}}
+				<li class1_id="${class1.ID}" class="class1 nav_style1_content_li">
+					<p class="nav_p"><a href="${class1.CatUrl}" target="_blank">${class1.Name}</a></p>
+					<div class="nav_style1_button_arrow icon_nav_arrow"></div>
+				</li>
+			{{/each}}
+		</ul>
+		{{each(i, class1) StoreNavClass1}}
+		<div style="display: none;" class="nav_style1_sub patt_header_leftnav">
+			{{each(j, class2) class1.StoreNavClass2}}
+			<dl class="nav_style1_sub_class2">
+				<dt class2_id="${class2.ID}" class="class2"><a href="${class2.CatUrl}" target="_blank">${class2.Name}</a></dt>
+				<dd>
+					{{each(k, class3) class2.StoreNavClass3}}
+					<em class3_id="${class3.ID}" class="class3"><a href="${class3.CatUrl}" target="_blank">${class3.Name}</a></em>
+					{{/each}}
+				</dd>
+			</dl>
+			{{/each}}
+		</div>
+		{{/each}}
+	</div>
+</script>

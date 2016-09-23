@@ -1,0 +1,85 @@
+<!-- 图片裁剪工具 -->
+<div id="image_clipping_dialog" style="display: none;"></div>
+<script id="image_clipping_dialog_tmpl" type="text/x-jquery-tmpl">
+	<div class="clipping_content">
+		<div class="upload_status"></div>
+		<div class="preview">
+			<ul class="preview-top">
+				<li class="preview-left"><div class="preview-out"><div class="preview-inside"><div id="area_preview"><img id="image_preview" /></div></div></div></li>
+			</ul>
+			<ul class="preview-top">
+				<li class="preview-left"><div class="preview-out"><div class="preview-inside"><div id="area_clipping"><img id="image_clipping" /></div></div></div></li>
+			</ul>
+		</div>
+		<div class="clipping"></div>
+		<div class="popup_button_box">
+			<ul class="set_button_left">
+				<li><div class="set_button" id="clipping_preview">预览</div></li>
+				<li><div class="set_button" id="local_image">上传文件</div></li>
+			</ul>
+            <div class="popup_button_prompt">注：单张图片限5M。</div>
+			<ul class="set_button_right">
+				<li><div class="set_button" id="clipping_cancel">取消</div></li>
+				<li><div class="set_button" id="clipping_ok">保存</div></li>
+			</ul>
+		</div>
+	</div>
+</script>
+
+<!-- 边框内容 -->
+<script id="plugin_border_tmpl" type="text/x-jquery-tmpl">
+	{{if (data.ShowTitle == 2) || (data.ShowTitle == 3)}}
+	<div class="plugin_title_border plugin_touch patt_border_plugin_title">
+			<div class="plugin_title_pic bg_a patt_bg_plugin_title">
+			<div class="plugin_title plugin_touch_cancel patt_font_plugin_title">${data.Title}</div>
+			<input class="plugin_title_input plugin_touch_cancel" style="display: none;line-height:34px;" type="text" value="${data.Title}">
+			{{if (plugin_type == Constant.PLUGIN_TYPE_SHOWCASE1)}}
+			<ul class="plugin_title_searchkey">
+				{{if data.SearchKeyDisplay != null}}
+				{{each(i, key) data.SearchKeyDisplay}}
+				<li class="search_key plugin_touch_cancel" index="${i}">
+					<a class="patt_font_plugin_title_searchkey" href="javascript:void(0)">${key}</a>
+					<input style="display: none;line-height:34px;" type="text" value="${key}">
+				</li>
+				{{/each}}
+				{{/if}}
+				<li style="cursor:text;" class="add_key plugin_touch_cancel ui-state-disabled" title="单击此处添加搜索关键字"><input style="display:none" type="text" value="" ></li>
+			</ul>
+			{{/if}}
+		</div>
+		<div class="plugin_inner_border">
+			<div class="plugin_inner_content"></div>
+		</div>
+	</div>
+	{{else}}
+		{{if data.ShowTitle == 1}}
+			<div class="plugin_untitle_border plugin_touch patt_border_plugin_untitle">
+				<div class="plugin_inner_content"></div>
+			</div>
+		{{else}}
+			<div class="plugin_untitle_noborder plugin_touch">
+				<div class="plugin_inner_content"></div>
+			</div>
+		{{/if}}
+	{{/if}}
+</script>
+
+<!-- shopPluginCouponWidget 其它优惠券查询插件 -->
+<script id="plugin_coupon_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_coupon_content_box">
+		<div class="plugin_coupon_Name small_show" style="display:none;text-align: left;">购物/折扣卡：</div>
+		<div class="plugin_coupon_content">
+			<div class="plugin_coupon_Name big_show">购物/折扣卡：</div>
+			<div class="plugin_coupon_Input"><input id="coupon_number" /></div>
+		</div>
+		<div class="plugin_coupon_Name small_show" style="display:none;text-align: left;">验证码：</div>
+		<div class="plugin_coupon_content">
+			<div class="plugin_coupon_Name big_show">验证码：</div>
+			<div class="plugin_coupon_Input">
+				<input id="coupon_CheckCode" />
+				<img id="CodeImg"  title="看不清楚，点击刷新" alt="" src="/General/CheckCode"/>
+			</div>
+		</div>
+		<div class="plugin_coupon_Submit" id="coupon_search">查询</div>
+	</div>
+</script>

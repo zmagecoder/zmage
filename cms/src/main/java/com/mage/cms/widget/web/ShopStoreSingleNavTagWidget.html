@@ -1,0 +1,46 @@
+<!-- shopStoreNavVWidget 纵向导航插件--导航插件 -->
+<script id="store_nav_v_tmpl" type="text/x-jquery-tmpl">
+	<div class="nav_v_style0_content">
+		{{if data.ClassLevel == 1}}
+			
+			<ul>
+				{{each(i, nav) nav_data.StoreNavClass1[class1_index].StoreNavClass2}}
+					{{if (i % 2) == 0}}
+						<li><a class="nav_class2" class2_id="${nav.ID}" href="javascript:void(0)">${nav.Name}</a> </li>
+					{{/if}}
+				{{/each}}
+			</ul>
+			<ul>
+				{{each(i, nav) nav_data.StoreNavClass1[class1_index].StoreNavClass2}}
+					{{if (i % 2) == 1}}
+						<li><a class="nav_class2" class2_id="${nav.ID}" href="javascript:void(0)">${nav.Name}</a> </li>
+					{{/if}}
+				{{/each}}
+			</ul>
+		{{else}}
+			{{if data.ClassLevel == 2}}
+				
+				<ul>
+					{{each(i, nav) nav_data.StoreNavClass1[class1_index].StoreNavClass2[class2_index].StoreNavClass3}}
+						{{if (i % 2) == 0}}
+							<li><a class="nav_class3" class3_id="${nav.ID}" href="javascript:void(0)">${nav.Name}</a> </li>
+						{{/if}}
+					{{/each}}
+				</ul>
+				<ul>
+					{{each(i, nav) nav_data.StoreNavClass1[class1_index].StoreNavClass2[class2_index].StoreNavClass3}}
+						{{if (i % 2) == 1}}
+							<li><a class="nav_class3" class3_id="${nav.ID}" href="javascript:void(0)">${nav.Name}</a> </li>
+						{{/if}}
+					{{/each}}
+				</ul>
+			{{else}}
+				
+				<ul>
+				</ul>
+				<ul>
+				</ul>
+			{{/if}}
+		{{/if}}
+	</div>
+</script>

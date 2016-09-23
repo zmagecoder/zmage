@@ -1,0 +1,312 @@
+
+<div id="footer">
+<div id="store_footer_box">
+	<div class="footer-box" id="store_help_box"></div>
+	<div class="footer_copyright" id="store_footer"></div>
+</div>
+<script id="store_help_box_tmpl" type="text/x-jquery-tmpl">
+	<ul class="footer">
+		<li class="footer_firstlist">
+			<dl class="footer_list_title">
+				<dt>会员中心</dt>
+				<dd class="help_name" index="0">${HelpTitle[0].Name}</dd>
+				<dd class="help_name" index="1">${HelpTitle[1].Name}</dd>
+			</dl>
+		</li>
+		<li class="footer_firstlist">
+			<dl class="footer_list_title">
+				<dt>购物流程</dt>
+				<dd class="help_name" index="2">${HelpTitle[2].Name}</dd>
+				<dd class="help_name" index="3">${HelpTitle[3].Name}</dd>
+			</dl>
+		</li>
+		<li class="footer_firstlist">
+			<dl class="footer_list_title">
+				<dt>配送方式</dt>
+				<dd class="help_name" index="4">${HelpTitle[4].Name}</dd>
+				<dd class="help_name" index="5">${HelpTitle[5].Name}</dd>
+			</dl>
+		</li>
+		<li class="footer_firstlist">
+			<dl class="footer_list_title">
+				<dt>支付方式</dt>
+				<dd class="help_name" index="6">${HelpTitle[6].Name}</dd>
+				<dd class="help_name" index="7">${HelpTitle[7].Name}</dd>
+			</dl>
+		</li>
+		<li class="footer_firstlist">
+			<dl class="footer_list_title">
+				<dt>售后服务</dt>
+				<dd class="help_name" index="8">${HelpTitle[8].Name}</dd>
+				<dd class="help_name" index="9">${HelpTitle[9].Name}</dd>
+			</dl>
+		</li>
+		<li class="footer_firstlist">
+			<dl class="footer_list_title">
+				<dt>礼品卡</dt>
+				<dd class="help_name" index="10">${HelpTitle[10].Name}</dd>
+				<dd class="help_name" index="11">${HelpTitle[11].Name}</dd>
+			</dl>
+		</li>
+		<li class="footer_firstlist zhuyun_support">
+			<dl class="footer_list_title">
+				<dt>商家操作</dt>
+				<dd>系统支持</dd>
+				<dd>后台管理</dd>
+			</dl>
+		</li>
+	</ul>
+</script>
+<script id="store_footer_tmpl" type="text/x-jquery-tmpl">
+	<div id="footer_content"><div id="footer_real_content">{{html Footer}}</div><div class="footer_mask"></div></div>
+	<div id="footer_edit_content" style="display:none;">
+		<div id="edit_footer">{{html Footer}}</div>
+		<ul class="set_button_right">
+			<li><div class="set_button" id="button_cancel">取消</div></li>
+			<li><div class="set_button" id="button_save">保存</div></li>
+		</ul>
+	</div>
+</script>
+
+
+<script id="header_logo_box_style0_tmpl" type="text/x-jquery-tmpl">
+	<div class="header_style0">
+		<div class="header_logo_gox">
+			<ul>
+				<li class="header_logo" id="store_info_logo">
+					<img title="${Name}" src="${Logo}" />
+				</li>
+				<li class="header_search" id="show_store_search">
+					<div class="header_search_input patt_bg_search patt_border_search"><input name="search_text" /><p id="search_button" class="patt_font_search">搜索</p></div>
+					<div class="search_key_content">
+						<div class="search_key_content_title">热门搜索：</div>
+						<ul class="header_hot">
+							{{if SearchKeyDisplay != null}}
+								{{each(i, key) SearchKeyDisplay}}
+								<li index="${i}"><a href="javascript:void(0)" class="search_key">${key}</a><input style="display:none;" type="text" value="${key}"></li>
+								{{/each}}
+							{{/if}}
+						</ul>
+						<div class="smallbutton"><div class="new_search_key" title="单击此处添加搜索关键字"><input style="display:none;" type="text" value=""></div></div>
+					</div>
+				</li>
+				<li class="header_ad" id="store_info_ad">
+					<ul>
+						{{if AdType == Constant.STORE_AD_TYPE_PHOTO}}
+						<li class="ad_photo"><a href="javascript:void(0)"><img id="ad_photo" title="${AdPhotoTitle}" src="${AdPhoto}" /></a></li>
+						{{/if}}
+						{{if AdType == Constant.STORE_AD_TYPE_PHONE}}
+						<li class="ad_phone_photo"><img src="${context_path}/view/cms/themes/default/cmsline/Content/Tmpl_3/images/ad_photo.png" /></li>
+						<li class="ad_phone">${AdPhone}</li>
+						{{/if}}
+						{{if AdType == Constant.STORE_AD_TYPE_OTHER}}
+						<li class="ad_text"><a href="javascript:void(0)">${AdText}</a></li>
+						{{/if}}
+						{{if AdType == Constant.STORE_AD_TYPE_NONE}}
+						<li></li>
+						{{/if}}
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="header_navbox patt_bg_nav">
+			<div class="header_nav">
+				<div  class="header_sort patt_bg_sort">
+					<span>全部商品分类</span>
+					<div class="header_button_b"></div>
+					<div style="position: absolute; top: 33px; width: 183px; left: -6px; display: none;" class="Nav_TitleStyleBox">
+						<div class="nav_style1_main_content_border">
+										
+						</div>
+					</div>
+				</div>
+				<div class="header_sortnav" id="show_store_menu"></div>
+				<div class="header_cart_box" >
+					<div class="header_cart">去购物车结算<div class="header_button_c"></div></div>
+					<div class="small_cart"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+<script id="store_menu_style0_tmpl" type="text/x-jquery-tmpl">
+    <div {{if (CurrentIndexId == null) || (CurrentIndexId == Pages[0].IndexId)}} class="page_home header_cheaked patt_bg_header_checked" {{else}} class="page_home" {{/if}}>
+        <a page_id="${Pages[0].PageId}" index_id="${Pages[0].IndexId}" href="${Pages[0].Page_url}">${Pages[0].Name}</a>
+    </div>
+	<ul class="menu_hot">
+		{{if Pages.length > 0}}
+			{{each(i, page) Pages}}
+				{{if (i != 0) && (page.IsShow == true)}}
+				<li {{if (CurrentIndexId != null) && (page.IndexId == CurrentIndexId)}} class="header_cheaked patt_bg_header_checked page_link"{{else}} class="page_link" {{/if}} page_id="${page.PageId}" index_id="${page.IndexId}"><a href="${page.Page_url}">${page.Name}</a> <input style="display:none;" type="text" value="${page.Name}" ></li>
+				{{/if}}
+			{{/each}}
+		{{/if}}
+	</ul>
+</script>
+
+<script id="header_logo_box_style1_tmpl" type="text/x-jquery-tmpl">
+	<div class="header_style1">
+		<div class="header_logobox_bg patt_bg_sort">
+			<div class="header_logobox">
+				<ul>
+					<li class="header_logo" id="store_info_logo"><img title="${Name}" src="${Logo}" /></li>
+					<li class="header_cart_box">
+						<div class="header_cart">去购物车结算<div class="header_button_c"></div></div>
+						<div class="small_cart"></div>
+					</li>
+					<li class="header_search" id="show_store_search">
+						<div class="header_searchBox">
+							<div class="header_search_input"><input /></div>
+							<div class="header_search_icon"></div>
+						</div>
+						<div class="header_search_classifyBox">
+							<div class="search_key_content">
+								<div class="search_key_content_title">热门搜索：</div>
+								<ul class="header_hot">
+									{{if SearchKeyDisplay != null}}
+										{{each(i, key) SearchKeyDisplay}}
+										<li index="${i}"><a href="javascript:void(0)" class="search_key">${key}</a><input style="display:none;padding-top:4px;" type="text" value="${key}"></li>
+										{{/each}}
+									{{/if}}
+								</ul>
+								<div class="smallbutton"><div class="new_search_key" title="单击此处添加搜索关键字"><input style="display:none;padding-top:5px;" type="text" value=""></div></div>
+							</div>
+						</div>
+		            </li>
+				</ul>
+			</div>
+		</div>
+		<div class="header_navbox patt_bg_nav">
+			<div class="header_nav">
+				<div  class="header_sort patt_bg_header_checked">
+					<span>全部商品分类</span>
+					<div class="header_button_b"></div>
+					<div style="position: absolute; top: 33px; width: 183px; left: -6px; display: none;" class="Nav_TitleStyleBox">
+						<div class="nav_style1_main_content_border">
+										
+						</div>
+					</div>
+				</div>
+				<div class="header_sortnav" id="show_store_menu"></div>
+			</div>
+		</div>
+	</div>
+</script>
+
+<script id="store_menu_style1_tmpl" type="text/x-jquery-tmpl">
+    <div {{if (CurrentIndexId == null) || (CurrentIndexId == Pages[0].IndexId)}} class="page_home header_cheaked" {{else}} class="page_home" {{/if}}>
+        <a page_id="${Pages[0].PageId}" index_id="${Pages[0].IndexId}" href="${Pages[0].Page_url}">${Pages[0].Name}</a>
+    </div>
+	<ul class="header_nav menu_hot" style="width:515px;float:left">
+		{{if Pages.length > 0}}
+			{{each(i, page) Pages}}
+				{{if (i != 0) && (page.IsShow == true)}}
+				<li {{if (CurrentIndexId != null) && (page.IndexId == CurrentIndexId)}} class="header_cheaked page_link"{{else}} class="page_link" {{/if}} page_id="${page.PageId}" index_id="${page.IndexId}"><a href="${page.Page_url}">${page.Name}</a> <input style="display:none;" type="text" value="${page.Name}" ></li>
+				{{/if}}
+			{{/each}}
+		{{/if}}
+	</ul>
+</script>
+
+<script id="header_logo_box_style2_tmpl" type="text/x-jquery-tmpl">
+	<div class="header_style2">
+		<div class="header_logobox_bg patt_bg_nav">
+			<div class="header_logobox">
+				<ul>
+					<li class="header_logo" id="store_info_logo"><img title="${Name}" src="${Logo}" /></li>
+					<li class="header_nav_box" id="show_store_menu"></li>
+					<li class="header_cart_box">
+						<div class="header_cart">去购物车结算<div class="header_button_c"></div></div>
+						<div class="small_cart"></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</script>
+
+<script id="store_menu_style2_tmpl" type="text/x-jquery-tmpl">
+    <div {{if (CurrentIndexId == null) || (CurrentIndexId == Pages[0].IndexId)}} class="page_home header_cheaked" {{else}} class="page_home" {{/if}}>
+        <a page_id="${Pages[0].PageId}" index_id="${Pages[0].IndexId}" href="${Pages[0].Page_url}">${Pages[0].Name}</a>
+    </div>
+	<ul class="header_nav menu_hot" style="width:650px">
+		{{if Pages.length > 0}}
+			{{each(i, page) Pages}}
+				{{if (i != 0) && (page.IsShow == true)}}
+				<li {{if (CurrentIndexId != null) && (page.IndexId == CurrentIndexId)}} class="header_cheaked page_link"{{else}} class="page_link" {{/if}} page_id="${page.PageId}" index_id="${page.IndexId}"><a href="${page.Page_url}">${page.Name}</a> <input style="display:none;" type="text" value="${page.Name}" ></li>
+				{{/if}}
+			{{/each}}
+		{{/if}}
+	</ul>
+</script>
+
+
+<script id="header_content_box_tmpl" type="text/x-jquery-tmpl">
+	<div id="header_content"><div id="header_real_content">{{html Header}}</div><div class="header_mask"></div></div>
+	<div id="header_edit_content" style="display:none;">
+		<div id="edit_header">{{html Header}}</div>
+		<ul class="set_button_right">
+			<li><div class="set_button" id="button_cancel">取消</div></li>
+			<li><div class="set_button" id="button_save">保存</div></li>
+		</ul>
+	</div>
+</script>
+
+<script id="store_head_nav_tmpl" type="text/x-jquery-tmpl">
+	<div class="header_subnavbox">
+		<div class="header_subnav_border">
+			<ul class="header_subnav">
+				{{each(i, class1) StoreNavClass1}}
+				<li class="subnav_li"><a href="javascript:void(0);">${class1.Name}</a><div class="header_button_a"></div></li>
+				{{/each}}
+			</ul>
+			<div class="header_subclass">
+				{{each(i, class1) StoreNavClass1}}
+				<div class="header_subclass_nav" style="display: none;">
+					<div class="header_subclass_nav_content">
+						<div class="header_subclass_nav_goods patt_border_subnav">
+							{{each(j, class2) class1.StoreNavClass2}}
+							<dl class="header_subclass_nav_a">
+								<dt><a class2_id="${class2.ID}" class="class2" href="${class2.CatUrl}">${class2.Name}</a></dt>
+								<dd>
+									{{each(k, class3) class2.StoreNavClass3}}
+										<em><a class3_id="${class3.ID}" class="class3" href="${class3.CatUrl}">${class3.Name}</a></em>
+									{{/each}}
+								</dd>
+							</dl>
+							{{/each}}
+						</div>
+					</div>
+				</div>
+				{{/each}}
+			</div>
+		</div>
+	</div>
+</script>
+
+<script id="store_float_nav_static_tmpl" type="text/x-jquery-tmpl">
+	<div class="nav_style1_main_content">
+		<ul class="nav_style1_content nav_style1_color1" style="cursor: default;">
+			{{each(i, class1) StoreNavClass1}}
+				<li class1_id="${class1.ID}" class="class1 nav_style1_content_li">
+					<p class="nav_p"><a href="${class1.CatUrl}" target="_blank">${class1.Name}</a></p>
+					<div class="nav_style1_button_arrow icon_nav_arrow"></div>
+				</li>
+			{{/each}}
+		</ul>
+		{{each(i, class1) StoreNavClass1}}
+		<div style="display: none;" class="nav_style1_sub patt_header_leftnav">
+			{{each(j, class2) class1.StoreNavClass2}}
+			<dl class="nav_style1_sub_class2">
+				<dt class2_id="${class2.ID}" class="class2"><a href="${class2.CatUrl}" target="_blank">${class2.Name}</a></dt>
+				<dd>
+					{{each(k, class3) class2.StoreNavClass3}}
+					<em class3_id="${class3.ID}" class="class3"><a href="${class3.CatUrl}" target="_blank">${class3.Name}</a></em>
+					{{/each}}
+				</dd>
+			</dl>
+			{{/each}}
+		</div>
+		{{/each}}
+	</div>
+</script>

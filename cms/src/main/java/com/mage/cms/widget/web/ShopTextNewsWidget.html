@@ -1,0 +1,50 @@
+<!-- shopTextNewsWidget 文字新闻编辑插件--其它插件 -->
+<script id="text_news_style0_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_news_main_content">
+		<div class="text_news_style0_content">
+			<ul class="text_news_list">
+				{{each(i, news) data.News}}
+					<li><a class="news_title" news_id="${news.Id}" index_id="${news.IndexId}" href="javascript:void(0)">${news.Title}</a><div class="icon_h"></div> </li>
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+</script>
+
+
+<script id="text_news_style1_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_news_main_content">
+		<div class="text_news_style1_content">
+			<ul class="text_news_list">
+				{{each(i, news) data.News}}
+					{{if (i % 2) == 0}} <li> {{/if}}
+					<div class="text_news_style1"><a class="news_title" news_id="${news.Id}" index_id="${news.IndexId}" href="javascript:void(0)">${news.Title}</a><div class="icon_h"></div></div>
+					{{if ((i % 2) == 1) || (i == (data.News.length - 1))}} </li> {{/if}}
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+</script>
+
+
+<script id="text_news_style2_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_news_main_content">
+		<div class="text_news_style2_content">
+			<ul class="text_news_list">
+				{{each(i, news) data.News}}
+					<li>
+						<a class="news_title" news_id="${news.Id}" index_id="${news.IndexId}" href="javascript:void(0)">${news.Title}</a>
+						<div class="icon_h"></div> 
+						<div class="text_news_style2_position">
+							{{if news.Time == null || news.Time == ""}}
+								${get_now_time(null).toDateString("yyyy-MM-dd")}
+							{{else}}
+								${jsonTime(news.Time).toDateString("yyyy-MM-dd")}
+							{{/if}}
+						</div>
+					</li>
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+</script>

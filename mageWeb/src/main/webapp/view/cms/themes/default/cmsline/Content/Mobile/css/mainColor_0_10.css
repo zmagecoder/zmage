@@ -1,0 +1,17 @@
+@import "mainColor_1_style.css";
+
+/*��ҳ-ͷ����ɫ����*/
+.main_bg_color{background: #336699;}
+
+/*��ҳ-ͷ������*/
+.TabBg{background: #336699;}
+
+/*��ҳ-���������߿���ʽ*/
+.plugin_title_pic{border-color:#336699;}
+.showcase_TitleBox{border-color:#336699;}
+
+/*��ҳ-ͷ�����ذ�ť����*/
+.Tab_Cancel,.Tab_Login,.Tab_Return{border:1px solid #224979;box-shadow:0px 2px 0px #4583cd;}
+
+/*ע�����ύ��ť*/
+.Logon_Submit,.OrderPay_Submit{background:#336699;}

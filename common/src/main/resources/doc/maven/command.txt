@@ -1,0 +1,22 @@
+###############################MAVEN的基本命令  开始#########################################
+#清除
+mvn clean
+#安装到本仓库
+mvn install 
+#单元测试
+mvn test
+#编译
+mvn compile
+打包 
+mvn package
+
+#上传到远程仓库
+mvn deploy	
+mvn deploy:deploy-file -DgroupId=com.mage.oracle -DartifactId=ojdbc14 -Dversion=10.2.0.4.0 -Dpackaging=jar -Dfile=D:\ojdbc14.jar -Durl=http://151157f1w1.imwork.net:8081/nexus/content/repositories/thirdparty/ -DrepositoryId=thirdparty
+
+#自动生成mybatis代码
+mvn mybatis-generator:generate
+
+#创建maven目录结构
+mvn archetype:generate
+###############################MAVEN的基本命令  结束#########################################

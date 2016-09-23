@@ -1,0 +1,45 @@
+<!-- shopStoreNavTagWidget 标签导航插件--导航插件 -->
+<script id="store_nav_tag_tmpl" type="text/x-jquery-tmpl">
+	<div class="nav_tag_style0_content">
+		{{if (data.Content != null) && (data.Content.TagClass != null)}}
+			{{if data.Style == 0}}
+			<ul>
+				{{each(i, tag) data.Content.TagClass}}
+				<li class="nav_tag_style0_li">
+					<div class="nav_tag_style0_class_name"><p class="nav_p">${tag.Remark}</p></div>
+					{{each(j, item) tag.TagItem}}
+					<div class="nav_tag_style0_item_name"><p class="nav_p_hover"><a class="tag_item" item_id="${item.TagItemId}" href="javascript:void(0);">${item.Name}</a></p></div>
+					{{/each}}
+				</li>
+				{{/each}}
+			</ul>
+			{{/if}}
+			{{if data.Style == 1}}
+			<ul>
+				<li class="nav_tag_style0_li">
+					{{each(i, tag) data.Content.TagClass}}
+						{{each(j, item) tag.TagItem}}
+						<div class="nav_tag_style0_item_name"><p class="nav_p_hover"><a class="tag_item" item_id="${item.TagItemId}" href="javascript:void(0);">${item.Name}</a></p></div>
+						{{/each}}
+					{{/each}}
+				</li>
+			</ul>
+			{{/if}}
+			{{if data.Style == 2}}
+			<div class="nav_tag_style0_item_name">
+				<select id="nav_tag_select" style="width:120px">
+					<option value="">请选择</option>
+					{{each(i, tag) data.Content.TagClass}}
+						<optgroup label="${tag.Remark}">
+						{{each(j, item) tag.TagItem}}
+							<option value="${item.TagItemId}">${item.Name}</option>
+						{{/each}}
+						</optgroup>
+					{{/each}}
+				</select>
+			</div>
+			<div class="" id="nav_tag_seach">查询</div>
+			{{/if}}
+		{{/if}}
+	</div>
+</script>

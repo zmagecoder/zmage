@@ -1,0 +1,25 @@
+<!-- shopAdvertisingWidget 图片轮播插件--图片插件 -->
+<script id="advertising_tmpl" type="text/x-jquery-tmpl">
+	<div class="plugin_advertising_content">
+		{{if data.Style == 0}}
+			<div class="bannerbox">
+				<div class="banner_number_box"><div class="banner_number"></div></div>
+				<ul class="banner_img">
+					{{each(i, adv) data.Advertising}}
+						<li><a href="javascript:void(0)"><img class="adv_image" index="${i}" src="${adv.Url}" title="${adv.Title}" /></a></li>
+					{{/each}}
+				</ul>
+			</div>
+		{{else}}
+			<div class="slideshow">
+				<ul class="slides">
+					{{each(i, adv) data.Advertising}}
+					<li><a href="javascript:void(0)"><img class="adv_image" index="${i}" src="${adv.Url}" title="${adv.Title}" /></a></li>
+					{{/each}}
+				</ul>
+			</div>
+			<div class="prev_arrow_box plugin_touch_cancel" style="display:none"><div class="prev_arrow"></div></div>
+			<div class="next_arrow_box plugin_touch_cancel" style="display:none"><div class="next_arrow"></div></div>
+		{{/if}}
+	</div>
+</script>
