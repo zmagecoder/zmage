@@ -4,7 +4,7 @@
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
 
 	<!--本地仓库。该值表示构建系统本地仓库的路径。其默认值为~/.m2/repository。-->
-	<localRepository>D:\maven</localRepository>
+	<localRepository>G:\GitHub\maven-repo</localRepository>
   
 	<!--Maven是否需要和用户交互以获得输入。如果Maven需要和用户交互以获得输入，则设置成true，反之则应为false。默认为true。-->  
 	<interactiveMode>true</interactiveMode>
@@ -16,7 +16,6 @@
 		<pluginGroup>org.apache.maven.plugins</pluginGroup>
     </pluginGroups>
 	
-
 	<!--配置服务端的一些设置。一些设置如安全证书不应该和pom.xml一起分发。这种类型的信息应该存在于构建服务器上的settings.xml文件中。-->  
 	<servers>
 	
@@ -25,9 +24,18 @@
 			<!--这是server的id（注意不是用户登陆的id），该id与distributionManagement中repository元素的id相匹配。-->  
 			<id>zmage-snapshots</id>  
 			<!--鉴权用户名。鉴权用户名和鉴权密码表示服务器认证所需要的登录名和密码。 -->  
-			<username>developer</username>  
+			<username>zmage</username>  
 			<!--鉴权密码 。鉴权用户名和鉴权密码表示服务器认证所需要的登录名和密码。 -->  
-			<password>123</password>  
+			<password>zmage</password>
+		</server>
+		
+		<server>  
+			<!--这是server的id（注意不是用户登陆的id），该id与distributionManagement中repository元素的id相匹配。-->  
+			<id>thirdparty</id>  
+			<!--鉴权用户名。鉴权用户名和鉴权密码表示服务器认证所需要的登录名和密码。 -->  
+			<username>zmage</username>  
+			<!--鉴权密码 。鉴权用户名和鉴权密码表示服务器认证所需要的登录名和密码。 -->  
+			<password>zmage</password>  
 		</server>
 		
 	</servers>
@@ -37,11 +45,11 @@
 		<!--给定仓库的下载镜像。 -->  
 		<mirror>  
 			<!--该镜像的唯一标识符。id用来区分不同的mirror元素。 -->  
-			<id>public</id>  
+			<id>zmage</id>  
 			<!--镜像名称 -->  
 			<name>Public Repositories</name>
 			<!--该镜像的URL。构建系统会优先考虑使用该URL，而非使用默认的服务器URL。 -->  
-			<url>http://localhost:8081/nexus/content/groups/zmage/</url>  
+			<url>http://192.168.0.100:8081/nexus/content/groups/zmage/</url>  
 			<mirrorOf>*</mirrorOf>  
 		</mirror>
 	</mirrors>
@@ -68,7 +76,7 @@
 			<repositories>
 				<repository>
 					<id>central</id>
-					<url>http://localhost:8081/nexus/content/groups/zmage</url>
+					<url>http://192.168.0.100:8081/nexus/content/groups/zmage</url>
 					<releases>
 						<enabled>true</enabled>
 					</releases>
@@ -80,7 +88,7 @@
 			<pluginRepositories>
 				<pluginRepository>
 					<id>central</id>
-					<url>http://localhost:8081/nexus/content/groups/zmage</url>
+					<url>http://192.168.0.100:8081/nexus/content/groups/zmage</url>
 					<releases>
 						<enabled>true</enabled>
 					</releases>
