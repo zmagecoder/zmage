@@ -9,5 +9,4 @@ public class CacheConsts {
 	
 	public static final int CACHE_SPACE = 2;			//缓存空间
 	
-	
 }

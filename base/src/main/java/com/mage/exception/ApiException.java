@@ -1,7 +1,7 @@
 package com.mage.exception;
 
 /**
- * TAOBAO客户端异常。
+ * 运行时异常
  * 
  * @author pzh
  */

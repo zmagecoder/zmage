@@ -1,10 +1,9 @@
 package com.mage.platform.framework.database;
 
-import com.mage.database.NotDbField;
-import com.mage.param.req.ZteRequest;
-import com.mage.param.resp.ZteResponse;
+import com.mage.param.req.MageRequest;
+import com.mage.param.resp.MageResponse;
 
-public class DStoreInst extends ZteRequest<ZteResponse> {
+public class DStoreInst extends MageRequest<MageResponse> {
 	
 	private static final long serialVersionUID = -5942594501212904427L;
 	

@@ -14,17 +14,10 @@
   	
   	<dependencies>
   	
-  	    <!-- 对外开发API -->
+		<!-- 业务功能 -->
   		<dependency>
-			<groupId>com.mage.sdk</groupId>
-		  	<artifactId>sdk</artifactId>
-		  	<version>${project.version}</version>
-		</dependency>
-		
-  		<!-- 基础功能 -->
-  		<dependency>
-			<groupId>com.mage.common</groupId>
-		  	<artifactId>common</artifactId>
+			<groupId>com.mage.park</groupId>
+		  	<artifactId>park</artifactId>
 		  	<version>${project.version}</version>
 		</dependency>
 		

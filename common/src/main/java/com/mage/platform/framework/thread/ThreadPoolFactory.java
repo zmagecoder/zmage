@@ -7,7 +7,7 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import com.mage.param.resp.ZteResponse;
+import com.mage.param.resp.MageResponse;
 
 /**
  * 多线程处理器对象
@@ -37,11 +37,11 @@ import com.mage.param.resp.ZteResponse;
  *        ///////////////////////////////////////////////=====================
  *        开辟多线程处理器========================================= 举例说明： TaskThreadPool
  *        taskThreadPool = new TaskThreadPool(new Task(dataLog){ public
- *        ZteResponse execute(ZteRequest zteRequest) { try{ DataLog dataLog =
- *        (DataLog)zteRequest; IDataLogManager dataLogManager =
+ *        MageResponse execute(MageRequest MageRequest) { try{ DataLog dataLog =
+ *        (DataLog)MageRequest; IDataLogManager dataLogManager =
  *        SpringContextHolder.getBean("datasLogManager");
  *        dataLogManager.insertDataLog(dataLog); }catch(Exception e){
- *        e.printStackTrace(); } return new ZteResponse(); } });
+ *        e.printStackTrace(); } return new MageResponse(); } });
  *        ThreadPoolFactory.singleExecute(taskThreadPool); //异步单线程执行
  *        
  */
@@ -121,9 +121,9 @@ public class ThreadPoolFactory {
 	 * 执行线程对象
 	 * @param taskThreadPool
 	 */
-	public static ZteResponse submit(TaskThreadPool taskThreadPool,ThreadPoolExecutor executorService) {
+	public static MageResponse submit(TaskThreadPool taskThreadPool,ThreadPoolExecutor executorService) {
 		executorService.execute(taskThreadPool);
-		return taskThreadPool.getZteResponse();
+		return taskThreadPool.getMageResponse();
 	}
 	
 	// 关闭执行器
@@ -176,9 +176,9 @@ public class ThreadPoolFactory {
 	 * 
 	 * @param taskThreadPool
 	 */
-	public static ZteResponse singleExecute(TaskThreadPool taskThreadPool) {
+	public static MageResponse singleExecute(TaskThreadPool taskThreadPool) {
 		singgeExecutor.execute(taskThreadPool);
-		return taskThreadPool.getZteResponse();
+		return taskThreadPool.getMageResponse();
 	}
 
 	/**
@@ -186,10 +186,10 @@ public class ThreadPoolFactory {
 	 * 
 	 * @param taskThreadPool
 	 */
-	public static ZteResponse fixedExecute(TaskThreadPool taskThreadPool) {
+	public static MageResponse fixedExecute(TaskThreadPool taskThreadPool) {
 		newFixedThreadPool.execute(taskThreadPool);
 		
-		return taskThreadPool.getZteResponse();
+		return taskThreadPool.getMageResponse();
 	}
 
 	/**
@@ -197,10 +197,10 @@ public class ThreadPoolFactory {
 	 * 
 	 * @param taskThreadPool
 	 */
-	public static ZteResponse cacheExecute(TaskThreadPool taskThreadPool) {
+	public static MageResponse cacheExecute(TaskThreadPool taskThreadPool) {
 
 		newCachedThreadPool.execute(taskThreadPool);
-		return taskThreadPool.getZteResponse();
+		return taskThreadPool.getMageResponse();
 	}
 
 	/**
@@ -208,21 +208,17 @@ public class ThreadPoolFactory {
 	 * 
 	 * @param taskThreadPool
 	 */
-	public static ZteResponse defExecute(TaskThreadPool taskThreadPool) {
+	public static MageResponse defExecute(TaskThreadPool taskThreadPool) {
 		defExecutor.execute(taskThreadPool);
-		return new ZteResponse();
+		return new MageResponse();
 	}
 
 	/**
 	 * 订单执行线程对象
 	 * @param taskThreadPool
 	 */
-	public static ZteResponse orderExecute(TaskThreadPool taskThreadPool) {
+	public static MageResponse orderExecute(TaskThreadPool taskThreadPool) {
 		orderExecutor.execute(taskThreadPool);
-		return taskThreadPool.getZteResponse();
-	}
-
-	public static void main(String[] args) { //按顺序执行列队信息
-		
+		return taskThreadPool.getMageResponse();
 	}
 }

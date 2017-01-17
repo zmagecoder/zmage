@@ -10,11 +10,11 @@ import org.springframework.util.StringUtils;
 
 import com.mage.platform.framework.cache.CacheFactory;
 import com.mage.platform.framework.cache.ICache;
-import com.mage.platform.framework.config.FileConfigSetting;
 import com.mage.platform.framework.context.SpringContextHolder;
 import com.mage.platform.framework.database.DStoreConfig;
+import com.mage.platform.framework.store.IBlogManager;
 import com.mage.platform.framework.store.IStoreProcesser;
-import com.mage.platform.service.db.IBlogManager;
+import com.mage.platform.framework.store.config.FileConfigSetting;
 
 /**
  * 数据存储处理器

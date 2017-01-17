@@ -1,7 +1,7 @@
 package com.mage.platform.framework.thread;
 
-import com.mage.param.req.ZteRequest;
-import com.mage.param.resp.ZteResponse;
+import com.mage.param.req.MageRequest;
+import com.mage.param.resp.MageResponse;
 
 
 
@@ -36,21 +36,21 @@ import com.mage.param.resp.ZteResponse;
  */
 public abstract class Task    {
 	
-	ZteRequest zteRequest = null;
+	MageRequest mageRequest = null;
 	
-	public Task(ZteRequest zteRequest){
-		this.zteRequest = zteRequest;
+	public Task(MageRequest mageRequest){
+		this.mageRequest = mageRequest;
 	}
 	
-	public ZteRequest<ZteResponse> getZteRequest() {
-		return zteRequest;
+	public MageRequest<MageResponse> getMageRequest() {
+		return mageRequest;
 	}
 
-	public void setZteRequest(ZteRequest<ZteResponse> zteRequest) {
-		this.zteRequest = zteRequest;
+	public void setMageRequest(MageRequest<MageResponse> mageRequest) {
+		this.mageRequest = mageRequest;
 	}
 
-	public abstract ZteResponse execute(ZteRequest zteRequest) throws Exception ;
+	public abstract MageResponse execute(MageRequest mageRequest) throws Exception ;
 }
 
 

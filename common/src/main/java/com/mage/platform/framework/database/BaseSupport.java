@@ -5,8 +5,7 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 
-import com.mage.exception.PermssionRuntimeException;
-import com.mage.platform.service.db.IDaoSupport;
+import com.mage.exception.PermssionException;
 
 public abstract class BaseSupport<T> {
 
@@ -25,13 +24,13 @@ public abstract class BaseSupport<T> {
 	 */
 	protected void checkIsOwner( final Integer userid){
 		if(userid==null){
-			throw new PermssionRuntimeException();
+			throw new PermssionException();
 		}
 		
 		String suserid = "";			//EopContext.getContext().getCurrentSite().getUserid();
 		
 		if(!suserid.equals(userid)){
-			throw new PermssionRuntimeException();
+			throw new PermssionException();
 		}
 	}
 	

@@ -12,8 +12,8 @@ import org.springframework.util.StringUtils;
 import com.mage.consts.CoreConsts;
 import com.mage.platform.framework.context.ThreadContextHolder;
 import com.mage.platform.framework.database.BaseSupport;
+import com.mage.platform.framework.freemarker.FreeMarkerPaser;
 import com.mage.platform.framework.widget.processor.IWidget;
-import com.mage.platform.sdk.freemarker.FreeMarkerPaser;
 
 /**
  * 基于freemarker的挂件基类

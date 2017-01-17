@@ -1,6 +1,6 @@
 package com.mage.platform.framework.context;
 
-import com.mage.platform.framework.context.impl.session.ISessionService;
+import com.mage.platform.framework.session.ISessionService;
 
 /**
  * 实现Session any where

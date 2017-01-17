@@ -6,10 +6,8 @@ import java.io.UnsupportedEncodingException;
 
 import javax.annotation.Resource;
 
-import com.mage.platform.framework.config.EopSetting;
 import com.mage.platform.framework.store.IStoreProcesser;
-import com.mage.platform.framework.utils.UploadUtils;
-import com.mage.platform.service.dfs.IDfsManager;
+import com.mage.platform.framework.store.plugin.dfs.IDfsManager;
 
 /**
  * 数据库大文本字段处理
@@ -73,7 +71,7 @@ public class DBProcesser implements IStoreProcesser {
 
 	@Override
 	public String replaceUrl(String path) {
-		return path.replaceAll(EopSetting.FILE_STORE_PREFIX, EopSetting.IMG_SERVER_DOMAIN + UploadUtils.getEopContextPath());
+		return path;
 	}
 
 	@Override

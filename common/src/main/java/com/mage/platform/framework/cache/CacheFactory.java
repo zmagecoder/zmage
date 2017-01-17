@@ -1,6 +1,7 @@
 package com.mage.platform.framework.cache;
 
 import com.mage.platform.framework.cache.config.CacheValues;
+import com.mage.platform.framework.cache.impl.EhCacheImpl;
 
 /**
  * 缓存工厂类

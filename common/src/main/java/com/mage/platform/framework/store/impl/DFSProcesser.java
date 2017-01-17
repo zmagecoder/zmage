@@ -6,16 +6,13 @@ import java.io.UnsupportedEncodingException;
 
 import javax.annotation.Resource;
 
-import com.mage.platform.framework.config.EopSetting;
-import com.mage.platform.framework.config.FileConfigSetting;
-import com.mage.platform.framework.context.EopContext;
 import com.mage.platform.framework.context.SpringContextHolder;
 import com.mage.platform.framework.store.IStoreProcesser;
-import com.mage.platform.framework.utils.FileBaseUtil;
-import com.mage.platform.framework.utils.UploadUtil;
-import com.mage.platform.service.dfs.IDfsManager;
-import com.mage.platform.service.img.IThumbnailCreator;
-import com.mage.platform.service.img.ThumbnailCreatorFactory;
+import com.mage.platform.framework.store.plugin.dfs.IDfsManager;
+import com.mage.platform.framework.store.plugin.image.IThumbnailCreator;
+import com.mage.platform.framework.store.plugin.image.ThumbnailCreatorFactory;
+import com.mage.platform.utils.FileBaseUtil;
+import com.mage.platform.utils.UploadUtil;
 
 /**
  * FastDfs存储处理器
@@ -106,11 +103,7 @@ public class DFSProcesser implements IStoreProcesser {
 
 	@Override
 	public String replaceUrl(String path) {
-		if(!path.startsWith("http://"+FileConfigSetting.FAST_DFS_HOSTNAME+"/") && (path.startsWith(EopSetting.FILE_STORE_PREFIX) || FileBaseUtil.isAllowUp(path))){
-			return "http://"+FileConfigSetting.FAST_DFS_DOWNLOAD_HOSTPORT+":"+FileConfigSetting.FAST_DFS_HOSTPORT+"/"+path;
-		}else{
-			return path.replaceAll(EopSetting.FILE_STORE_PREFIX, EopSetting.IMG_SERVER_DOMAIN+(EopContext.getContext() != null ? EopContext.getContext().getContextPath() : "/") );
-		}
+		return path;
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package com.mage.platform.framework.thread;
 
 import com.mage.consts.CoreConsts;
-import com.mage.param.resp.ZteResponse;
+import com.mage.param.resp.MageResponse;
 
 
 
@@ -42,7 +42,7 @@ public class TaskThreadPool implements Runnable   {
 		//待执行任务
         private Task task;
         
-        private ZteResponse zteResponse;
+        private MageResponse mageResponse;
         
 		public TaskThreadPool(Task task){  
             this.task = task;  
@@ -50,23 +50,23 @@ public class TaskThreadPool implements Runnable   {
 		
         public void run(){  
         	try {
-        		zteResponse = task.execute(task.getZteRequest());
+        		mageResponse = task.execute(task.getMageRequest());
 			} catch (Exception e) {
-				zteResponse = new ZteResponse();
-				zteResponse.setError_code(CoreConsts.ERROR_FAIL);
-				zteResponse.setError_msg("==>busiException处理失败 ");
+				mageResponse = new MageResponse();
+				mageResponse.setError_code(CoreConsts.FAIL_CODE);
+				mageResponse.setError_msg("==>busiException处理失败 ");
 				e.printStackTrace();
 			}
         }
 		
-		public ZteResponse getZteResponse() {
-			return zteResponse;
+		public MageResponse getMageResponse() {
+			return mageResponse;
 		}
 		
-		public void setZteResponse(ZteResponse zteResponse) {
-			this.zteResponse = zteResponse;
+		public void setMageResponse(MageResponse mageResponse) {
+			this.mageResponse = mageResponse;
 		}  
-        
+
 }
 
 

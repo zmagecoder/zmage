@@ -11,8 +11,8 @@ import com.mage.context.CoreThreadLocalHolder;
 import com.mage.context.GlobalThreadLocalHolder;
 import com.mage.context.RopRequestContext;
 import com.mage.database.NotDbField;
+import com.mage.param.req.MageRequest;
 import com.mage.param.req.RopRequest;
-import com.mage.param.req.ZteRequest;
 import com.mage.utils.CommonTools;
 
 /**
@@ -116,21 +116,19 @@ public abstract class AbstractRopRequest implements RopRequest {
 	@NotDbField
 	public String getUserSessionId() {
 		
-		//dubbo、rop方式调用，zteRequest sessionId优先级最高
-		ZteRequest zteRequest = CoreThreadLocalHolder.getInstance().getZteCommonData().getZteRequest();
-		if(zteRequest!=null && !isEmpty(zteRequest.userSessionId)) //用户登录的sessionId
+		//dubbo、rop方式调用，mageRequest sessionId优先级最高
+		MageRequest mageRequest = CoreThreadLocalHolder.getInstance().getMageCommonData().getMageRequest();
+		if(mageRequest!=null && !isEmpty(mageRequest.userSessionId)) //用户登录的sessionId
 		{
-			userSessionId = zteRequest.userSessionId;
+			userSessionId = mageRequest.userSessionId;
 			GlobalThreadLocalHolder.getInstance().setUserSessionUUID(userSessionId);
 		}
 		//后面按正常逻辑处理，rop、dubbo方式调用必须生成sessionId，生成sessionId后走缓存那套session共享的逻辑
 		if(isEmpty(userSessionId) || "null".equals(userSessionId)){
 			userSessionId = UUID.randomUUID().toString().replace("-", "");//add by wui强制生成session_id
-//			userSessionId = CommonNTools.getUserSessionId();
 		}else if(!userSessionId.equals(CommonTools.getUserSessionId())){
 			 GlobalThreadLocalHolder.getInstance().setUserSessionUUID(userSessionId);
 		}
-//		System.out.print(userSessionId+"==========================================================================getSessionId");
 		return userSessionId;
 	}
 
@@ -161,16 +159,14 @@ public abstract class AbstractRopRequest implements RopRequest {
 	@NotDbField
 	public void setUserSessionId(String userSessionId) {
 		if(isEmpty(userSessionId)){
-			this.userSessionId =""; //add by wui
+			this.userSessionId ="";
 			return;
 		}
 		this.userSessionId =userSessionId;
 		GlobalThreadLocalHolder.getInstance().setUserSessionUUID(userSessionId);
-		ZteRequest zteRequest = CoreThreadLocalHolder.getInstance().getZteCommonData().getZteRequest();
-		if(zteRequest!=null && isEmpty(zteRequest.userSessionId))
-		{
-			zteRequest.userSessionId = userSessionId;
+		MageRequest mageRequest = CoreThreadLocalHolder.getInstance().getMageCommonData().getMageRequest();
+		if(mageRequest!=null && isEmpty(mageRequest.userSessionId)) {
+			mageRequest.userSessionId = userSessionId;
 		}
-		//System.out.print(userSessionId+"==========================================================================setSessionId");
 	}
 }

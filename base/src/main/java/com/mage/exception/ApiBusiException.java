@@ -6,8 +6,8 @@ import com.mage.consts.ApiConsts;
 /**
  * API前置检查异常。
  * 
- * @author wui
- * @since 1.0, May 23, 2012
+ * @author pzh
+ * @date 2016年10月8日 下午1:59:36
  */
 public class ApiBusiException extends Exception {
 

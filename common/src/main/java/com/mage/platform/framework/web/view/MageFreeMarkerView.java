@@ -1,10 +1,12 @@
 package com.mage.platform.framework.web.view;
 
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.servlet.view.freemarker.FreeMarkerView;
 
-import com.mage.platform.framework.ZMageFactory;
+import com.mage.platform.framework.MageFactory;
 
 /**
  * 重写freemark视图解析类
@@ -19,7 +21,7 @@ public class MageFreeMarkerView extends FreeMarkerView {
         model.put("context_path", request.getContextPath());
         super.exposeHelpers(model, request);
         //界面处理
-        ZMageFactory.getWebProcessor().process(model, request);
+        MageFactory.getWebProcessor().process(model, request);
     }
 	
 }

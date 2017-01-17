@@ -3,13 +3,11 @@ package com.mage.platform.framework.store.impl;
 import java.io.File;
 import java.io.InputStream;
 
-import com.mage.platform.framework.config.EopSetting;
 import com.mage.platform.framework.store.IStoreProcesser;
-import com.mage.platform.framework.utils.FileBaseUtil;
-import com.mage.platform.framework.utils.UploadUtil;
-import com.mage.platform.framework.utils.UploadUtils;
-import com.mage.platform.service.img.IThumbnailCreator;
-import com.mage.platform.service.img.ThumbnailCreatorFactory;
+import com.mage.platform.framework.store.plugin.image.IThumbnailCreator;
+import com.mage.platform.framework.store.plugin.image.ThumbnailCreatorFactory;
+import com.mage.platform.utils.FileBaseUtil;
+import com.mage.platform.utils.UploadUtil;
 
 /**
  * FTP存储处理器
@@ -60,9 +58,7 @@ public class FTPProcesser implements IStoreProcesser {
 	 * 内容删除
 	 */
 	public void del(String fileId) {
-		fileId =fileId.replaceAll(EopSetting.IMG_SERVER_DOMAIN, EopSetting.IMG_SERVER_PATH);
 		FileBaseUtil.delete(fileId);//文件删除
-//		UploadTools.delete(fileId); //ftp删除
 	}
 	
 	public void delLocaoFile(String path){
@@ -74,12 +70,12 @@ public class FTPProcesser implements IStoreProcesser {
 	}
 
 	public String upload(byte [] in, String fileFileName, String subFolder) { //attachments passlog
-		return FileBaseUtil.upload(in, fileFileName, subFolder);
+		return UploadUtil.upload(in, fileFileName, subFolder);
 	}
 
 	@Override
 	public String replaceUrl(String path) {
-		return path.replaceAll(EopSetting.FILE_STORE_PREFIX, EopSetting.IMG_SERVER_DOMAIN + UploadUtils.getEopContextPath() );
+		return path;
 	}
 
 	@Override

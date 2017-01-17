@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mage.platform.framework.context.impl.session.ISessionService;
+import com.mage.platform.framework.session.ISessionService;
 
 /**
  * 用ThreadLocal来存储Session
@@ -14,7 +14,6 @@ import com.mage.platform.framework.context.impl.session.ISessionService;
  * @author pzh
  * @date 2016年6月13日 下午4:44:39
  */
-@SuppressWarnings("rawtypes")
 public class ThreadContextHolder  {
 	
 	/**
