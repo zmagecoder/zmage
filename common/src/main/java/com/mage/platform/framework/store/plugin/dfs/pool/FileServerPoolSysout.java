@@ -1,5 +1,6 @@
 package com.mage.platform.framework.store.plugin.dfs.pool;
 
+import org.apache.log4j.Logger;
 
 /**
  * 日志打印类
@@ -9,14 +10,13 @@ package com.mage.platform.framework.store.plugin.dfs.pool;
  */
 public class FileServerPoolSysout {
 	
-//	private static Logger logger=Logger.getLogger("imageServerLogger");
+	private static Logger logger = Logger.getLogger(FileServerPoolSysout.class);
 	
 	public static void info(Object o){
-//		logger.info(o.toString());
-		System.out.println(o);
+		logger.info(o.toString());
 	}
+	
 	public static void warn(Object o) {
-//		logger.warn(o.toString());
-		System.err.println(o);
+		logger.error(o.toString());
 	}
 }

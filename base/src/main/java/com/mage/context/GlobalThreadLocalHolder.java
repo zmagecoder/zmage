@@ -27,11 +27,6 @@ public class GlobalThreadLocalHolder {
 			uuid = UUID.randomUUID().toString().replace("-", "");
 			userSessionIdLocal.set(uuid);
 		}
-//		if("2bd0cd787a144e7db537c6ae9062cdb3".equals(uuid))
-//			System.out.println("111111111111111");
-//		if(!"20591B3487FC9548C8EEA8D8F7F7714C".equals(uuid))
-//				System.out.println("2222222222");
-		//System.out.println(uuid+"==============》当前sessionID");
 		return uuid;
 	}
 	

@@ -21,6 +21,7 @@ import com.mage.param.resp.MageResponse;
  *
  */
 public class MageCommonData {
+	
 	private MageRequest<MageResponse> mageRequest =null; //基础入参
     private MageResponse mageResponse = null;//基础出参
     private MageError mageError = null; //错误参数

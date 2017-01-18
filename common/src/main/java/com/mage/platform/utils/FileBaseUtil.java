@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.taskdefs.Delete;
 import org.apache.tools.ant.taskdefs.Expand;
@@ -24,6 +25,8 @@ import com.mage.platform.framework.store.impl.StoreProcesser;
  * @author pzh
  */
 public class FileBaseUtil {
+	
+	private static Logger logger = Logger.getLogger(FileBaseUtil.class);
 
 	private FileBaseUtil() {
 	}
@@ -131,8 +134,7 @@ public class FileBaseUtil {
 
 			out.close();
 		} catch (IOException ex) {
-
-			System.err.println("Create File Error!");
+			logger.error("Create File Error!");
 			ex.printStackTrace();
 		}
 	}
@@ -219,7 +221,7 @@ public class FileBaseUtil {
 				file.mkdirs();
 			}
 		} catch (Exception ex) {
-			System.err.println("Make Folder Error:" + ex.getMessage());
+			logger.error("Make Folder Error:" + ex.getMessage());
 		}
 	}
 

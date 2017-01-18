@@ -34,7 +34,6 @@ public class DFSProcesser implements IStoreProcesser {
 		if(fileId.endsWith(".txt")){
 			try {
 				byte [] buff = dfsManager.getFileById(fileId);
-//				System.out.println(buff);
 				if(null == buff){
 					return "";
 				}else{

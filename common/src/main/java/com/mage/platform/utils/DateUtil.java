@@ -101,8 +101,6 @@ public class DateUtil {
 		   String[] lastMonth = new String[2];
 		   lastMonth[0] = firstDay;
 		   lastMonth[1] = lastDay;
-
-		 //  System.out.println(lastMonth[0] + "||" + lastMonth[1]);
 		   return lastMonth;
 		}
 	
@@ -146,8 +144,6 @@ public class DateUtil {
 		   String[] currentMonth = new String[2];
 		   currentMonth[0] = firstDay;
 		   currentMonth[1] = lastDay;
-
-		 //  System.out.println(lastMonth[0] + "||" + lastMonth[1]);
 		   return currentMonth;
 		}
 		

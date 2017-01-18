@@ -13,12 +13,9 @@ import com.mage.platform.framework.store.plugin.dfs.IDfsManager;
 @Service
 public class DfsManager implements IDfsManager {
 	
-	private Logger logger = Logger.getLogger(this.getClass());
+	private static Logger logger = Logger.getLogger(DfsManager.class);
 	
-	private DfsManager(){
-		
-	}
-	
+	private DfsManager(){}
 	
 	private FileServerImpl s =null;
 
@@ -45,11 +42,9 @@ public class DfsManager implements IDfsManager {
 	 * @return
 	 */
 	public String upload(byte[] fileBuff , String suffix){
-//		System.out.println("upload--------->") ;
 		logger.info("upload--------->")  ;
 		try {
 			String fileId = this.getFileSer().uploadFile(fileBuff, suffix) ;
-//			System.out.println("upload--------->"+fileId) ;
 			logger.info("upload--------->"+fileId)  ;
 			return fileId ;
 		} catch (IOException e) {
@@ -68,11 +63,9 @@ public class DfsManager implements IDfsManager {
 	 * @return
 	 */
 	public String upload(File fileBuff, String suffix){
-//		System.out.println("upload--------->") ;
 		logger.info("upload--------->")  ;
 		try {
 			String fileId = this.getFileSer().uploadFile(fileBuff, suffix) ;
-//			System.out.println("upload--------->"+fileId) ;
 			logger.info("upload--------->"+fileId)  ;
 			return fileId ;
 		} catch (IOException e) {
@@ -95,11 +88,10 @@ public class DfsManager implements IDfsManager {
 		fileId = fileId.startsWith("group") ? "/"+fileId : fileId ;
 		fileId = address+fileId ;
 		logger.info("getFileUrl--------->"+fileId)  ;
-//		System.out.println("getFileUrl--------->"+fileId) ;
 		return fileId ;
 	}
+	
 	public static void main(String[] a ){
-//		System.out.println(getFileUrl("group1/M00/00/57/Ci0vqFLCJ8Xy11F-ADA66_jzVpA608.pdf")) ;
 		File f = new File("C:\\1.txt");
 		String suffix = "txt";
 		//上传配置
@@ -123,7 +115,7 @@ public class DfsManager implements IDfsManager {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("http://"+fast_dfs_down_hostname+":"+fast_dfs_hostport+"/"+uploadpath);
+		logger.info("http://"+fast_dfs_down_hostname+":"+fast_dfs_hostport+"/"+uploadpath);
 	}
 	
 	/**
@@ -132,7 +124,6 @@ public class DfsManager implements IDfsManager {
 	 * @return
 	 */
 	public boolean delete(String fileId){
-//		System.out.println("delete--------->"+fileId) ;
 		logger.info("delete--------->"+fileId)  ;
 		try {
 			if(fileId.startsWith("http://"+FileConfigSetting.FAST_DFS_HOSTNAME+"/")){
@@ -140,7 +131,6 @@ public class DfsManager implements IDfsManager {
 			}
 			boolean result = this.getFileSer().deleteFile(fileId) ;
 			logger.info("delete--------->"+result)  ;
-//			System.out.println("delete--------->"+result) ;
 			return result ;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -157,7 +147,6 @@ public class DfsManager implements IDfsManager {
 	 * @return
 	 */
 	public byte[] getFileById(String fileId){
-//		System.out.println("getFileById--------->"+fileId) ;
 		logger.info("getFileById--------->"+fileId)  ;
 		try {
 			FileServerImpl fi = this.getFileSer();
@@ -172,7 +161,6 @@ public class DfsManager implements IDfsManager {
 	}
 	
 	public byte[] downFileById(String fileId){
-//		System.out.println("getFileById--------->"+fileId) ;
 		logger.info("downFileById--------->"+fileId)  ;
 		try {
 			return this.getFileSer().downFileByID(fileId) ;

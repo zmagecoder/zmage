@@ -77,7 +77,6 @@ public class StoreProcesser {
 	}
 	
 	public String getStoreType(String table_name, String table_field, String file_path, String source_from){
-//		System.out.println("getStoreType-->>table_name:"+table_name+" table_field:"+table_field+" file_path:"+file_path+" source_from:"+source_from);
 		if("".equals(table_name) || null==table_name){
 			if(null == blogManager){
 				blogManager = SpringContextHolder.getBean("blogManager");
