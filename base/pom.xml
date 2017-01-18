@@ -7,7 +7,7 @@
 	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<description>公用实体</description>
-
+    
   	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
@@ -32,5 +32,4 @@
 			<url>http://localhost:8081/nexus/content/repositories/develop-snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
-
 </project>

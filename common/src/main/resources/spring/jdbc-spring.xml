@@ -58,7 +58,7 @@
         </constructor-arg>
     </bean>
     
-    <bean id="jdbcTemplate" class="com.mage.platform.service.db.impl.LowerCaseJdbcTemplate">
+    <bean id="jdbcTemplate" class="com.mage.platform.framework.database.impl.LowerCaseJdbcTemplate">
     	 <property name="dataSource">  
             <ref bean="dataSource" />  
         </property> 
@@ -71,7 +71,7 @@
         </property>
     </bean>
     
-    <bean id="oracleDBSupport" class="com.mage.platform.service.db.impl.OracleDBSupport">
+    <bean id="oracleDBSupport" class="com.mage.platform.framework.database.impl.OracleDBSupport">
         <property name="jdbcTemplate">
             <ref bean="jdbcTemplate"/>
         </property>

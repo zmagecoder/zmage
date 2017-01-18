@@ -18,5 +18,5 @@
 	<bean id="springContextHolder" class="com.mage.platform.framework.context.SpringContextHolder" lazy-init="false"/>
 	
 	<!-- session 处理类 -->
-	<bean id="httpSessionService" class="com.mage.platform.framework.context.impl.session.HttpSessionService" lazy-init="false"/>
+	<bean id="httpSessionService" class="com.mage.platform.framework.session.impl.HttpSessionService" lazy-init="false"/>
 </beans>
