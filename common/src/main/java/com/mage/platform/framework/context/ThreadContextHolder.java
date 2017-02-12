@@ -98,4 +98,11 @@ public class ThreadContextHolder  {
 		
 		return HttpSessionThreadLocalHolder.get();
 	}
+	
+	public static String getSessionId(){
+		HttpServletRequest request = HttpRequestThreadLocalHolder.get();
+		if(null != request)
+			return request.getSession().getId();
+		return null;
+	}
 }

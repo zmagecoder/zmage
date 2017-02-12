@@ -34,7 +34,138 @@
         	<property name="enableSubPackages" value="true"/>  
         </javaClientGenerator>
         
-        <table tableName="sy_user"
+        <table tableName="p_car"
+        	domainObjectName="Car" enableCountByExample="fasle" 
+        	enableUpdateByExample="fasle" enableDeleteByExample="fasle" 
+        	enableSelectByExample="fasle" selectByExampleQueryId="fasle">
+        	<!-- 忽略列，不生成bean 字段; 指定列的java数据类型  -->
+        	<!--  
+            <ignoreColumn column="FRED" />
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+            -->
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+        </table>
+        
+        <table tableName="p_car_model"
+        	domainObjectName="CarModel" enableCountByExample="fasle" 
+        	enableUpdateByExample="fasle" enableDeleteByExample="fasle" 
+        	enableSelectByExample="fasle" selectByExampleQueryId="fasle">
+        	<!-- 忽略列，不生成bean 字段; 指定列的java数据类型  -->
+        	<!--  
+            <ignoreColumn column="FRED" />
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+            -->
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+        </table>
+        
+        <table tableName="p_friends"
+        	domainObjectName="Friends" enableCountByExample="fasle" 
+        	enableUpdateByExample="fasle" enableDeleteByExample="fasle" 
+        	enableSelectByExample="fasle" selectByExampleQueryId="fasle">
+        	<!-- 忽略列，不生成bean 字段; 指定列的java数据类型  -->
+        	<!--  
+            <ignoreColumn column="FRED" />
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+            -->
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+        </table>
+        
+        <table tableName="p_maintain"
+        	domainObjectName="Maintain" enableCountByExample="fasle" 
+        	enableUpdateByExample="fasle" enableDeleteByExample="fasle" 
+        	enableSelectByExample="fasle" selectByExampleQueryId="fasle">
+        	<!-- 忽略列，不生成bean 字段; 指定列的java数据类型  -->
+        	<!--  
+            <ignoreColumn column="FRED" />
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+            -->
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+        </table>
+        
+        <table tableName="p_notice"
+        	domainObjectName="Notice" enableCountByExample="fasle" 
+        	enableUpdateByExample="fasle" enableDeleteByExample="fasle" 
+        	enableSelectByExample="fasle" selectByExampleQueryId="fasle">
+        	<!-- 忽略列，不生成bean 字段; 指定列的java数据类型  -->
+        	<!--  
+            <ignoreColumn column="FRED" />
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+            -->
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+        </table>
+        
+        <table tableName="p_order"
+        	domainObjectName="Order" enableCountByExample="fasle" 
+        	enableUpdateByExample="fasle" enableDeleteByExample="fasle" 
+        	enableSelectByExample="fasle" selectByExampleQueryId="fasle">
+        	<!-- 忽略列，不生成bean 字段; 指定列的java数据类型  -->
+        	<!--  
+            <ignoreColumn column="FRED" />
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+            -->
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+        </table>
+        
+        <table tableName="p_order"
+        	domainObjectName="Order" enableCountByExample="fasle" 
+        	enableUpdateByExample="fasle" enableDeleteByExample="fasle" 
+        	enableSelectByExample="fasle" selectByExampleQueryId="fasle">
+        	<!-- 忽略列，不生成bean 字段; 指定列的java数据类型  -->
+        	<!--  
+            <ignoreColumn column="FRED" />
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+            -->
+        </table>
+        
+        <table tableName="p_page_info"
+        	domainObjectName="PageInfo" enableCountByExample="fasle" 
+        	enableUpdateByExample="fasle" enableDeleteByExample="fasle" 
+        	enableSelectByExample="fasle" selectByExampleQueryId="fasle">
+        	<!-- 忽略列，不生成bean 字段; 指定列的java数据类型  -->
+        	<!--  
+            <ignoreColumn column="FRED" />
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+            -->
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+        </table>
+        
+        <table tableName="p_park_lot"
+        	domainObjectName="ParkLot" enableCountByExample="fasle" 
+        	enableUpdateByExample="fasle" enableDeleteByExample="fasle" 
+        	enableSelectByExample="fasle" selectByExampleQueryId="fasle">
+        	<!-- 忽略列，不生成bean 字段; 指定列的java数据类型  -->
+        	<!--  
+            <ignoreColumn column="FRED" />
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+            -->
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+        </table>
+        
+        <table tableName="p_user_account"
+        	domainObjectName="UserAccount" enableCountByExample="fasle" 
+        	enableUpdateByExample="fasle" enableDeleteByExample="fasle" 
+        	enableSelectByExample="fasle" selectByExampleQueryId="fasle">
+        	<!-- 忽略列，不生成bean 字段; 指定列的java数据类型  -->
+        	<!--  
+            <ignoreColumn column="FRED" />
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+            -->
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+        </table>
+        
+        <table tableName="p_wash_car"
+        	domainObjectName="WashCar" enableCountByExample="fasle" 
+        	enableUpdateByExample="fasle" enableDeleteByExample="fasle" 
+        	enableSelectByExample="fasle" selectByExampleQueryId="fasle">
+        	<!-- 忽略列，不生成bean 字段; 指定列的java数据类型  -->
+        	<!--  
+            <ignoreColumn column="FRED" />
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+            -->
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
+        </table>
+        
+        <table tableName="sys_user"
         	domainObjectName="User" enableCountByExample="fasle" 
         	enableUpdateByExample="fasle" enableDeleteByExample="fasle" 
         	enableSelectByExample="fasle" selectByExampleQueryId="fasle">
@@ -43,6 +174,7 @@
             <ignoreColumn column="FRED" />
             <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
             -->
+            <columnOverride column="DOUBLE" jdbcType="DECIMAL" />
         </table>
         
     </context>  

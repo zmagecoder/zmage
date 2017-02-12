@@ -14,6 +14,7 @@
 	<context:component-scan base-package="com.mage.platform.service" />
 	<context:component-scan base-package="com.mage.platform.framework.widget.processor" />
 	<context:component-scan base-package="com.mage.platform.framework.web.processor.impl" />
+	<context:component-scan base-package="com.mage.platform.framework.database.impl" />
 	
 	<bean id="springContextHolder" class="com.mage.platform.framework.context.SpringContextHolder" lazy-init="false"/>
 	

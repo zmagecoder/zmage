@@ -29,6 +29,7 @@ public class FileBaseUtil {
 	private static Logger logger = Logger.getLogger(FileBaseUtil.class);
 
 	private FileBaseUtil() {
+		
 	}
 
 	public static void createFile(InputStream in, String filePath) {

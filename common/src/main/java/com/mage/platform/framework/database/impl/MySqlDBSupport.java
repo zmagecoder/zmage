@@ -1,5 +1,7 @@
 package com.mage.platform.framework.database.impl;
 
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,8 +20,7 @@ public class MySqlDBSupport<T> extends JdbcDaoSupport<T> {
 	
 	@Override
 	public String getSequences(String tableName, String strSeqType, int len) {
-		// TODO
-		return "";
+    	return UUID.randomUUID().toString().replace("-", "");
 	}
 	
 }

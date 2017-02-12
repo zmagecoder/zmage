@@ -15,6 +15,8 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -24,6 +26,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import com.mage.consts.CoreConsts;
@@ -39,9 +42,13 @@ import com.mage.platform.utils.ReflectionUtil;
  * @author modify by pzh 2015-05-27
  * @param <T>
  */
+@Service
 public class JdbcDaoSupport<T> implements IDaoSupport<T> {
 
+	@Resource
 	protected JdbcTemplate jdbcTemplate;
+	
+	@Resource
 	protected NamedParameterJdbcTemplate parameterJdbcTemplate;
 	
 	protected final Logger logger = Logger.getLogger(getClass());
@@ -71,16 +78,16 @@ public class JdbcDaoSupport<T> implements IDaoSupport<T> {
 	@Override
 	public void execute(String sql, Object... args) {
 		try {
-			String sqlReg = "(?i)insert.*";
-			if(sql.matches(sqlReg)){
-				if(sql.indexOf("source_from") == -1 && sql.indexOf("SOURCE_FROM") == -1 ){
-					sql = sql.replaceFirst("\\)", ", source_from)");
-					int index = sql.lastIndexOf(")");
-                    if(index!=-1){
-                        sql = sql.substring(0, index) + ",'" + ManagerUtils.getSourceFrom() + "')";
-                    }
-				}
-			}
+//			String sqlReg = "(?i)insert.*";
+//			if(sql.matches(sqlReg)){
+//				if(sql.indexOf("source_from") == -1 && sql.indexOf("SOURCE_FROM") == -1 ){
+//					sql = sql.replaceFirst("\\)", ", source_from)");
+//					int index = sql.lastIndexOf(")");
+//                    if(index!=-1){
+//                        sql = sql.substring(0, index) + ",'" + ManagerUtils.getSourceFrom() + "')";
+//                    }
+//				}
+//			}
 			this.jdbcTemplate.update(sql, args);
 		} catch (Exception e) {
 			throw new DBRuntimeException(e, sql);
@@ -136,25 +143,17 @@ public class JdbcDaoSupport<T> implements IDaoSupport<T> {
 		Assert.hasText(table, "表名不能为空");
 		Map<String, Object> fields = ReflectionUtil.getDbFields(po);
 		Assert.notEmpty(fields, "字段不能为空");
-		String sqlInsert = "insert into " + table + "(";				
+		String sqlInsert = "insert into " + table + "(";
 		String sqlVal = "values(";
 		try {
 			Object[] vals = new Object[fields.size()];
-			boolean sourceFlag = false;
 			Set<Entry<String, Object>> entry =  fields.entrySet();
 			int count = 0;
 			for(Entry<String, Object> field : entry){										//拼装sql字段
 				String field_name = field.getKey();
-				if(CoreConsts.SOURCE_FROM.equalsIgnoreCase(field_name))
-					sourceFlag = true;
 				sqlInsert += field_name + ",";
 				sqlVal += "?,";
 				vals[count++] = field.getValue();
-			}
-			//如果对象中没有数据来源自动拼装数据来源
-			if(!sourceFlag){
-					sqlInsert += CoreConsts.SOURCE_FROM + ",";
-					sqlVal += "'" + ManagerUtils.getSourceFrom() + "',";
 			}
 			sqlInsert = sqlInsert.substring(0, sqlInsert.length() - 1) + ")";
 			sqlVal = sqlVal.substring(0, sqlVal.length() - 1) + ")";
@@ -533,18 +532,18 @@ public class JdbcDaoSupport<T> implements IDaoSupport<T> {
 	}
 	
 	private String addSourceFrom(String sql){
-		//检查是否含有source_from(where之后是否含有source_from，有则全部过滤掉)
-		for(String table : filterTables){
-			if(sql.indexOf(table)>-1 || sql.indexOf(table.toLowerCase())>-1)
-				return sql;
-		}
-		String regCheck = ".*(?i)\\bwhere\\b.*[\\s|.]source_from[\\s|=].*";
-		//替换所有where(where前后都有间隔符，不区分大小写)
-		String regReplace = "\\s+(?i)where\\s+";
-		
-		if(!sql.matches(regCheck)){				//如果where之后没有source_from,则替换所有where
-			sql = sql.replaceAll(regReplace, " where source_from = '" + ManagerUtils.getSourceFrom() + "' and ");
-		}
+//		//检查是否含有source_from(where之后是否含有source_from，有则全部过滤掉)
+//		for(String table : filterTables){
+//			if(sql.indexOf(table)>-1 || sql.indexOf(table.toLowerCase())>-1)
+//				return sql;
+//		}
+//		String regCheck = ".*(?i)\\bwhere\\b.*[\\s|.]source_from[\\s|=].*";
+//		//替换所有where(where前后都有间隔符，不区分大小写)
+//		String regReplace = "\\s+(?i)where\\s+";
+//		
+//		if(!sql.matches(regCheck)){				//如果where之后没有source_from,则替换所有where
+//			sql = sql.replaceAll(regReplace, " where source_from = '" + ManagerUtils.getSourceFrom() + "' and ");
+//		}
 		return sql;
 	}
 	
